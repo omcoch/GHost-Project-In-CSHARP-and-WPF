@@ -42,8 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankAccount.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="EnumTypes.cs" />
     <Compile Include="GuestRequest.cs" />
+    <Compile Include="Host.cs" />
+    <Compile Include="HostingUnit.cs" />
+    <Compile Include="Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

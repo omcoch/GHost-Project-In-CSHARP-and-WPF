@@ -16,7 +16,7 @@ namespace BE
         private readonly int guestRequestKey; // מספר הבקשה לאירוח - מזהה ייחודי
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
-        public string MailAddress { get; set; }
+        private string MailAddress { get; set; }
         public RequestStatus Status;
         public DateTime RegistrationDate { get; set; }              
         public DateTime EntryDate { get; set; }              
