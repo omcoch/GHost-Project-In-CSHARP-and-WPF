@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-//TODO: להוסיף קישורים \ רפרנסים בין השכבות השונות
-
-             
+        
 
 namespace BE
 {
     public class GuestRequest
     {
-        private readonly int guestRequestKey; // מספר הבקשה לאירוח - מזהה ייחודי
+        public readonly int guestRequestKey; // מספר הבקשה לאירוח - מזהה ייחודי
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
         private string MailAddress { get; set; }
@@ -33,7 +30,7 @@ namespace BE
 
         public override string ToString()
         {
-
+            return "";
         }
     }
 }

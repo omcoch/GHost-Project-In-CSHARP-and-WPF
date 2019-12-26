@@ -11,10 +11,24 @@ namespace DAL
     class Dal_imp : IDAL
     {
 
+        protected Dal_imp() { }
+        protected static Dal_imp instance = null;
+        public static Dal_imp GetInstance()
+        {
+            if (instance == null)
+                instance = new Dal_imp();
+            return instance;
+        }
 
         public void AddGuestRequest(GuestRequest guestRequest)
         {
-            DS.DataSource.GuestRequests.Add(guestRequest);
+            var v = from GR in DS.DataSource.GuestRequests
+                    where GR.PrivateName == guestRequest.PrivateName
+                    select GR.PrivateName.ToString();
+            if (!v.Any() )
+                DS.DataSource.GuestRequests.Add(guestRequest);
+            else
+                throw new DuplicateWaitObjectException();
         }
 
 
