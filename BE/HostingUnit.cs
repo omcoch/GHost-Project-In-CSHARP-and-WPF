@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class HostingUnit
+    public class HostingUnit
     {
         public int HostingUnitKey { get; set; }
         public Host Owner { get; set; }
