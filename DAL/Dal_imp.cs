@@ -22,25 +22,24 @@ namespace DAL
 
         public void AddGuestRequest(GuestRequest guestRequest)
         {
-            var v = from GR in DS.DataSource.GuestRequests
-                    where GR.PrivateName == guestRequest.PrivateName
-                    select GR.PrivateName.ToString();
-            if (!v.Any() )
-                DS.DataSource.GuestRequests.Add(guestRequest);
-            else
-                throw new DuplicateWaitObjectException();
+            guestRequest.guestRequestKey = Configuration.GuestRequestSerialKey;
+            DS.DataSource.GuestRequests.Add(guestRequest);
         }
-
 
 
         public void AddHostingUnit(HostingUnit hostingUnit)
         {
-            DS.DataSource.HostingUnits.Add(hostingUnit);
+            var v = from HU in DS.DataSource.HostingUnits
+                    where HU.Owner.HostKey == hostingUnit.Owner.HostKey
+                    select HU.Owner.HostKey;
+            if (!v.Any())
+                DS.DataSource.HostingUnits.Add(hostingUnit); 
         }
 
 
         public void AddOrder(Order order)
         {
+            order.OrderKey = Configuration.OrderSerialKey;
             DS.DataSource.Orders.Add(order);
         }
 
@@ -74,24 +73,39 @@ namespace DAL
             return orders;
         }
 
-        public void RemoveHostingUnit()
+        public void RemoveHostingUnit(int key)
         {
-            throw new NotImplementedException();
+            var v = (from HU in DataSource.HostingUnits
+                    where HU.HostingUnitKey == key
+                    select HU).First();
+            DataSource.HostingUnits.Remove(v);
         }
 
-        public void UpdateGuestRequest()
+        public void UpdateGuestRequest(GuestRequest guestRequest)
         {
-            throw new NotImplementedException();
+            var v = from GR in DataSource.GuestRequests
+                    where GR.guestRequestKey == guestRequest.guestRequestKey
+                    select GR;
+            DataSource.GuestRequests.Remove(v.First());
+            DataSource.GuestRequests.Add(guestRequest);
         }
 
-        public void UpdateHostingUnit()
+        public void UpdateHostingUnit(HostingUnit hostingUnit)
         {
-            throw new NotImplementedException();
+            var v = from HU in DataSource.HostingUnits
+                    where HU.HostingUnitKey == hostingUnit.HostingUnitKey
+                    select HU;
+            DataSource.HostingUnits.Remove(v.First());
+            DataSource.HostingUnits.Add(hostingUnit);
         }
 
-        public void UpdateOrder()
+        public void UpdateOrder(Order order)
         {
-            throw new NotImplementedException();
+            var v = from O in DataSource.Orders
+                    where O.OrderKey == order.OrderKey
+                    select O;
+            DataSource.Orders.Remove(v.First());
+            DataSource.Orders.Add(order);
         }
     }
 }
