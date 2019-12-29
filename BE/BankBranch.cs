@@ -16,7 +16,12 @@ namespace BE
 
         public override string ToString()
         {
-            return "";
+            string str = "@Bank number: " + BankNumber +
+                          "Bank name: " + BankName +
+                          "Branch number: " + BranchNumber +
+                          "Branch address: " + BranchAddress +
+                          "Branch city: " + BranchCity;
+            return str;
         }
     }
 }

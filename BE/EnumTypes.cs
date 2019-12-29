@@ -1,5 +1,6 @@
 ﻿namespace BE
 {
+    //ToDo: למלא את הערכים של הenum
     public enum RequestStatus
     {
     }
