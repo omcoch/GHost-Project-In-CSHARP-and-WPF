@@ -34,16 +34,19 @@ namespace BE
         public Garden Garden { get; set; }
         public ChildrensAttractions ChildrensAttractions { get; set; }
 
-        public override string ToString()//ToDo: צריך לסיים את זה
+        public override string ToString()
         {
-            string str = "@ Name: " + PrivateName + " " + FamilyName +
-                "Status: " + Status +
-                "Registration date: " + RegistrationDate +
-                "Entry date: " + EntryDate + " Release date: " + ReleaseDate +
-                "Area: " + Area + " sub area: " + SubArea +
-                "Type: " + Type +
-                "Number of adults: " + Adults + " and childrens: " + Children +
-                "";
+            string str = "Name: " + PrivateName + " " + FamilyName +
+                "\nStatus: " + Status +
+                "\nRegistration date: " + RegistrationDate +
+                "\nEntry date: " + EntryDate + " Release date: " + ReleaseDate +
+                "\nArea: " + Area + " sub area: " + SubArea +
+                "\nType: " + Type +
+                "\nNumber of adults: " + Adults + " and childrens: " + Children +
+                "\nWant Pool: " + Pool +
+                "\nWant Jacuzzi: " + Jacuzzi +
+                "\nWant Garden: " + Garden +
+                "\nWant Childrens Attractions: " + ChildrensAttractions;
             return str;
         }
     }

@@ -10,7 +10,7 @@ namespace DAL
 {
     class Dal_imp : IDAL
     {
-
+        
         protected Dal_imp() { }
         protected static Dal_imp instance = null;
         public static Dal_imp GetInstance()
@@ -19,6 +19,9 @@ namespace DAL
                 instance = new Dal_imp();
             return instance;
         }
+
+
+
 
         public void AddGuestRequest(GuestRequest guestRequest)
         {

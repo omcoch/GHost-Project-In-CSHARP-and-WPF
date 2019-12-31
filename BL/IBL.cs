@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    interface IBL
+    public interface IBL
     {
         void AddGuestRequest(GuestRequest guestRequest);
         void UpdateGuestRequest(GuestRequest guestRequest);
