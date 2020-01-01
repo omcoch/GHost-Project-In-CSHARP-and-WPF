@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="BL_imp.cs" />
     <Compile Include="BlFactory.cs" />
-    <Compile Include="DateOccupiedException.cs" />
     <Compile Include="IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

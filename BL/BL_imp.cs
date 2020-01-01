@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BL
 {
@@ -32,7 +31,7 @@ namespace BL
             {
                 TimeSpan timeSpan = guestRequest.ReleaseDate - guestRequest.EntryDate;
                 if (timeSpan.TotalDays < 1)
-                    throw new TaskCanceledException("על תאריך תחילת הנופש להיות קודם לפחות ביום אחד לתאריך סיום הנופש");
+                    throw new ArgumentOutOfRangeException("על תאריך תחילת הנופש להיות קודם לפחות ביום אחד לתאריך סיום הנופש");
                 /*TODO: if (!new EmailAddressAttribute().IsValid(guestRequest.MailAddress))
                     throw new FormatException("כתובת מייל לא תקינה");*/
                 dal.AddGuestRequest(guestRequest);
@@ -62,7 +61,7 @@ namespace BL
             while (entryDate<=releaseDate)
             {
                 if (diaryOfHostingUnit[entryDate.Day, entryDate.Month])
-                    throw new DateOccupiedException();
+                    throw new DateOccupiedException() { Source="BL"};
                 entryDate = entryDate.AddDays(1);
             }
             dal.AddOrder(order);
@@ -84,22 +83,29 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public void UpdateOrder(Order order)
+        public void UpdateOrder(Order newOrder)
         {
-            var CollectionClearance = from host in dal.GetHostingUnits()
-                    where host.HostingUnitKey == order.HostingUnitKey
-                    select host.Owner.CollectionClearance;
-            if (CollectionClearance.First() == true)
+            var CollectionClearance = (from host in dal.GetHostingUnits()
+                                       where host.HostingUnitKey == newOrder.HostingUnitKey
+                                       select host.Owner.CollectionClearance).First();
+            var OrderStatus = (from order in dal.GetOrders()
+                               where order.OrderKey == newOrder.OrderKey
+                               select order.Status).First();
+
+            if (OrderStatus == OrderStatus.נסגר_בהיענות_של_הלקוח || OrderStatus == OrderStatus.נסגר_מחוסר_הענות_של_הלקוח)
+                throw new ExecutionOrderException("הבקשה כבר סגורה");
+
+            if (CollectionClearance)
                 try
                 {
-                    dal.UpdateOrder(order);
+                    dal.UpdateOrder(newOrder);
                 }
                 catch (Exception e)
                 {
                     throw e;
                 }
             else
-                throw new TaskCanceledException("לא בוצע אישור לחיוב חשבון");
+                throw new ExecutionOrderException("לא בוצע אישור לחיוב חשבון");
         }
     }
 }

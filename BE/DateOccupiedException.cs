@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace BL
+namespace BE
 {
     [Serializable]
-    internal class DateOccupiedException : Exception
+    public class DateOccupiedException : Exception
     {
         public DateOccupiedException()
         {
