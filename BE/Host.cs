@@ -15,6 +15,7 @@ namespace BE
         public string MailAddress { get; set; }
         public BankBranch BankAccountDetails { get; set; }
         public int BankAccountNumber { get; set; }
+        public int ChargeAmount { get; set; }
         public bool CollectionClearance { get; set; }
         public override string ToString()
         {

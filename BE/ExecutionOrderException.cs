@@ -12,6 +12,7 @@ namespace BE
 
         public ExecutionOrderException(string message) : base(message)
         {
+        
         }
 
         public ExecutionOrderException(string message, Exception innerException) : base(message, innerException)

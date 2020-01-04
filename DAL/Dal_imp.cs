@@ -35,7 +35,12 @@ namespace DAL
                     where HU.Owner.HostKey == hostingUnit.Owner.HostKey
                     select HU.Owner.HostKey;
             if (!v.Any())
-                DS.DataSource.HostingUnits.Add(hostingUnit); 
+            {
+                hostingUnit.HostingUnitKey = Configuration.HostingUnitSerialKey;
+                DS.DataSource.HostingUnits.Add(hostingUnit);
+            }
+            else
+                throw new ArgumentException("יחידת אירוח כבר קיימת במאגר");
         }
 
 
@@ -77,10 +82,12 @@ namespace DAL
 
         public void RemoveHostingUnit(int key)
         {
-            var v = (from HU in DataSource.HostingUnits
-                    where HU.HostingUnitKey == key
-                    select HU).First();
-            DataSource.HostingUnits.Remove(v);
+
+            var hostingUnit = DataSource.HostingUnits.FirstOrDefault(k => key == k.HostingUnitKey);
+            if (null == hostingUnit)
+                throw new KeyNotFoundException("יחידת אירוח לא קיימת");
+            else
+                DataSource.HostingUnits.Remove(hostingUnit);
         }
 
         public void UpdateGuestRequest(GuestRequest guestRequest)
@@ -88,17 +95,22 @@ namespace DAL
             var v = from GR in DataSource.GuestRequests
                     where GR.guestRequestKey == guestRequest.guestRequestKey
                     select GR;
-            DataSource.GuestRequests.Remove(v.First());
-            DataSource.GuestRequests.Add(guestRequest);
+            if (v.Any())
+            {
+                DataSource.GuestRequests.Remove(v.First());
+                DataSource.GuestRequests.Add(guestRequest);
+            }
+            else
+                throw new ArgumentException("דרישת לקוח לא קיימת");
         }
 
         public void UpdateHostingUnit(HostingUnit hostingUnit)
         {
-            var v = from HU in DataSource.HostingUnits
-                    where HU.HostingUnitKey == hostingUnit.HostingUnitKey
-                    select HU;
-            DataSource.HostingUnits.Remove(v.First());
-            DataSource.HostingUnits.Add(hostingUnit);
+            var v = DataSource.HostingUnits.FirstOrDefault(hu => hu.HostingUnitKey == hostingUnit.HostingUnitKey);
+            if (DataSource.HostingUnits.Remove(v))
+                DataSource.HostingUnits.Add(hostingUnit);
+            else
+                throw new ArgumentException("יחידת אירוח לא קיימת");
         }
 
         public void UpdateOrder(Order order)
@@ -106,8 +118,13 @@ namespace DAL
             var v = from O in DataSource.Orders
                     where O.OrderKey == order.OrderKey
                     select O;
-            DataSource.Orders.Remove(v.First());
-            DataSource.Orders.Add(order);
+            if (v.Any())
+            {
+                DataSource.Orders.Remove(v.First());
+                DataSource.Orders.Add(order);
+            }
+            else
+                throw new ArgumentException("הזמנה לא קיימת");
         }
     }
 }
