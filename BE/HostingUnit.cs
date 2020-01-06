@@ -15,17 +15,27 @@ namespace BE
 
         public Regions Area { get; set; }
         public string SubArea { get; set; }
-        public Type Type { get; set; }
+        public GRType Type { get; set; }
         public int Adults { get; set; }
         public int Children { get; set; }
-        public Pool Pool { get; set; }
-        public HotTub Jacuzzi { get; set; }
-        public Garden Garden { get; set; }
-        public ChildrensAttractions ChildrensAttractions { get; set; }
+        public bool Pool { get; set; }
+        public bool Jacuzzi { get; set; }
+        public bool Garden { get; set; }
+        public bool ChildrensAttractions { get; set; }
 
         public override string ToString()
         {
-            return base.ToString();
+            string str = 
+                "Owner Name: " + Owner.PrivateName + " " + Owner.FamilyName +
+                "\nHosting Unit Name: " + HostingUnitName +
+                "\nArea: " + Area + " sub area: " + SubArea +
+                "\nType: " + Type +
+                "\nNumber of adults: " + Adults + " and childrens: " + Children +
+                "\nHave Pool? " + Pool +
+                "\nHave Jacuzzi? " + Jacuzzi +
+                "\nHave Garden? " + Garden +
+                "\nHave Childrens Attractions? " + ChildrensAttractions;
+            return str;
         }
     }
 }

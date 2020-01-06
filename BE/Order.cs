@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,9 +18,12 @@ namespace BE
         public DateTime CreateDate { get; set; } 
         /// <summary> תאריך משלוח המייל ללקוח </summary>
         public DateTime OrderDate { get; set; } 
+
         public override string ToString()
         {
-            return base.ToString();
+            return "Status: " + Status
+                + "\nCreate Date: " + CreateDate
+                + "\nOrder Date: " + OrderDate;
         }
     }
 }

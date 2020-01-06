@@ -13,8 +13,8 @@ namespace BE
         private static int hostingUnitSerialKey = 10000000;//מספר מזהה רץ עבור יחדית אירוח
         public const int FEE = 10;//עמלה
 
-        public static int GuestRequestSerialKey { get => guestRequestSerialKey++; }
-        public static int OrderSerialKey { get => orderSerialKey++; }
-        public static int HostingUnitSerialKey { get => hostingUnitSerialKey++; }
+        public static int GenerateGuestRequestSerialKey { get => guestRequestSerialKey++; }
+        public static int GenerateOrderSerialKey { get => orderSerialKey++; }
+        public static int GenerateHostingUnitSerialKey { get => hostingUnitSerialKey++; }
     }
 }

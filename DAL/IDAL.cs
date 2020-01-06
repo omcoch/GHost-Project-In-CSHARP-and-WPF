@@ -9,14 +9,14 @@ namespace DAL
     public interface IDAL
     {
 
-        void AddGuestRequest(GuestRequest guestRequest);
+        int AddGuestRequest(GuestRequest guestRequest);
         void UpdateGuestRequest(GuestRequest guestRequest);
 
-        void AddHostingUnit(HostingUnit hostingUnit);
+        int AddHostingUnit(HostingUnit hostingUnit);
         void RemoveHostingUnit(int key);
         void UpdateHostingUnit(HostingUnit hostingUnit);
 
-        void AddOrder(Order order);
+        int AddOrder(Order order);
         void UpdateOrder(Order order);
 
         List<GuestRequest> GetGuestRequests();

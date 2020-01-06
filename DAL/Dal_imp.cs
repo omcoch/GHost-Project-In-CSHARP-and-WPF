@@ -19,35 +19,39 @@ namespace DAL
             return instance;
         }
 
-
-
-
-        public void AddGuestRequest(GuestRequest guestRequest)
+        public int AddGuestRequest(GuestRequest gR)
         {
-            guestRequest.guestRequestKey = Configuration.GuestRequestSerialKey;
-            DS.DataSource.GuestRequests.Add(guestRequest);
+            GuestRequest guestRequest = Cloning.Clone(gR);
+            guestRequest.guestRequestKey = Configuration.GenerateGuestRequestSerialKey;
+            DataSource.GuestRequests.Add(guestRequest);
+            return guestRequest.guestRequestKey;
         }
 
 
-        public void AddHostingUnit(HostingUnit hostingUnit)
+        public int AddHostingUnit(HostingUnit hostingUnit)
         {
-            var v = from HU in DS.DataSource.HostingUnits
+            hostingUnit = Cloning.Clone(hostingUnit);
+            var v = from HU in DataSource.HostingUnits
                     where HU.Owner.HostKey == hostingUnit.Owner.HostKey
                     select HU.Owner.HostKey;
             if (!v.Any())
             {
-                hostingUnit.HostingUnitKey = Configuration.HostingUnitSerialKey;
-                DS.DataSource.HostingUnits.Add(hostingUnit);
+                hostingUnit.HostingUnitKey = Configuration.GenerateHostingUnitSerialKey;
+                hostingUnit.Diary = new bool[12, 31];
+                DataSource.HostingUnits.Add(hostingUnit);
+                return hostingUnit.HostingUnitKey;
             }
             else
                 throw new ArgumentException("יחידת אירוח כבר קיימת במאגר");
         }
 
 
-        public void AddOrder(Order order)
+        public int AddOrder(Order order)
         {
-            order.OrderKey = Configuration.OrderSerialKey;
-            DS.DataSource.Orders.Add(order);
+            order = Cloning.Clone(order);
+            order.OrderKey = Configuration.GenerateOrderSerialKey;
+            DataSource.Orders.Add(order);
+            return order.OrderKey;
         }
 
         public List<BankBranch> GetBankBranches()
@@ -64,19 +68,19 @@ namespace DAL
 
         public List<GuestRequest> GetGuestRequests()
         {
-            List<GuestRequest> guestRequests = DS.DataSource.GuestRequests.ToList();
+            List<GuestRequest> guestRequests = DataSource.GuestRequests.Select(item=>item).ToList();
             return guestRequests;
         }
 
         public List<HostingUnit> GetHostingUnits()
         {
-            List<HostingUnit> hostingUnits = DS.DataSource.HostingUnits.ToList();
+            List<HostingUnit> hostingUnits = DS.DataSource.HostingUnits.Select(item => item).ToList();
             return hostingUnits;
         }
 
         public List<Order> GetOrders()
         {
-            List<Order> orders = DS.DataSource.Orders.ToList();
+            List<Order> orders = DS.DataSource.Orders.Select(item => item).ToList();
             return orders;
         }
 
@@ -92,6 +96,7 @@ namespace DAL
 
         public void UpdateGuestRequest(GuestRequest guestRequest)
         {
+            guestRequest = Cloning.Clone(guestRequest);
             var v = from GR in DataSource.GuestRequests
                     where GR.guestRequestKey == guestRequest.guestRequestKey
                     select GR;
@@ -106,6 +111,7 @@ namespace DAL
 
         public void UpdateHostingUnit(HostingUnit hostingUnit)
         {
+            hostingUnit = Cloning.Clone(hostingUnit);
             var v = DataSource.HostingUnits.FirstOrDefault(hu => hu.HostingUnitKey == hostingUnit.HostingUnitKey);
             if (DataSource.HostingUnits.Remove(v))
                 DataSource.HostingUnits.Add(hostingUnit);
@@ -115,6 +121,7 @@ namespace DAL
 
         public void UpdateOrder(Order order)
         {
+            order = Cloning.Clone(order);
             var v = from O in DataSource.Orders
                     where O.OrderKey == order.OrderKey
                     select O;
@@ -126,5 +133,7 @@ namespace DAL
             else
                 throw new ArgumentException("הזמנה לא קיימת");
         }
+
+        
     }
 }

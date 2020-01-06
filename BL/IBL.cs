@@ -9,15 +9,31 @@ namespace BL
 {
     public interface IBL
     {
-        void AddGuestRequest(GuestRequest guestRequest);
+        int AddGuestRequest(GuestRequest guestRequest);
         void UpdateGuestRequest(GuestRequest guestRequest);
 
-        void AddHostingUnit(HostingUnit hostingUnit);
+        int AddHostingUnit(HostingUnit hostingUnit);
         void RemoveHostingUnit(int key);
         void UpdateHostingUnit(HostingUnit hostingUnit);
 
-        void AddOrder(Order order);
+        int AddOrder(Order order);
         void UpdateOrder(Order order);
 
+        List<HostingUnit> GetAvailableHostingUnits(DateTime date, int days);
+        int TimeDistance(DateTime first, DateTime last = default(DateTime));
+
+        List<Order> GetOrdersBefore(int days);
+        List<GuestRequest> GetGuestRequestsByCondition(Predicate<GuestRequest> predicate);
+        int GetAmountOrders(GuestRequest guestRequest);
+        int GetAmountOrders(HostingUnit hostingUnit);
+
+        IEnumerable<IGrouping<Regions, GuestRequest>> GetGuestRequestsGroupByArea(Regions area);
+        IEnumerable<IGrouping<int, GuestRequest>> GetGuestRequestsGroupByVacationersNumber();
+        IEnumerable<IGrouping<int, Host>> GetHostsGroupByNumOfUnits();
+        IEnumerable<IGrouping<BankBranch, Host>> GetHostsGroupByBankBranch();
+        IEnumerable<IGrouping<Regions, HostingUnit>> GetHostingUnitsGroupByArea(Regions area);
+
+        HostingUnit GetHostingUnit(int key);
+        Order GetOrder(int key);
     }
 }

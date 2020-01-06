@@ -19,27 +19,28 @@ namespace BE
 
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
-        public string MailAddress { get; set; }
-        public RequestStatus Status;
+        public MailAddress MailAddress { get; set; }
+        public RequestStatus Status { get; set; }
         public DateTime RegistrationDate { get; set; }              
         public DateTime EntryDate { get; set; }              
         public DateTime ReleaseDate { get; set; }              
         public Regions Area { get; set; }              
         public string SubArea { get; set; }              
-        public Type Type { get; set; }       
+        public GRType Type { get; set; }       
         public int Adults { get; set; }
         public int Children { get; set; }
-        public Pool Pool { get; set; }
-        public HotTub Jacuzzi { get; set; }
-        public Garden Garden { get; set; }
-        public ChildrensAttractions ChildrensAttractions { get; set; }
+        public Requirements Pool { get; set; }
+        public Requirements Jacuzzi { get; set; }
+        public Requirements Garden { get; set; }
+        public Requirements ChildrensAttractions { get; set; }
+        
 
         public override string ToString()
         {
             string str = "Name: " + PrivateName + " " + FamilyName +
                 "\nStatus: " + Status +
-                "\nRegistration date: " + RegistrationDate +
-                "\nEntry date: " + EntryDate + " Release date: " + ReleaseDate +
+                "\nRegistration date: " + RegistrationDate.ToShortDateString() +
+                "\nEntry date: " + EntryDate.ToShortDateString() + " Release date: " + ReleaseDate.ToShortDateString() +
                 "\nArea: " + Area + " sub area: " + SubArea +
                 "\nType: " + Type +
                 "\nNumber of adults: " + Adults + " and childrens: " + Children +

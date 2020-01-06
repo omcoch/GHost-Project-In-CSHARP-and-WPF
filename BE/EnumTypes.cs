@@ -10,11 +10,18 @@
 
     public enum Regions
     {
-        
+        צפון,
+        מרכז,
+        דרום,
+        ירושלים
     }
 
-    public enum Type
+    public enum GRType
     {
+        מלון,
+        קמפינג,
+        אכסניה,
+        צימר,
     }
 
     public enum OrderStatus
@@ -26,21 +33,13 @@
         נסגר_בעקבות_סגירת_עסקה_עם_מארח_אחר
     }
 
-    public enum Pool
+    public enum Requirements
     {
+        הכרחי,
+        אפשרי,
+        לא_מעוניין
     }
-
-    public enum HotTub // jacuzzi
-    {
-    }
-
-    public enum Garden
-    {
-    }
-
-    public enum ChildrensAttractions
-    {
-    }
+    
 
     public enum MaxPrice//todo:להוסיף את זה לדרישת לקוח ולכל השאר
     {
