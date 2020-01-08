@@ -6,11 +6,12 @@ namespace DS
 {
     public class DataSource
     {
-        public static List<GuestRequest> GuestRequests = new List<GuestRequest>() { new GuestRequest() { PrivateName = "vd" } };
+        public static List<GuestRequest> GuestRequests = new List<GuestRequest>() { new GuestRequest() { guestRequestKey=Configuration.GenerateGuestRequestSerialKey } };
         public static List<HostingUnit> HostingUnits = new List<HostingUnit>()
         {
             new HostingUnit()
             {
+                HostingUnitKey = Configuration.GenerateHostingUnitSerialKey,
                 Owner = new Host()
                 {
                     HostKey = 312279188,
@@ -33,7 +34,8 @@ namespace DS
                 Pool = true,
                 Children = 5,
                 Adults = 5,
-                Type = GRType.מלון
+                Type = GRType.מלון,
+                Diary = new bool[12,31]
             },
 
         };

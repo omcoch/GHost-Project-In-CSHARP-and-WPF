@@ -20,7 +20,7 @@ namespace DAL
         }
 
         public int AddGuestRequest(GuestRequest gR)
-        {
+        {            
             GuestRequest guestRequest = Cloning.Clone(gR);
             guestRequest.guestRequestKey = Configuration.GenerateGuestRequestSerialKey;
             DataSource.GuestRequests.Add(guestRequest);
@@ -42,7 +42,7 @@ namespace DAL
                 return hostingUnit.HostingUnitKey;
             }
             else
-                throw new ArgumentException("יחידת אירוח כבר קיימת במאגר");
+                throw new ArgumentException("יחידת אירוח כבר קיימת במאגר") { Source = "DAL" };
         }
 
 
@@ -61,26 +61,26 @@ namespace DAL
                new BankBranch (){ BankNumber=11,BankName="בנק דיסקונט",BranchNumber=41,BranchAddress="יפו 220",BranchCity="ירושלים" },
                new BankBranch (){ BankNumber=10,BankName="בנק לאומי",BranchNumber=152,BranchAddress="דיזינגוף",BranchCity="תל אביב" },
                new BankBranch (){ BankNumber=13,BankName="בנק אוצר החייל",BranchNumber=723,BranchAddress="תל חי 56",BranchCity="כפר סבא" },
-               new BankBranch (){ BankNumber=12,BankName="בנק חדש",BranchNumber=723,BranchAddress="הרב עובדיה",BranchCity="ירושלים" }
+               new BankBranch (){ BankNumber=14,BankName="בנק חדש",BranchNumber=723,BranchAddress="הרב עובדיה",BranchCity="ירושלים" }
             };
             return bankBranches;
         }
 
         public List<GuestRequest> GetGuestRequests()
         {
-            List<GuestRequest> guestRequests = DataSource.GuestRequests.Select(item=>item).ToList();
+            List<GuestRequest> guestRequests = DataSource.GuestRequests.Select(item=> Cloning.Clone(item)).ToList();
             return guestRequests;
         }
 
         public List<HostingUnit> GetHostingUnits()
         {
-            List<HostingUnit> hostingUnits = DS.DataSource.HostingUnits.Select(item => item).ToList();
+            List<HostingUnit> hostingUnits = DS.DataSource.HostingUnits.Select(item => Cloning.Clone(item)).ToList();
             return hostingUnits;
         }
 
         public List<Order> GetOrders()
         {
-            List<Order> orders = DS.DataSource.Orders.Select(item => item).ToList();
+            List<Order> orders = DS.DataSource.Orders.Select(item => Cloning.Clone(item)).ToList();
             return orders;
         }
 
@@ -89,7 +89,7 @@ namespace DAL
 
             var hostingUnit = DataSource.HostingUnits.FirstOrDefault(k => key == k.HostingUnitKey);
             if (null == hostingUnit)
-                throw new KeyNotFoundException("יחידת אירוח לא קיימת");
+                throw new KeyNotFoundException("יחידת אירוח לא קיימת") { Source = "DAL" };
             else
                 DataSource.HostingUnits.Remove(hostingUnit);
         }
@@ -106,7 +106,7 @@ namespace DAL
                 DataSource.GuestRequests.Add(guestRequest);
             }
             else
-                throw new ArgumentException("דרישת לקוח לא קיימת");
+                throw new ArgumentException("דרישת לקוח לא קיימת") { Source = "DAL" };
         }
 
         public void UpdateHostingUnit(HostingUnit hostingUnit)
@@ -116,7 +116,7 @@ namespace DAL
             if (DataSource.HostingUnits.Remove(v))
                 DataSource.HostingUnits.Add(hostingUnit);
             else
-                throw new ArgumentException("יחידת אירוח לא קיימת");
+                throw new ArgumentException("יחידת אירוח לא קיימת") { Source = "DAL" };
         }
 
         public void UpdateOrder(Order order)
@@ -131,7 +131,7 @@ namespace DAL
                 DataSource.Orders.Add(order);
             }
             else
-                throw new ArgumentException("הזמנה לא קיימת");
+                throw new ArgumentException("הזמנה לא קיימת") { Source = "DAL" };
         }
 
         

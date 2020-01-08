@@ -9,10 +9,26 @@ namespace BE
 {
     public class Tools
     {
-        public static bool SendMail(MailAddress mail_address)
+        public static bool SendMail(MailMessage message)
         {
-            Console.WriteLine("המייל נשלח בהצלחה");
-            return true;
+            message.From = new MailAddress(Configuration.SiteName);
+            // Smtp
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Credentials = new System.Net.NetworkCredential(Configuration.AdminMailAddress.ToString(), "myGmailPassword"), // todo: להכניס סיסמה אמיתית
+                EnableSsl = true
+            };
+
+            try
+            {
+                smtp.Send(message);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
         }
     }
 }

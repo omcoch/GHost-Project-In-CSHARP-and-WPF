@@ -27,11 +27,11 @@ namespace BL
         int GetAmountOrders(GuestRequest guestRequest);
         int GetAmountOrders(HostingUnit hostingUnit);
 
-        IEnumerable<IGrouping<Regions, GuestRequest>> GetGuestRequestsGroupByArea(Regions area);
+        IEnumerable<IGrouping<bool, GuestRequest>> GetGuestRequestsGroupByArea(Regions area);
         IEnumerable<IGrouping<int, GuestRequest>> GetGuestRequestsGroupByVacationersNumber();
         IEnumerable<IGrouping<int, Host>> GetHostsGroupByNumOfUnits();
         IEnumerable<IGrouping<BankBranch, Host>> GetHostsGroupByBankBranch();
-        IEnumerable<IGrouping<Regions, HostingUnit>> GetHostingUnitsGroupByArea(Regions area);
+        IEnumerable<IGrouping<bool, HostingUnit>> GetHostingUnitsGroupByArea(Regions area);
 
         HostingUnit GetHostingUnit(int key);
         Order GetOrder(int key);

@@ -114,18 +114,43 @@ namespace PL
                                     Diary = new bool[12, 31]
                                 };
 
-                                HU.HostingUnitKey = bL.AddHostingUnit(HU);
+                                try
+                                {
+                                    HU.HostingUnitKey = bL.AddHostingUnit(HU);
+                                    Console.WriteLine(bL.GetHostingUnit(HU.HostingUnitKey));
+                                }
+                                catch (Exception e)
+                                {
 
-                                Console.WriteLine(bL.GetHostingUnit(HU.HostingUnitKey));
+                                    Console.WriteLine(e.Message + "\nSource: " + e.Source);
+                                }
                                 break;
 
+                            // update hosting unit
                             case 2:
                                 HU.Adults = 5;
                                 HU.Pool = false;
-                                Console.WriteLine(bL.GetHostingUnit(HU.HostingUnitKey));
+                                try
+                                {
+                                    bL.UpdateHostingUnit(HU);
+                                    Console.WriteLine(bL.GetHostingUnit(HU.HostingUnitKey));
+                                }
+                                catch (Exception e)
+                                {
+
+                                    Console.WriteLine(e.Message + "\nSource: " + e.Source);
+                                }
                                 break;
                             case 3:
-                                bL.RemoveHostingUnit(HU.HostingUnitKey);
+                                try
+                                {
+                                    bL.RemoveHostingUnit(HU.HostingUnitKey);
+                                }
+                                catch (Exception e)
+                                {
+
+                                    Console.WriteLine(e.Message + "\nSource: " + e.Source);
+                                }
                                 break;
                         }
                         break;
@@ -179,7 +204,7 @@ namespace PL
                         {
                             switch(item.Key)
                             {
-                                case Regions.דרום:
+                                case true:
                                     Console.WriteLine("דרום:");
                                     foreach (var n in item)
                                         Console.WriteLine("{0}, ", n);

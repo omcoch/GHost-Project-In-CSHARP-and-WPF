@@ -70,7 +70,7 @@ namespace BL
                     releaseDate = guestRequestDates.releaseDate;
 
                 if(!CheckDiary(entryDate,releaseDate, diaryOfHostingUnit))
-                    throw new DateOccupiedException("התאריך תפוס") { Source = "BL" };
+                    throw new DateOccupiedException("התאריך תפוס");
 
                 try
                 {
@@ -83,7 +83,7 @@ namespace BL
                 }
             }
             else
-                throw new ExecutionOrderException("דרישת לקוח/יחידת אירוח לא קיימת") { Source = "BL" };
+                throw new ExecutionOrderException("דרישת לקוח/יחידת אירוח לא קיימת");
         }
 
         private bool CheckDiary(DateTime entryDate, DateTime releaseDate, bool[,] diary)
@@ -98,7 +98,7 @@ namespace BL
         }
 
         public void RemoveHostingUnit(int key)
-        {
+        { 
             var v = from order in dal.GetOrders()
                     where order.HostingUnitKey == key
                     && (order.Status == OrderStatus.טרם_טופל || order.Status == OrderStatus.נשלח_מייל)
@@ -118,7 +118,7 @@ namespace BL
         }
 
         public void UpdateGuestRequest(GuestRequest guestRequest)
-        {
+        { // todo: לעשות בדיקה שלא התקבל מופע ריק לגמרי
             TimeSpan timeSpan = guestRequest.ReleaseDate - guestRequest.EntryDate;
             if (timeSpan.TotalDays < 1)
                 throw new ArgumentOutOfRangeException("על תאריך תחילת הנופש להיות קודם לפחות ביום אחד לתאריך סיום הנופש");
@@ -190,7 +190,7 @@ namespace BL
                         throw new DateOccupiedException("תאריך הנופש תפוס");
                     if (Order.Status == OrderStatus.נשלח_מייל)
                     {
-                        SendMailToGuest(Order); //todo: הUI צריך לשנות את OrderDate למתי שהמייל נשלח (או לא נשלח) 
+                        SendMailToGuest(Order.GuestRequestKey, host, guestRequest); //todo: הUI צריך לשנות את OrderDate למתי שהמייל נשלח (או לא נשלח) 
                         Order.OrderDate = DateTime.Now;
                     }
                      // עדכון ההזמנה
@@ -232,10 +232,20 @@ namespace BL
                 throw new ExecutionOrderException("לא בוצע אישור לחיוב חשבון");
         }
 
-        private bool SendMailToGuest(Order order)
+        /// <summary>
+        /// שולח מייל ללקוח המעדכן אותו בדבר הזמנה שנוצרה עבורו
+        /// </summary>
+        /// <param name="orderKey">מספר הזמנה</param>
+        /// <param name="guestRequest">דרישת לקוח</param>
+        /// <returns>מחזיר אמת אם המייל נשלח בהצלחה, אחרת שקר</returns>
+        private bool SendMailToGuest(int orderKey, HostingUnit host, GuestRequest guestRequest)
         {
-            MailAddress mail_address = dal.GetGuestRequests().Where(gr => gr.guestRequestKey == order.GuestRequestKey).Select(gr => gr.MailAddress).First();
-            return Tools.SendMail(mail_address);
+            MailMessage message = new MailMessage();
+            message.To.Add(guestRequest.MailAddress);
+            message.Subject = "נוצרה הזמנה עבור דרישת לקוח מספר " + guestRequest.guestRequestKey;
+            message.Body = "שלום, " + guestRequest.PrivateName + "\nנפתחנ עבורך הזמנה לאירוח אצל " + host.HostingUnitName
+                + ".\nמספר ההזמנה: " + orderKey + "\nאנא צור קשר עם המארח בכתובת " + host.Owner.MailAddress + "\nבברכת חופשה מהנה, \n" + Configuration.SiteName;
+            return Tools.SendMail(message);
         }
 
         int CalculateFee(int amountDays)
@@ -299,9 +309,9 @@ namespace BL
         }
 
 
-        public IEnumerable<IGrouping<Regions, GuestRequest>> GetGuestRequestsGroupByArea(Regions area)
+        public IEnumerable<IGrouping<bool, GuestRequest>> GetGuestRequestsGroupByArea(Regions area)
         {
-            return dal.GetGuestRequests().GroupBy(item => item.Area==area?area:0);
+            return dal.GetGuestRequests().GroupBy(item => item.Area==area);
         }
 
         public IEnumerable<IGrouping<int, GuestRequest>> GetGuestRequestsGroupByVacationersNumber()
@@ -316,10 +326,10 @@ namespace BL
                    group hu.Owner by hu.Owner.NumOfHostingUnits;
         }
 
-        public IEnumerable<IGrouping<Regions, HostingUnit>> GetHostingUnitsGroupByArea(Regions area)
+        public IEnumerable<IGrouping<bool, HostingUnit>> GetHostingUnitsGroupByArea(Regions area)
         {
             return from hu in dal.GetHostingUnits()
-                   group hu by (hu.Area==area)?area:0;
+                   group hu by (hu.Area==area);
         }
 
         public IEnumerable<IGrouping<BankBranch, Host>> GetHostsGroupByBankBranch()
