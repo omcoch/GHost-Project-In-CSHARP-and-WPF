@@ -12,27 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BE;
-using BL;
+
 namespace PLWPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Header.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Header : UserControl
     {
-        IBL bL = BlFactory.getBl();
-
-        public MainWindow()
+        public Header()
         {
             InitializeComponent();
-            Title = Configuration.SiteName;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new GuestRequest().Show();
-            Close();
         }
     }
 }

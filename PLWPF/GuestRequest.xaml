@@ -6,5 +6,24 @@
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
         Title="GuestRequest" Height="450" Width="800">
-    <Grid/>
+    <Grid>
+        <Label Content="שם פרטי" HorizontalAlignment="Left" Margin="562,68,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
+        <Label Content="שם משפחה" HorizontalAlignment="Left" Margin="562,94,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
+        <Label Content="כתובת דואר אלקטרוני" HorizontalAlignment="Left" Margin="562,120,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" RenderTransformOrigin="0.511,0.463"/>
+        <Label Content="אזור נופש רצוי" HorizontalAlignment="Left" Margin="562,146,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
+        <Label Content="תת אזור נופש רצוי" HorizontalAlignment="Left" Margin="354,146,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
+        <Label Content="סוג יחידת אירוח" HorizontalAlignment="Left" Margin="562,172,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
+        <Label Content="מס' מבוגרים" HorizontalAlignment="Left" Margin="562,198,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
+        <Label Content="מס' ילדים" HorizontalAlignment="Left" Margin="562,224,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
+        <TextBox HorizontalAlignment="Left" Margin="211,68,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="26" Width="200"/>
+        <TextBox HorizontalAlignment="Left" Margin="211,94,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="26" Width="200"/>
+        <TextBox HorizontalAlignment="Left" Margin="211,120,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="26" Width="200"/>
+        <TextBox HorizontalAlignment="Left" Margin="211,146,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="26" Width="100"/>
+        <ComboBox HorizontalAlignment="Left" Margin="463,177,0,0" VerticalAlignment="Top" Width="84"/>
+        <ComboBox HorizontalAlignment="Left" Margin="463,150,0,0" VerticalAlignment="Top" Width="84"/>
+        <CheckBox Content="מעוניין בבריכה" HorizontalAlignment="Left" Margin="562,250,0,0" VerticalAlignment="Top" />
+        <CheckBox Content="מעוניין בג'קוזי" HorizontalAlignment="Left" Margin="562,276,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="מעוניין בגינה" HorizontalAlignment="Left" Margin="562,302,0,0" VerticalAlignment="Top" />
+        <CheckBox Content="מעוניין באטרקציות לילדים" HorizontalAlignment="Left" Margin="562,328,0,0" VerticalAlignment="Top" />
+    </Grid>
 </Window>
