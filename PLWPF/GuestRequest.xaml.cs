@@ -22,8 +22,37 @@ namespace PLWPF
         public GuestRequest()
         {
             InitializeComponent();
+            PrivateNameMessage.Visibility = Visibility.Hidden;
+            FamilyNameMessage.Visibility = Visibility.Hidden;
+            EmailMessage.Visibility = Visibility.Hidden;
+            NumbersMessage.Visibility = Visibility.Hidden;
+            SubAreaMessage.Visibility = Visibility.Hidden;
         }
 
-       
+        private void Send_Request(object sender, RoutedEventArgs e)
+        {
+            
+            BE.GuestRequest newGuestRequest = new BE.GuestRequest()
+            {
+                PrivateName = PrivateName.Text,
+                FamilyName = FamilyName.Text,
+                //MailAddress = Email.
+            };
+            
+        }
+
+        private void PrivateName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!BE.Tools.validateString(PrivateName.Text))
+                PrivateNameMessage.Visibility = Visibility.Visible;
+            else
+                PrivateNameMessage.Visibility = Visibility.Hidden;
+        }
+
+        private void ChildrenNum_KeyDown(object sender, KeyEventArgs e)
+        {
+            int key = Convert.ToUInt16(e.Key);
+            
+        }
     }
 }

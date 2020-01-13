@@ -22,6 +22,7 @@ namespace BE
         public bool Jacuzzi { get; set; }
         public bool Garden { get; set; }
         public bool ChildrensAttractions { get; set; }
+        public double Price { get; set; } // מחיר עבור יחידת אירוח    
 
         public override string ToString()
         {

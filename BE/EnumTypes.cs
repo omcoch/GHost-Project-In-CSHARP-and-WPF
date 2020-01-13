@@ -1,6 +1,5 @@
 ﻿namespace BE
 {
-    //ToDo: למלא את הערכים של הenum
     public enum RequestStatus
     {
         פתוחה,
@@ -41,7 +40,7 @@
     }
     
 
-    public enum MaxPrice//todo:להוסיף את זה לדרישת לקוח ולכל השאר
+    public enum MaxPrice
     {
         LOW = 200,
         MEDIUM = 500,

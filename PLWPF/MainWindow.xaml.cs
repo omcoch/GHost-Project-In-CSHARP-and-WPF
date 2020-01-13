@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BE;
 using BL;
+
 namespace PLWPF
 {
     /// <summary>
@@ -23,7 +24,7 @@ namespace PLWPF
     {
         IBL bL = BlFactory.getBl();
 
-        public MainWindow()
+        public MainWindow()//todo: favicon
         {
             InitializeComponent();
             Title = Configuration.SiteName;
@@ -34,5 +35,6 @@ namespace PLWPF
             new GuestRequest().Show();
             Close();
         }
+
     }
 }

@@ -33,7 +33,7 @@ namespace BE
         public Requirements Jacuzzi { get; set; }
         public Requirements Garden { get; set; }
         public Requirements ChildrensAttractions { get; set; }
-        
+        public MaxPrice MaxPrice { get; set; } // מחיר מקסמלי עבור חדר מבוקש
 
         public override string ToString()
         {

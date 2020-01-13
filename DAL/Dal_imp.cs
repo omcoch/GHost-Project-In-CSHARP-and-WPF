@@ -20,7 +20,9 @@ namespace DAL
         }
 
         public int AddGuestRequest(GuestRequest gR)
-        {            
+        {
+            // לא מבצעים בדיקה האם מספר הזיהוי קיים כבר כי ה DAL
+            // בעצמו יוצר את מספר הזיהוי ולא יכול להיות שנכניס 2 אובייקטים עם מספר זיהוי זהה
             GuestRequest guestRequest = Cloning.Clone(gR);
             guestRequest.guestRequestKey = Configuration.GenerateGuestRequestSerialKey;
             DataSource.GuestRequests.Add(guestRequest);
@@ -30,19 +32,10 @@ namespace DAL
 
         public int AddHostingUnit(HostingUnit hostingUnit)
         {
-            hostingUnit = Cloning.Clone(hostingUnit);
-            var v = from HU in DataSource.HostingUnits
-                    where HU.Owner.HostKey == hostingUnit.Owner.HostKey
-                    select HU.Owner.HostKey;
-            if (!v.Any())
-            {
-                hostingUnit.HostingUnitKey = Configuration.GenerateHostingUnitSerialKey;
-                hostingUnit.Diary = new bool[12, 31];
-                DataSource.HostingUnits.Add(hostingUnit);
-                return hostingUnit.HostingUnitKey;
-            }
-            else
-                throw new ArgumentException("יחידת אירוח כבר קיימת במאגר") { Source = "DAL" };
+            hostingUnit.HostingUnitKey = Configuration.GenerateHostingUnitSerialKey;
+            hostingUnit.Diary = new bool[12, 31];
+            DataSource.HostingUnits.Add(hostingUnit);
+            return hostingUnit.HostingUnitKey;
         }
 
 

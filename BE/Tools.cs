@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BE
@@ -29,6 +30,15 @@ namespace BE
             {
                 return false;
             }
+        }
+        public static bool validateString(string str)
+        {
+            return Regex.IsMatch(str, "^[א-תa-zA-Z]+$");
+        }
+        public static bool ValidateNumber(string str)
+        {
+            
+            return Regex.IsMatch(str, "^[0-9]+$");
         }
     }
 }
