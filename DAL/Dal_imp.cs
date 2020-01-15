@@ -7,15 +7,15 @@ using System.Text;
 
 namespace DAL
 {
-    class Dal_imp : IDAL
+    class Dal_xml_imp : IDAL
     {
         
-        protected Dal_imp() { }
-        protected static Dal_imp instance = null;
-        public static Dal_imp GetInstance()
+        protected Dal_xml_imp() { }
+        protected static Dal_xml_imp instance = null;
+        public static Dal_xml_imp GetInstance()
         {
             if (instance == null)
-                instance = new Dal_imp();
+                instance = new Dal_xml_imp();
             return instance;
         }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="דרישת לקוח" Height="450" Width="800">
+        Title="דרישת לקוח" Height="550" Width="800">
     <Grid>
         <Label Content="שם פרטי" HorizontalAlignment="Left" Margin="610,87,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
         <Label Content="שם משפחה" HorizontalAlignment="Left" Margin="610,113,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
@@ -15,29 +15,33 @@
         <Label Content="סוג יחידת אירוח" HorizontalAlignment="Left" Margin="610,191,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
         <Label Content="מס' מבוגרים" HorizontalAlignment="Left" Margin="610,217,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
         <Label Content="מס' ילדים" HorizontalAlignment="Left" Margin="402,217,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" RenderTransformOrigin="-2.152,-0.321"/>
-        <TextBox HorizontalAlignment="Left" Margin="259,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="200" Name="PrivateName" KeyUp="PrivateName_KeyUp"/>
-        <TextBox HorizontalAlignment="Left" Margin="259,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="200" Name="FamilyName"/>
-        <TextBox HorizontalAlignment="Left" Margin="259,139,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="200" Name="Email"/>
-        <TextBox HorizontalAlignment="Left" Margin="259,165,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="100" Name="SubArea"/>
-        <TextBox HorizontalAlignment="Left" Margin="337,221,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Height="17" Width="33" Name="ChildrenNum" KeyDown="ChildrenNum_KeyDown"/>
-        <ComboBox HorizontalAlignment="Left" Margin="511,169,0,0" VerticalAlignment="Top" Width="84" Name="Area"/>
-        <CheckBox Content="מעוניין בבריכה" HorizontalAlignment="Left" Margin="610,269,0,0" VerticalAlignment="Top"  Name="Pool"/>
-        <CheckBox Content="מעוניין בג'קוזי" HorizontalAlignment="Left" Margin="610,295,0,0" VerticalAlignment="Top" Name="Hottub"/>
-        <CheckBox Content="מעוניין בגינה" HorizontalAlignment="Left" Margin="337,269,0,0" VerticalAlignment="Top"  Name="Garden"/>
-        <CheckBox Content="מעוניין באטרקציות לילדים" HorizontalAlignment="Left" Margin="337,295,0,0" VerticalAlignment="Top" Name="Atractions" />
+        <TextBox Panel.ZIndex="1" HorizontalAlignment="Left" Margin="259,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="200" Name="PrivateName" KeyUp="PrivateName_KeyUp"/>
+        <TextBox Panel.ZIndex="2" HorizontalAlignment="Left" Margin="259,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="200" Name="FamilyName" KeyUp="FamilyName_KeyUp"/>
+        <TextBox Panel.ZIndex="3" HorizontalAlignment="Left" Margin="259,139,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="200" Name="Email" KeyUp="Email_KeyUp"/>
+        <TextBox Panel.ZIndex="5" HorizontalAlignment="Left" Margin="259,165,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="26" Width="100" Name="SubArea"/>
+        <TextBox Panel.ZIndex="8" HorizontalAlignment="Left" Margin="337,221,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Height="17" Width="33" Name="ChildrenNum" KeyUp="NumbersTextBox_KeyUp"/>
+        <ComboBox Panel.ZIndex="4" HorizontalAlignment="Left" Margin="511,169,0,0" VerticalAlignment="Top" Width="84" Name="Area"/>
         <Label Content="מחיר מבוקש" HorizontalAlignment="Left" Margin="610,243,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="511,248,0,0" VerticalAlignment="Top" Width="84" Name="Price"/>
-        <TextBox HorizontalAlignment="Left" Margin="562,221,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Height="17" Width="33" Name="AdultsNum"/>
-        <ComboBox HorizontalAlignment="Left" Margin="511,194,0,0" VerticalAlignment="Top" Width="84" Name="Type"/>
-        <Button Content="צור דרישת  לקוח חדשה" Margin="278,356,0,0" VerticalAlignment="Top" Width="228" Height="30" Click="Send_Request" Foreground="White" FontSize="16" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch">
+        <ComboBox Panel.ZIndex="9" HorizontalAlignment="Left" Margin="511,248,0,0" VerticalAlignment="Top" Width="84" Name="Price"/>
+        <TextBox Panel.ZIndex="7" HorizontalAlignment="Left" Margin="562,221,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Height="17" Width="33" Name="AdultsNum" KeyUp="NumbersTextBox_KeyUp"/>
+        <ComboBox Panel.ZIndex="6" HorizontalAlignment="Left" Margin="511,194,0,0" VerticalAlignment="Top" Width="84" Name="Type"/>
+        <Button Panel.ZIndex="14" Content="צור דרישת  לקוח חדשה" Margin="278,450,0,0" VerticalAlignment="Top" Width="228" Height="30" Click="Send_Request" Foreground="White" FontSize="16" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch">
             <Button.Background>
                 <SolidColorBrush Color="#FF007BFF"/>
             </Button.Background>
         </Button>
         <TextBlock x:Name="PrivateNameMessage" HorizontalAlignment="Left" Margin="76,97,0,0" TextWrapping="Wrap" Text="שם פרטי יכול להכיל רק אותיות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
         <TextBlock x:Name="FamilyNameMessage" HorizontalAlignment="Left" Margin="60,125,0,0" TextWrapping="Wrap" Text="שם משפחה יכול להכיל רק אותיות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
-        <TextBlock x:Name="NumbersMessage" HorizontalAlignment="Left" Margin="135,221,0,0" TextWrapping="Wrap" Text="הכנס מספרים בלבד" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
-        <TextBlock x:Name="SubAreaMessage" HorizontalAlignment="Left" Margin="52,177,0,0" TextWrapping="Wrap" Text="תת אזור נופש יכול להכיל רק אותיות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
+        <TextBlock x:Name="NumbersMessage" HorizontalAlignment="Left" Margin="114,224,0,0" TextWrapping="Wrap" Text="הכנס מקסימום 2 ספרות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
         <TextBlock x:Name="EmailMessage" HorizontalAlignment="Left" Margin="69,151,0,0" TextWrapping="Wrap" Text="כתובת דואר אלקטרוני לא תקינה" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
+        <Label Content="מעוניין בבריכה" HorizontalAlignment="Left" Margin="610,272,0,0" VerticalAlignment="Top"/>
+        <ComboBox Panel.ZIndex="10" HorizontalAlignment="Left" Margin="511,277,0,0" VerticalAlignment="Top" Width="84" x:Name="Pool"/>
+        <Label Content="מעוניין בג'קוזי" HorizontalAlignment="Left" Margin="610,304,0,0" VerticalAlignment="Top"/>
+        <ComboBox Panel.ZIndex="11" HorizontalAlignment="Left" Margin="511,309,0,0" VerticalAlignment="Top" Width="84" x:Name="Hottub"/>
+        <Label Content="מעוניין בגינה" HorizontalAlignment="Left" Margin="610,337,0,0" VerticalAlignment="Top"/>
+        <ComboBox Panel.ZIndex="12" HorizontalAlignment="Left" Margin="511,342,0,0" VerticalAlignment="Top" Width="84" x:Name="Garden"/>
+        <Label Content="מעוניין באטרקציות לילדים" HorizontalAlignment="Left" Margin="610,363,0,0" VerticalAlignment="Top"/>
+        <ComboBox Panel.ZIndex="13" HorizontalAlignment="Left" Margin="511,369,0,0" VerticalAlignment="Top" Width="84" x:Name="Atractions"/>
+        <local:CalendarUserControl HorizontalAlignment="Left" Height="163" Margin="102,237,0,0" VerticalAlignment="Top" Width="268" x:Name="Calendar"/>
     </Grid>
 </Window>

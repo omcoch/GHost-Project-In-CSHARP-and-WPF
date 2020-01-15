@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using BE;
 
-namespace BE
+namespace Utilities
 {
     public class Tools
     {
@@ -26,19 +28,30 @@ namespace BE
                 smtp.Send(message);
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
         }
         public static bool validateString(string str)
         {
-            return Regex.IsMatch(str, "^[א-תa-zA-Z]+$");
+            return !String.IsNullOrEmpty(str) && Regex.IsMatch(str, "^[א-תa-zA-Z]+$");
         }
         public static bool ValidateNumber(string str)
         {
-            
-            return Regex.IsMatch(str, "^[0-9]+$");
+            try
+            {
+                int n = int.Parse(str);
+                return n < 100;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool ValidateEmailAddress(string text)
+        {
+            return !String.IsNullOrEmpty(text) && new EmailAddressAttribute().IsValid(text);
         }
     }
 }
