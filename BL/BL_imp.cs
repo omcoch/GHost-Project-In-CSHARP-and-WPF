@@ -41,26 +41,30 @@ namespace BL
                 throw e;
             }
         }
-           
+
 
         public int AddHostingUnit(HostingUnit hostingUnit)
         {
+            Host owner = dal.GetHosts().FirstOrDefault(h => hostingUnit.OwnerKey == h.HostKey);
             try
             {
-                hostingUnit.Owner.NumOfHostingUnits++;//todo: לטפל במקרה שלא הצליח להוסיף אז לעשות --
+                owner.NumOfHostingUnits++;
+                dal.UpdateHost(owner);
                 return dal.AddHostingUnit(hostingUnit);
             }
             catch (ArgumentException e)
             {
+                owner.NumOfHostingUnits--;
+                dal.UpdateHost(owner);
                 throw e;
             }
         }
 
         public int AddOrder(Order order)
         {
-            var diaryOfHostingUnit =(from hu in dal.GetHostingUnits()
-                                    where hu.HostingUnitKey == order.HostingUnitKey
-                                    select hu.Diary).FirstOrDefault();
+            var diaryOfHostingUnit = (from hu in dal.GetHostingUnits()
+                                      where hu.HostingUnitKey == order.HostingUnitKey
+                                      select hu.Diary).FirstOrDefault();
             var guestRequestDates = dal.GetGuestRequests()
                 .Where(x => x.guestRequestKey == order.GuestRequestKey)
                 .Select(x => new { entryDate = x.EntryDate, releaseDate = x.ReleaseDate }).FirstOrDefault();
@@ -70,7 +74,7 @@ namespace BL
                 DateTime entryDate = guestRequestDates.entryDate,
                     releaseDate = guestRequestDates.releaseDate;
 
-                if(!CheckDiary(entryDate,releaseDate, diaryOfHostingUnit))
+                if (!CheckDiary(entryDate, releaseDate, diaryOfHostingUnit))
                     throw new DateOccupiedException("התאריך תפוס");
 
                 try
@@ -99,7 +103,7 @@ namespace BL
         }
 
         public void RemoveHostingUnit(int key)
-        { 
+        {
             var v = from order in dal.GetOrders()
                     where order.HostingUnitKey == key
                     && (order.Status == OrderStatus.טרם_טופל || order.Status == OrderStatus.נשלח_מייל)
@@ -143,15 +147,7 @@ namespace BL
         public void UpdateHostingUnit(HostingUnit hostingUnit)
         {
             HostingUnit originalHostingUnit = dal.GetHostingUnits().FirstOrDefault(item => item.HostingUnitKey == hostingUnit.HostingUnitKey);
-            if (originalHostingUnit.Owner.CollectionClearance && !hostingUnit.Owner.CollectionClearance)
-            {
-                var v = from order in dal.GetOrders()
-                        where order.HostingUnitKey == hostingUnit.HostingUnitKey
-                        && (order.Status == OrderStatus.טרם_טופל || order.Status == OrderStatus.נשלח_מייל)
-                        select order;
-                if (v.Any())                    
-                    throw new ArgumentException("לא ניתן לבטל הרשאה לחיוב חשבון כאשר יש הזמנות פתוחות");
-            }
+
             try
             {
                 dal.UpdateHostingUnit(hostingUnit);
@@ -165,17 +161,19 @@ namespace BL
         public void UpdateOrder(Order Order)
         {
             // יחידת האירוח הקשורה להזמנה
-            var host = (from h in dal.GetHostingUnits()
+            var hostingUnit = (from h in dal.GetHostingUnits()
                         where h.HostingUnitKey == Order.HostingUnitKey
                         select h).FirstOrDefault();
             // סטטוס ההזמנה כפי ששמור במקור הנתונים
             var os = from order in dal.GetOrders()
                      where order.OrderKey == Order.OrderKey
                      select order.Status;
-
+            // דרישת לקוח הקשורה להזמנה
             var guestRequest = (from GR in dal.GetGuestRequests()
-                     where GR.guestRequestKey == Order.GuestRequestKey
-                     select GR).FirstOrDefault();
+                                where GR.guestRequestKey == Order.GuestRequestKey
+                                select GR).FirstOrDefault();
+            // מארח של ההזמנה
+            Host owner = dal.GetHosts().FirstOrDefault(h => hostingUnit.OwnerKey == h.HostKey);
 
             if (!os.Any())
                 throw new ArgumentException("ההזמנה לא קיימת במקור הנתונים");
@@ -184,36 +182,38 @@ namespace BL
             if (orderStatus == OrderStatus.נסגר_בהיענות_של_הלקוח || orderStatus == OrderStatus.נסגר_מחוסר_הענות_של_הלקוח)
                 throw new ExecutionOrderException("הבקשה כבר סגורה");
 
-            if (host.Owner.CollectionClearance)
+
+            if (owner.CollectionClearance)
                 try
                 {
-                    if (!CheckDiary(guestRequest.EntryDate, guestRequest.ReleaseDate, host.Diary))
+                    if (!CheckDiary(guestRequest.EntryDate, guestRequest.ReleaseDate, hostingUnit.Diary))
                         throw new DateOccupiedException("תאריך הנופש תפוס");
                     if (Order.Status == OrderStatus.נשלח_מייל)
                     {
-                        SendMailToGuest(Order.GuestRequestKey, host, guestRequest); //todo: הUI צריך לשנות את OrderDate למתי שהמייל נשלח (או לא נשלח) 
+                        SendMailToGuest(Order.GuestRequestKey, hostingUnit, guestRequest); //todo: הUI צריך לשנות את OrderDate למתי שהמייל נשלח (או לא נשלח) 
                         Order.OrderDate = DateTime.Now;
                     }
-                     // עדכון ההזמנה
+                    // עדכון ההזמנה
                     dal.UpdateOrder(Order);
-
-                    
 
                     // עדכון הזמנה כאשר האירוח התקיים
                     if (Order.Status == OrderStatus.נסגר_בהיענות_של_הלקוח)
                     {
 
                         // במידה ונסגרה ההעסקה בינהם נבצע חישוב עמלה
-                        host.Owner.ChargeAmount += CalculateFee((guestRequest.ReleaseDate - guestRequest.EntryDate).Days);
+                        owner.ChargeAmount += CalculateFee((guestRequest.ReleaseDate - guestRequest.EntryDate).Days);
+                        
                         // מילוי המטריצה בתאריכים המבוקשים
-                        FillDiary(host, guestRequest.EntryDate, guestRequest.ReleaseDate);
+                        FillDiary(hostingUnit, guestRequest.EntryDate, guestRequest.ReleaseDate);
                         // עדכון יחידת האירוח בבסיס הנתונים
-                        dal.UpdateHostingUnit(host);
+                        dal.UpdateHostingUnit(hostingUnit);
 
                         // עדכון סטטוס דרישת לקוח
                         guestRequest.Status = RequestStatus.נסגרה_דרך_האתר;
                         dal.UpdateGuestRequest(guestRequest);
-
+                        // עדכון העמלה אצל המארח
+                        dal.UpdateHost(owner);
+                        
                         // עדכון שאר ההזמנות של אותה דרישת לקוח כסגורות
                         var orders = from o in dal.GetOrders()
                                      where o.GuestRequestKey == guestRequest.guestRequestKey && o.OrderKey != Order.OrderKey
@@ -223,7 +223,8 @@ namespace BL
                             order.Status = OrderStatus.נסגר_בעקבות_סגירת_עסקה_עם_מארח_אחר;
                             dal.UpdateOrder(order);
                         }
-                    }                   
+                        
+                    }
                 }
                 catch (Exception e)
                 {
@@ -239,24 +240,25 @@ namespace BL
         /// <param name="orderKey">מספר הזמנה</param>
         /// <param name="guestRequest">דרישת לקוח</param>
         /// <returns>מחזיר אמת אם המייל נשלח בהצלחה, אחרת שקר</returns>
-        private bool SendMailToGuest(int orderKey, HostingUnit host, GuestRequest guestRequest)
+        private bool SendMailToGuest(int orderKey, HostingUnit hostingUnit, GuestRequest guestRequest)
         {
+            MailAddress mailAddress = dal.GetHosts().Where(h => hostingUnit.OwnerKey == h.HostKey).Select(o=>o.MailAddress).First();
             MailMessage message = new MailMessage();
             message.To.Add(guestRequest.MailAddress);
             message.Subject = "נוצרה הזמנה עבור דרישת לקוח מספר " + guestRequest.guestRequestKey;
-            message.Body = "שלום, " + guestRequest.PrivateName + "\nנפתחנ עבורך הזמנה לאירוח אצל " + host.HostingUnitName
-                + ".\nמספר ההזמנה: " + orderKey + "\nאנא צור קשר עם המארח בכתובת " + host.Owner.MailAddress + "\nבברכת חופשה מהנה, \n" + Configuration.SiteName;
+            message.Body = "שלום, " + guestRequest.PrivateName + "\nנפתחנ עבורך הזמנה לאירוח אצל " + hostingUnit.HostingUnitName
+                + ".\nמספר ההזמנה: " + orderKey + "\nאנא צור קשר עם המארח בכתובת " + mailAddress + "\nבברכת חופשה מהנה, \n" + Configuration.SiteName;
             return Tools.SendMail(message);
         }
 
         int CalculateFee(int amountDays)
         {
-            return amountDays * Configuration.FEE;  
+            return amountDays * Configuration.FEE;
         }
 
-        void FillDiary(HostingUnit hostingUnit,DateTime entry,DateTime release)
+        void FillDiary(HostingUnit hostingUnit, DateTime entry, DateTime release)
         {
-            while(entry<=release)
+            while (entry <= release)
             {
                 hostingUnit.Diary[entry.Month, entry.Day] = true;
                 entry = entry.AddDays(1);
@@ -266,8 +268,8 @@ namespace BL
         public List<HostingUnit> GetAvailableHostingUnits(DateTime date, int days)
         {
             var l = (from unit in dal.GetHostingUnits()
-                    where CheckDiary(date, date.AddDays(days), unit.Diary) == true
-                    select unit).ToList();
+                     where CheckDiary(date, date.AddDays(days), unit.Diary) == true
+                     select unit).ToList();
             return l;
         }
 
@@ -282,7 +284,7 @@ namespace BL
         {
             // (using delegate anonymous function)
             return dal.GetOrders()
-                .FindAll(delegate(Order order)
+                .FindAll(delegate (Order order)
                 {
                     return TimeDistance(order.CreateDate) >= days || TimeDistance(order.OrderDate) >= days;
                 });
@@ -312,31 +314,31 @@ namespace BL
 
         public IEnumerable<IGrouping<bool, GuestRequest>> GetGuestRequestsGroupByArea(Regions area)
         {
-            return dal.GetGuestRequests().GroupBy(item => item.Area==area);
+            return dal.GetGuestRequests().GroupBy(item => item.Area == area);
         }
 
         public IEnumerable<IGrouping<int, GuestRequest>> GetGuestRequestsGroupByVacationersNumber()
         {
             return from item in dal.GetGuestRequests()
-                   group item by (item.Adults + item.Children); 
+                   group item by (item.Adults + item.Children);
         }
 
         public IEnumerable<IGrouping<int, Host>> GetHostsGroupByNumOfUnits()
         {
-            return from hu in dal.GetHostingUnits()
-                   group hu.Owner by hu.Owner.NumOfHostingUnits;
+            return from host in dal.GetHosts()
+                   group host by host.NumOfHostingUnits;
         }
 
         public IEnumerable<IGrouping<bool, HostingUnit>> GetHostingUnitsGroupByArea(Regions area)
         {
             return from hu in dal.GetHostingUnits()
-                   group hu by (hu.Area==area);
+                   group hu by (hu.Area == area);
         }
 
         public IEnumerable<IGrouping<BankBranch, Host>> GetHostsGroupByBankBranch()
         {
-            return from hu in dal.GetHostingUnits()
-                   group hu.Owner by hu.Owner.BankAccountDetails;
+            return from host in dal.GetHosts()
+                   group host by host.BankAccountDetails;
         }
 
         public HostingUnit GetHostingUnit(int key)
@@ -349,8 +351,36 @@ namespace BL
             return dal.GetOrders().Where(k => k.OrderKey == key).FirstOrDefault();
         }
 
+        public int AddHost(Host host)
+        {
+            throw new NotImplementedException();
+        }
 
+        public void UpdateHost(Host host)
+        {
+            Host owner = dal.GetHosts().FirstOrDefault(h => host.HostKey == h.HostKey);
 
+            if (owner.CollectionClearance && !host.CollectionClearance)
+            {
+                var v = from order in dal.GetOrders()
+                        from hostingUnit in dal.GetHostingUnits()
+                        where order.HostingUnitKey == hostingUnit.HostingUnitKey
+                        && hostingUnit.OwnerKey == host.HostKey
+                        && (order.Status == OrderStatus.טרם_טופל || order.Status == OrderStatus.נשלח_מייל)
+                        select order;
+
+                if (v.Any())
+                    throw new ArgumentException("לא ניתן לבטל הרשאה לחיוב חשבון כאשר יש הזמנות פתוחות");
+            }
+            try
+            {
+                dal.UpdateHost(host);
+            }
+            catch(ArgumentException e)
+            {
+                throw e;
+            }
+        }
 
 
         //todo: לבדןוק CLONE לגבי FIRST, FIND ETC...

@@ -42,7 +42,7 @@ namespace Utilities
             try
             {
                 int n = int.Parse(str);
-                return n < 100;
+                return n < 100 && n >= 0;
             }
             catch
             {

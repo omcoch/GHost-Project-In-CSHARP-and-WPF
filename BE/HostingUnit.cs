@@ -9,7 +9,7 @@ namespace BE
     public class HostingUnit
     {
         public int HostingUnitKey { get; set; }
-        public Host Owner { get; set; }
+        public int OwnerKey { get; set; }
         public string HostingUnitName { get; set; }
         public bool[,] Diary { get; set; }
 
@@ -27,7 +27,7 @@ namespace BE
         public override string ToString()
         {
             string str = 
-                "Owner Name: " + Owner.PrivateName + " " + Owner.FamilyName +
+                "Owner ID: " + OwnerKey +
                 "\nHosting Unit Name: " + HostingUnitName +
                 "\nArea: " + Area + " sub area: " + SubArea +
                 "\nType: " + Type +

@@ -1,4 +1,5 @@
 ﻿using BE;
+using BL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,9 @@ namespace PLWPF
     /// </summary>
     public partial class GuestRequest : Window
     {
+        IBL bL = BlFactory.getBl();
+
+
         public GuestRequest()
         {
             InitializeComponent();
@@ -31,7 +35,7 @@ namespace PLWPF
             EmailMessage.Visibility = Visibility.Hidden;
             NumbersMessage.Visibility = Visibility.Hidden;
 
-            Area.ItemsSource = Enum.GetValues(typeof(Requirements));
+            Area.ItemsSource = Enum.GetValues(typeof(Regions));
             Area.SelectedIndex = 1;
             Type.ItemsSource = Enum.GetValues(typeof(GRType));
             Type.SelectedIndex = 0;
@@ -53,7 +57,7 @@ namespace PLWPF
             if (entryDate == null
                 || !Tools.validateString(PrivateName.Text) || !Tools.validateString(FamilyName.Text)
                 || !Tools.ValidateEmailAddress(Email.Text)
-                || (int.Parse(ChildrenNum.Text)==0 && int.Parse(AdultsNum.Text) == 0))
+                || (int.Parse(ChildrenNum.Text)<=0 && int.Parse(AdultsNum.Text) <= 0))
             {
                 MessageBox.Show("לא כל השדות מולאו", "שגיאה");
                 return;
@@ -79,7 +83,22 @@ namespace PLWPF
                 ReleaseDate = (DateTime)Calendar.GetReleaseDate(),
                 Status = RequestStatus.פתוחה,                
             };
-            
+
+            try
+            {
+                int code = bL.AddGuestRequest(newGuestRequest);
+                MessageBox.Show("הבקשה נקלטה במערכת, תודה רבה!", "בקשה מספר "+code);
+                new MainWindow().Show();
+                Close();
+            }
+            catch (ArgumentOutOfRangeException err)
+            {
+                MessageBox.Show(err.ParamName, "שגיאה");
+            }
+            catch
+            {
+                MessageBox.Show("שגיאה לא ידועה. אנא פנה למנהל המערכת.", "שגיאה");
+            }
         }
 
         private void PrivateName_KeyUp(object sender, KeyEventArgs e)

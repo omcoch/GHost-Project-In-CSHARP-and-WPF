@@ -12,6 +12,9 @@ namespace BL
         int AddGuestRequest(GuestRequest guestRequest);
         void UpdateGuestRequest(GuestRequest guestRequest);
 
+        int AddHost(Host host);
+        void UpdateHost(Host host);
+
         int AddHostingUnit(HostingUnit hostingUnit);
         void RemoveHostingUnit(int key);
         void UpdateHostingUnit(HostingUnit hostingUnit);

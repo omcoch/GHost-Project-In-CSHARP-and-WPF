@@ -42,7 +42,7 @@
 
     public enum MaxPrice
     {
-        LOW = 200,
+        Low = 200,
         MEDIUM = 500,
         HIGH = 1000,
         EXPENSIVE = 1500

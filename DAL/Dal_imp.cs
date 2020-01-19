@@ -7,15 +7,15 @@ using System.Text;
 
 namespace DAL
 {
-    class Dal_xml_imp : IDAL
+    class Dal_list_imp : IDAL
     {
         
-        protected Dal_xml_imp() { }
-        protected static Dal_xml_imp instance = null;
-        public static Dal_xml_imp GetInstance()
+        protected Dal_list_imp() { }
+        protected static Dal_list_imp instance = null;
+        public static Dal_list_imp GetInstance()
         {
             if (instance == null)
-                instance = new Dal_xml_imp();
+                instance = new Dal_list_imp();
             return instance;
         }
 
@@ -27,7 +27,8 @@ namespace DAL
             guestRequest.guestRequestKey = Configuration.GenerateGuestRequestSerialKey;
             DataSource.GuestRequests.Add(guestRequest);
             return guestRequest.guestRequestKey;
-        }
+        
+}
 
 
         public int AddHostingUnit(HostingUnit hostingUnit)
@@ -75,6 +76,12 @@ namespace DAL
         {
             List<Order> orders = DS.DataSource.Orders.Select(item => Cloning.Clone(item)).ToList();
             return orders;
+        }
+
+        public List<Host> GetHosts()
+        {
+            List<Host> hosts = DS.DataSource.Hosts.Select(item => Cloning.Clone(item)).ToList();
+            return hosts;
         }
 
         public void RemoveHostingUnit(int key)
@@ -125,6 +132,31 @@ namespace DAL
             }
             else
                 throw new ArgumentException("הזמנה לא קיימת") { Source = "DAL" };
+        }
+
+        public int AddHost(Host host)
+        {
+            host = Cloning.Clone(host);
+            var v = DataSource.Hosts.Where(h => host.HostKey == h.HostKey);
+            if (v.Any())
+                throw new ArgumentException("המארח קיים כבר");
+            DataSource.Hosts.Add(host);
+            return host.HostKey;
+        }
+
+        public void UpdateHost(Host host)
+        {
+            host = Cloning.Clone(host);
+            var v = from h in DataSource.Hosts
+                    where h.HostKey == host.HostKey
+                    select h;
+            if (v.Any())
+            {
+                DataSource.Hosts.Remove(v.First());
+                DataSource.Hosts.Add(host);
+            }
+            else
+                throw new ArgumentException("המארח לא קיים") { Source = "DAL" };
         }
 
         

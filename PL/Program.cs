@@ -88,19 +88,19 @@ namespace PL
                                 Console.WriteLine("ENTER: ");
                                 HU = new HostingUnit()
                                 {
-                                    Owner = new Host()
-                                    {
-                                        HostKey = 987654321,
-                                        PrivateName = "רון",
-                                        FamilyName = "קובי",
-                                        PhoneNumber = "054-1111111",
-                                        MailAddress = new MailAddress("ron@kubi.com"),
-                                        BankAccountDetails = new BankBranch() { BankNumber = 12, BankName = "בנק הפועלים", BranchNumber = 723, BranchAddress = "הגליל", BranchCity = "טבריה" },
-                                        BankAccountNumber = 123456,
-                                        ChargeAmount = 0,
-                                        CollectionClearance = true,
-                                        NumOfHostingUnits = 1,
-                                    },
+                                    //Owner = new Host()
+                                    //{
+                                    //    HostKey = 987654321,
+                                    //    PrivateName = "רון",
+                                    //    FamilyName = "קובי",
+                                    //    PhoneNumber = "054-1111111",
+                                    //    MailAddress = new MailAddress("ron@kubi.com"),
+                                    //    BankAccountDetails = new BankBranch() { BankNumber = 12, BankName = "בנק הפועלים", BranchNumber = 723, BranchAddress = "הגליל", BranchCity = "טבריה" },
+                                    //    BankAccountNumber = 123456,
+                                    //    ChargeAmount = 0,
+                                    //    CollectionClearance = true,
+                                    //    NumOfHostingUnits = 1,
+                                    //},
                                     HostingUnitName = "נווה מחמד",
                                     Area = Regions.ירושלים,
                                     SubArea = "מכון לב",

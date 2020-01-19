@@ -35,19 +35,7 @@ namespace DAL
         {
             HostingUnit hu = new HostingUnit()
             {
-                Owner = new Host()
-                {
-                    HostKey = hostingUnit.Owner.HostKey,
-                    PrivateName = hostingUnit.Owner.PrivateName,
-                    FamilyName = hostingUnit.Owner.FamilyName,
-                    PhoneNumber = hostingUnit.Owner.PhoneNumber,
-                    MailAddress = hostingUnit.Owner.MailAddress,
-                    BankAccountDetails = hostingUnit.Owner.BankAccountDetails,
-                    BankAccountNumber = hostingUnit.Owner.BankAccountNumber,
-                    ChargeAmount = hostingUnit.Owner.ChargeAmount,
-                    CollectionClearance = hostingUnit.Owner.CollectionClearance,
-                    NumOfHostingUnits = hostingUnit.Owner.NumOfHostingUnits,
-                },
+                OwnerKey = hostingUnit.OwnerKey,
                 HostingUnitName = hostingUnit.HostingUnitName,
                 Area = hostingUnit.Area,
                 SubArea = hostingUnit.SubArea,
@@ -76,6 +64,22 @@ namespace DAL
                 OrderDate = order.OrderDate,
                 OrderKey = order.OrderKey,
                 Status = order.Status
+            };
+        }
+        public static Host Clone (Host host)
+        {
+            return new Host()
+            {
+                HostKey = host.HostKey,
+                PrivateName = host.PrivateName,
+                FamilyName = host.FamilyName,
+                PhoneNumber = host.PhoneNumber,
+                MailAddress = host.MailAddress,
+                BankAccountDetails = host.BankAccountDetails,
+                BankAccountNumber = host.BankAccountNumber,
+                ChargeAmount = host.ChargeAmount,
+                CollectionClearance = host.CollectionClearance,
+                NumOfHostingUnits = host.NumOfHostingUnits,
             };
         }
     }

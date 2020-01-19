@@ -10,36 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BE;
-using BL;
 
 namespace PLWPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Host.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HostLogin : Window
     {
-        IBL bL = BlFactory.getBl();
-
-        public MainWindow()//todo: favicon
+        public HostLogin()
         {
             InitializeComponent();
-            Title = Configuration.SiteName;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new GuestRequest().Show();
+            new HostForm().Show();
+            Owner.Close();
             Close();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            new HostLogin(){ Owner = this }.Show();
-            
         }
     }
 }

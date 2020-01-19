@@ -12,19 +12,7 @@ namespace DS
             new HostingUnit()
             {
                 HostingUnitKey = Configuration.GenerateHostingUnitSerialKey,
-                Owner = new Host()
-                {
-                    HostKey = 312279188,
-                    PrivateName = "איציק",
-                    FamilyName = "שמואלי",
-                    PhoneNumber = "054-222222",
-                    MailAddress = new MailAddress("i@j.c"),
-                    BankAccountDetails = new BankBranch() { BankNumber = 12, BankName = "בנק הפועלים", BranchNumber = 723, BranchAddress = "הגליל", BranchCity = "טבריה" },
-                    BankAccountNumber = 654321,
-                    ChargeAmount = 3,
-                    CollectionClearance = true,
-                    NumOfHostingUnits = 1,
-                },
+                OwnerKey = 312279188,
                 HostingUnitName = "מלון בראשית",
                 Area = Regions.דרום,
                 SubArea = "מצפה רמון",
@@ -42,6 +30,22 @@ namespace DS
         public static List<Order> Orders = new List<Order>()
         {
             
+        };
+        public static List<Host> Hosts = new List<Host>()
+        {
+            new Host()
+                {
+                    HostKey = 312279188,
+                    PrivateName = "איציק",
+                    FamilyName = "שמואלי",
+                    PhoneNumber = "054-222222",
+                    MailAddress = new MailAddress("i@j.c"),
+                    BankAccountDetails = new BankBranch() { BankNumber = 12, BankName = "בנק הפועלים", BranchNumber = 723, BranchAddress = "הגליל", BranchCity = "טבריה" },
+                    BankAccountNumber = 654321,
+                    ChargeAmount = 3,
+                    CollectionClearance = true,
+                    NumOfHostingUnits = 1,
+                },
         };
     }
 }

@@ -55,7 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CalendarUserControl.xaml">
+    <Page Include="HostForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CalendarUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -64,6 +68,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Header.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HostLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -79,7 +87,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CalendarUserControl.xaml.cs">
+    <Compile Include="HostForm.xaml.cs">
+      <DependentUpon>HostForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CalendarUserControl.xaml.cs">
       <DependentUpon>CalendarUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GuestRequest.xaml.cs">
@@ -87,6 +98,9 @@
     </Compile>
     <Compile Include="Header.xaml.cs">
       <DependentUpon>Header.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HostLogin.xaml.cs">
+      <DependentUpon>HostLogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="HostingUnit.xaml.cs">
       <DependentUpon>HostingUnit.xaml</DependentUpon>
@@ -114,6 +128,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\BE.BankBranch.datasource" />
+    <None Include="Properties\DataSources\BE.Configuration.datasource" />
+    <None Include="Properties\DataSources\BE.DateOccupiedException.datasource" />
+    <None Include="Properties\DataSources\BE.ExecutionOrderException.datasource" />
+    <None Include="Properties\DataSources\BE.GuestRequest.datasource" />
+    <None Include="Properties\DataSources\BE.Host.datasource" />
+    <None Include="Properties\DataSources\BE.HostingUnit.datasource" />
+    <None Include="Properties\DataSources\BE.Order.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

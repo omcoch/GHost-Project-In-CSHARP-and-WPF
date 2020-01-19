@@ -51,16 +51,24 @@ namespace PLWPF
         }
         public DateTime? GetEntryDate()
         {
-            var myList = MyCalendar.SelectedDates;
-            if (myList.Count > 0)
-                return myList.ToList().First();
+            var l = MyCalendar.SelectedDates;
+            if (l.Count > 0)
+            {
+                var myList = l.ToList();
+                myList.Sort(); // צריך למיין את הרשימה למקרה שהימים בקלנדר נתפסו עם העכבר מהסוף להתחלה
+                return myList.First();
+            }
             return null;
         }
         public DateTime? GetReleaseDate()
         {
-            var myList = MyCalendar.SelectedDates;
-            if (myList.Count > 0)
-                return myList.ToList().Last();
+            var l = MyCalendar.SelectedDates;
+            if (l.Count > 0)
+            {
+                var myList = l.ToList();
+                myList.Sort();
+                return myList.Last();
+            }
             return null;
         }
     }
