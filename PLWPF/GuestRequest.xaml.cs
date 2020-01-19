@@ -25,10 +25,26 @@ namespace PLWPF
         public GuestRequest()
         {
             InitializeComponent();
+
             PrivateNameMessage.Visibility = Visibility.Hidden;
             FamilyNameMessage.Visibility = Visibility.Hidden;
             EmailMessage.Visibility = Visibility.Hidden;
             NumbersMessage.Visibility = Visibility.Hidden;
+
+            Area.ItemsSource = Enum.GetValues(typeof(Requirements));
+            Area.SelectedIndex = 1;
+            Type.ItemsSource = Enum.GetValues(typeof(GRType));
+            Type.SelectedIndex = 0;
+            Price.ItemsSource = Enum.GetValues(typeof(MaxPrice));
+            Price.SelectedIndex = 3;
+            Pool.ItemsSource = Enum.GetValues(typeof(Requirements));
+            Pool.SelectedIndex = 1;
+            Hottub.ItemsSource = Enum.GetValues(typeof(Requirements));
+            Hottub.SelectedIndex = 1;
+            Garden.ItemsSource = Enum.GetValues(typeof(Requirements));
+            Garden.SelectedIndex = 1;
+            Atractions.ItemsSource = Enum.GetValues(typeof(Requirements));
+            Atractions.SelectedIndex = 1;
         }
 
         private void Send_Request(object sender, RoutedEventArgs e)
