@@ -38,5 +38,6 @@ namespace BL
 
         HostingUnit GetHostingUnit(int key);
         Order GetOrder(int key);
+        Host GetHost(int key);
     }
 }

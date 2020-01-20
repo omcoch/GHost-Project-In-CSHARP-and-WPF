@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BE;
+using BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,25 +21,28 @@ namespace PLWPF
     /// </summary>
     public partial class HostForm : Window
     {
-        public HostForm()
+        IBL bL = BlFactory.getBl();
+        Host host;
+        
+        public HostForm(int hostKey = 0)
         {
             InitializeComponent();
+
+            host= bL.GetHost(hostKey);
+            grid1.DataContext = host;
+            if(hostKey==0)
+                foreach (var g in grid1.Children)
+                {
+                    g.IsEnabled = false;
+                }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
             System.Windows.Data.CollectionViewSource hostViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("hostViewSource")));
+            
             // Load data by setting the CollectionViewSource.Source property:
             // hostViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource bankBranchViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("bankBranchViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // bankBranchViewSource.Source = [generic data source]
         }
     }
 }

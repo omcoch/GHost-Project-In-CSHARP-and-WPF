@@ -25,7 +25,7 @@ namespace PLWPF
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Register_Click(object sender, RoutedEventArgs e)
         {
             new HostForm().Show();
             Owner.Close();

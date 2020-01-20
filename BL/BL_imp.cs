@@ -353,7 +353,14 @@ namespace BL
 
         public int AddHost(Host host)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return dal.AddHost(host);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public void UpdateHost(Host host)
@@ -376,10 +383,15 @@ namespace BL
             {
                 dal.UpdateHost(host);
             }
-            catch(ArgumentException e)
+            catch(Exception e)
             {
                 throw e;
             }
+        }
+
+        public Host GetHost(int key)
+        {
+            return dal.GetHosts().Where(h => h.HostKey == key).FirstOrDefault();
         }
 
 
