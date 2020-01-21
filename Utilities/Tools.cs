@@ -33,22 +33,27 @@ namespace Utilities
                 return false;
             }
         }
-        public static bool validateString(string str)
+        public static bool ValidateString(string str)
         {
-            return !String.IsNullOrEmpty(str) && Regex.IsMatch(str, "^[א-תa-zA-Z]+$");
+            return !String.IsNullOrEmpty(str) && Regex.IsMatch(str, "^[א-תa-zA-Z ]+$");
         }
-        public static bool ValidateNumber(string str)
+        public static bool ValidateNumber(string str,int max=int.MaxValue)
         {
             try
             {
                 int n = int.Parse(str);
-                return n < 100 && n >= 0;
+                return n <= max && n >= 0;
             }
             catch
             {
                 return false;
             }
         }
+        public static bool ValidatePhoneNumber(string str)
+        {
+            return !String.IsNullOrEmpty(str) && Regex.IsMatch(str, "^0")&&int.TryParse(str,out int x);
+        }
+    
         public static bool ValidateEmailAddress(string text)
         {
             return !String.IsNullOrEmpty(text) && new EmailAddressAttribute().IsValid(text);

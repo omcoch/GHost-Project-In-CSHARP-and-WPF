@@ -55,7 +55,7 @@ namespace PLWPF
         {
             DateTime? entryDate = Calendar.GetEntryDate();
             if (entryDate == null
-                || !Tools.validateString(PrivateName.Text) || !Tools.validateString(FamilyName.Text)
+                || !Tools.ValidateString(PrivateName.Text) || !Tools.ValidateString(FamilyName.Text)
                 || !Tools.ValidateEmailAddress(Email.Text)
                 || (int.Parse(ChildrenNum.Text)<=0 && int.Parse(AdultsNum.Text) <= 0))
             {
@@ -103,7 +103,7 @@ namespace PLWPF
 
         private void PrivateName_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!Tools.validateString(PrivateName.Text))
+            if (!Tools.ValidateString(PrivateName.Text))
                 PrivateNameMessage.Visibility = Visibility.Visible;
             else
                 PrivateNameMessage.Visibility = Visibility.Hidden;
@@ -112,7 +112,7 @@ namespace PLWPF
         private void NumbersTextBox_KeyUp(object sender, KeyEventArgs e)
         {
 
-            if (!Tools.ValidateNumber(ChildrenNum.Text) || !Tools.ValidateNumber(AdultsNum.Text))
+            if (!Tools.ValidateNumber(ChildrenNum.Text,99) || !Tools.ValidateNumber(AdultsNum.Text,99))
                 NumbersMessage.Visibility = Visibility.Visible;
             else
                 NumbersMessage.Visibility = Visibility.Hidden;
@@ -120,7 +120,7 @@ namespace PLWPF
 
         private void FamilyName_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!Tools.validateString(FamilyName.Text))
+            if (!Tools.ValidateString(FamilyName.Text))
                 FamilyNameMessage.Visibility = Visibility.Visible;
             else
                 FamilyNameMessage.Visibility = Visibility.Hidden;

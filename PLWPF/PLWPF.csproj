@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PrivateZone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\CalendarUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,6 +93,9 @@
     </Compile>
     <Compile Include="HostForm.xaml.cs">
       <DependentUpon>HostForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrivateZone.xaml.cs">
+      <DependentUpon>PrivateZone.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CalendarUserControl.xaml.cs">
       <DependentUpon>CalendarUserControl.xaml</DependentUpon>

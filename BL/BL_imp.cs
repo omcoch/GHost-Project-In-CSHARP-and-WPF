@@ -31,15 +31,8 @@ namespace BL
         {
             if (TimeDistance(guestRequest.EntryDate, guestRequest.ReleaseDate) < 1)
                 throw new ArgumentOutOfRangeException("על תאריך תחילת הנופש להיות קודם לפחות ביום אחד לתאריך סיום הנופש");
+return dal.AddGuestRequest(guestRequest);
 
-            try
-            {
-                return dal.AddGuestRequest(guestRequest);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
         }
 
 
@@ -76,16 +69,7 @@ namespace BL
 
                 if (!CheckDiary(entryDate, releaseDate, diaryOfHostingUnit))
                     throw new DateOccupiedException("התאריך תפוס");
-
-                try
-                {
-                    return dal.AddOrder(order);
-                }
-                catch (Exception e)
-                {
-
-                    throw e;
-                }
+return dal.AddOrder(order);
             }
             else
                 throw new ExecutionOrderException("דרישת לקוח/יחידת אירוח לא קיימת");
@@ -109,15 +93,7 @@ namespace BL
                     && (order.Status == OrderStatus.טרם_טופל || order.Status == OrderStatus.נשלח_מייל)
                     select order;
             if (!v.Any())
-                try
-                {
-                    dal.RemoveHostingUnit(key);
-                }
-                catch (KeyNotFoundException e)
-                {
-
-                    throw e;
-                }
+                dal.RemoveHostingUnit(key);
             else
                 throw new ArgumentException("ליחידת אירוח זו קיימות הזמנות פתוחות");
         }
@@ -133,29 +109,13 @@ namespace BL
                     select gr;
             if (!v.Any())
                 throw new ArgumentException("דרישת לקוח אינה קיימת במקור הנתונים");
-
-            try
-            {
-                dal.UpdateGuestRequest(guestRequest);
-            }
-            catch (ArgumentException e)
-            {
-                throw e;
-            }
+ dal.UpdateGuestRequest(guestRequest);
         }
 
         public void UpdateHostingUnit(HostingUnit hostingUnit)
         {
             HostingUnit originalHostingUnit = dal.GetHostingUnits().FirstOrDefault(item => item.HostingUnitKey == hostingUnit.HostingUnitKey);
-
-            try
-            {
-                dal.UpdateHostingUnit(hostingUnit);
-            }
-            catch (ArgumentException e)
-            {
-                throw e;
-            }
+dal.UpdateHostingUnit(hostingUnit);
         }
 
         public void UpdateOrder(Order Order)
@@ -267,10 +227,10 @@ namespace BL
 
         public List<HostingUnit> GetAvailableHostingUnits(DateTime date, int days)
         {
-            var l = (from unit in dal.GetHostingUnits()
+            var v = (from unit in dal.GetHostingUnits()
                      where CheckDiary(date, date.AddDays(days), unit.Diary) == true
                      select unit).ToList();
-            return l;
+            return v;
         }
 
         public int TimeDistance(DateTime first, DateTime last = default(DateTime))
@@ -288,7 +248,6 @@ namespace BL
                 {
                     return TimeDistance(order.CreateDate) >= days || TimeDistance(order.OrderDate) >= days;
                 });
-
         }
 
         public List<GuestRequest> GetGuestRequestsByCondition(Predicate<GuestRequest> predicate)
@@ -353,14 +312,7 @@ namespace BL
 
         public int AddHost(Host host)
         {
-            try
-            {
-                return dal.AddHost(host);
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }
+            return dal.AddHost(host);
         }
 
         public void UpdateHost(Host host)
@@ -379,21 +331,13 @@ namespace BL
                 if (v.Any())
                     throw new ArgumentException("לא ניתן לבטל הרשאה לחיוב חשבון כאשר יש הזמנות פתוחות");
             }
-            try
-            {
-                dal.UpdateHost(host);
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }
+            dal.UpdateHost(host);
         }
 
         public Host GetHost(int key)
         {
             return dal.GetHosts().Where(h => h.HostKey == key).FirstOrDefault();
         }
-
 
         //todo: לבדןוק CLONE לגבי FIRST, FIND ETC...
     }

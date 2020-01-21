@@ -38,7 +38,7 @@ namespace DS
                     HostKey = 312279188,
                     PrivateName = "איציק",
                     FamilyName = "שמואלי",
-                    PhoneNumber = "054-222222",
+                    PhoneNumber = "054222222",
                     MailAddress = new MailAddress("i@j.c"),
                     BankAccountDetails = new BankBranch() { BankNumber = 12, BankName = "בנק הפועלים", BranchNumber = 723, BranchAddress = "הגליל", BranchCity = "טבריה" },
                     BankAccountNumber = 654321,
