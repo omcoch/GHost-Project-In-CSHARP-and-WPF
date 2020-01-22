@@ -13,7 +13,7 @@ namespace BE
         private static int orderSerialKey = 10000000;//מספר מזהה רץ עבור הזמנה
         private static int hostingUnitSerialKey = 10000000;//מספר מזהה רץ עבור יחדית אירוח
         public static readonly MailAddress AdminMailAddress = new MailAddress("omcoch@gmail.com");
-        public static string SiteName { get => "OurProgram"; } //todo: שם נורמלי
+        public static string SiteName { get => "G-Host"; }
 
 
         public const int FEE = 10;//עמלה

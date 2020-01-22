@@ -10,47 +10,49 @@
     <Window.Resources>
         <CollectionViewSource x:Key="hostingUnitViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:HostingUnit}, CreateList=True}"/>
     </Window.Resources>
+
     <Window.DataContext>
         <BE:Configuration/>
     </Window.DataContext>
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="405*"/>
-            <ColumnDefinition Width="388*"/>
-        </Grid.ColumnDefinitions>
-        <local:Header HorizontalAlignment="Left" VerticalAlignment="Top" Width="793" Height="123" Margin="10,122,-9.667,0" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="hostingUnitDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="Auto" ItemsSource="{Binding Source={StaticResource hostingUnitViewSource}}" Margin="175,95,218.333,125.667" RowDetailsVisibilityMode="VisibleWhenSelected" Width="Auto" Grid.ColumnSpan="2">
+        <local:Header HorizontalAlignment="Left" VerticalAlignment="Top" Width="793" Height="123"/>
+
+        <DataGrid x:Name="hostingUnitDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="Auto" ItemsSource="{Binding Source={StaticResource hostingUnitViewSource}}" Margin="176,145,157.333,145.667" RowDetailsVisibilityMode="VisibleWhenSelected" FlowDirection="RightToLeft">
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="areaColumn" Header="Area" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Area}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="hostingUnitKeyColumn" Header="Hosting Unit Key" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="hostingUnitKeyColumn" Header="מספר סידורי" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding HostingUnitKey}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="hostingUnitNameColumn" Header="Hosting Unit Name" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="hostingUnitNameColumn" Header="שם יחידת אירוח" Width="2*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding HostingUnitName}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="typeColumn" Header="Type" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="typeColumn" Header="סוג" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Type}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="areaColumn" Header="אזור" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Area}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Button" Margin="0,321,148.333,0" VerticalAlignment="Top" Width="140" HorizontalAlignment="Right" FontSize="16" FontFamily="Tahoma" Foreground="White" Style="{DynamicResource ButtonStyle}" />
+        <Button Content="Button" HorizontalAlignment="Left" Margin="260,325,0,0" VerticalAlignment="Top" Width="75" Style="{DynamicResource ButtonStyle}" />
 
     </Grid>
 </Window>

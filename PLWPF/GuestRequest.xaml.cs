@@ -29,15 +29,16 @@ namespace PLWPF
         public GuestRequest()
         {
             InitializeComponent();
-            guest.EntryDate= DateTime.Now.Date;
-            guest.RegistrationDate = DateTime.Now.Date;
+            guest.EntryDate = DateTime.Now.Date;
             guest.ReleaseDate = DateTime.Now.Date;
+
             GuestRequestGrid.DataContext = guest;
-            
+
             PrivateNameMessage.Visibility = Visibility.Hidden;
             FamilyNameMessage.Visibility = Visibility.Hidden;
             EmailMessage.Visibility = Visibility.Hidden;
             NumbersMessage.Visibility = Visibility.Hidden;
+            DatesMessage.Visibility = Visibility.Hidden;
 
             areaComboBox.ItemsSource = Enum.GetValues(typeof(Regions));
             areaComboBox.SelectedIndex = 1;
@@ -60,7 +61,7 @@ namespace PLWPF
         {
             if (!Tools.ValidateString(privateNameTextBox.Text) || !Tools.ValidateString(familyNameTextBox.Text)
                 || !Tools.ValidateEmailAddress(mailAddressTextBox.Text)
-                || (int.Parse(childrenTextBox.Text)<=0 && int.Parse(adultsTextBox.Text) <= 0))
+                || (int.Parse(childrenTextBox.Text) <= 0 && int.Parse(adultsTextBox.Text) <= 0))
             {
                 MessageBox.Show("לא כל השדות מולאו", "שגיאה");
                 return;
@@ -89,8 +90,12 @@ namespace PLWPF
 
             try
             {
+                guest.MailAddress = new MailAddress(mailAddressTextBox.Text);
+                guest.RegistrationDate = DateTime.Now.Date;
+                guest.Status = RequestStatus.פתוחה;
+
                 int code = bL.AddGuestRequest(guest);
-                MessageBox.Show("הבקשה נקלטה במערכת, תודה רבה!", "בקשה מספר "+code);
+                MessageBox.Show("הבקשה נקלטה במערכת, תודה רבה!", "בקשה מספר " + code);
                 new MainWindow().Show();
                 Close();
             }
@@ -115,7 +120,7 @@ namespace PLWPF
         private void NumbersTextBox_KeyUp(object sender, KeyEventArgs e)
         {
 
-            if (!Tools.ValidateNumber(childrenTextBox.Text,99) || !Tools.ValidateNumber(adultsTextBox.Text,99))
+            if (!Tools.ValidateNumber(childrenTextBox.Text, 99) || !Tools.ValidateNumber(adultsTextBox.Text, 99))
                 NumbersMessage.Visibility = Visibility.Visible;
             else
                 NumbersMessage.Visibility = Visibility.Hidden;
@@ -131,19 +136,18 @@ namespace PLWPF
 
         private void Email_KeyUp(object sender, KeyEventArgs e)
         {
-
             if (!Tools.ValidateEmailAddress(mailAddressTextBox.Text))
                 EmailMessage.Visibility = Visibility.Visible;
             else
                 EmailMessage.Visibility = Visibility.Hidden;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Date_CalendarClosed(object sender, RoutedEventArgs e)
         {
-
-            System.Windows.Data.CollectionViewSource guestRequestViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("guestRequestViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // guestRequestViewSource.Source = [generic data source]
+            if (entryDateDatePicker.SelectedDate < DateTime.Now || releaseDateDatePicker.SelectedDate < entryDateDatePicker.SelectedDate)
+                DatesMessage.Visibility = Visibility.Visible;
+            else
+                DatesMessage.Visibility = Visibility.Hidden;
         }
     }
 }
