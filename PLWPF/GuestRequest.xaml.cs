@@ -24,69 +24,72 @@ namespace PLWPF
     public partial class GuestRequest : Window
     {
         IBL bL = BlFactory.getBl();
-
+        BE.GuestRequest guest = new BE.GuestRequest();
 
         public GuestRequest()
         {
             InitializeComponent();
-
+            guest.EntryDate= DateTime.Now.Date;
+            guest.RegistrationDate = DateTime.Now.Date;
+            guest.ReleaseDate = DateTime.Now.Date;
+            GuestRequestGrid.DataContext = guest;
+            
             PrivateNameMessage.Visibility = Visibility.Hidden;
             FamilyNameMessage.Visibility = Visibility.Hidden;
             EmailMessage.Visibility = Visibility.Hidden;
             NumbersMessage.Visibility = Visibility.Hidden;
 
-            Area.ItemsSource = Enum.GetValues(typeof(Regions));
-            Area.SelectedIndex = 1;
-            Type.ItemsSource = Enum.GetValues(typeof(GRType));
-            Type.SelectedIndex = 0;
-            Price.ItemsSource = Enum.GetValues(typeof(MaxPrice));
-            Price.SelectedIndex = 3;
-            Pool.ItemsSource = Enum.GetValues(typeof(Requirements));
-            Pool.SelectedIndex = 1;
-            Hottub.ItemsSource = Enum.GetValues(typeof(Requirements));
-            Hottub.SelectedIndex = 1;
-            Garden.ItemsSource = Enum.GetValues(typeof(Requirements));
-            Garden.SelectedIndex = 1;
-            Atractions.ItemsSource = Enum.GetValues(typeof(Requirements));
-            Atractions.SelectedIndex = 1;
+            areaComboBox.ItemsSource = Enum.GetValues(typeof(Regions));
+            areaComboBox.SelectedIndex = 1;
+            typeComboBox.ItemsSource = Enum.GetValues(typeof(GRType));
+            typeComboBox.SelectedIndex = 0;
+            maxPriceComboBox.ItemsSource = Enum.GetValues(typeof(MaxPrice));
+            maxPriceComboBox.SelectedIndex = 3;
+            poolComboBox.ItemsSource = Enum.GetValues(typeof(Requirements));
+            poolComboBox.SelectedIndex = 1;
+            jacuzziComboBox.ItemsSource = Enum.GetValues(typeof(Requirements));
+            jacuzziComboBox.SelectedIndex = 1;
+            gardenComboBox.ItemsSource = Enum.GetValues(typeof(Requirements));
+            gardenComboBox.SelectedIndex = 1;
+            childrensAttractionsComboBox.ItemsSource = Enum.GetValues(typeof(Requirements));
+            childrensAttractionsComboBox.SelectedIndex = 1;
+
         }
 
         private void Send_Request(object sender, RoutedEventArgs e)
         {
-            DateTime? entryDate = Calendar.GetEntryDate();
-            if (entryDate == null
-                || !Tools.ValidateString(PrivateName.Text) || !Tools.ValidateString(FamilyName.Text)
-                || !Tools.ValidateEmailAddress(Email.Text)
-                || (int.Parse(ChildrenNum.Text)<=0 && int.Parse(AdultsNum.Text) <= 0))
+            if (!Tools.ValidateString(privateNameTextBox.Text) || !Tools.ValidateString(familyNameTextBox.Text)
+                || !Tools.ValidateEmailAddress(mailAddressTextBox.Text)
+                || (int.Parse(childrenTextBox.Text)<=0 && int.Parse(adultsTextBox.Text) <= 0))
             {
                 MessageBox.Show("לא כל השדות מולאו", "שגיאה");
                 return;
             }
 
-            BE.GuestRequest newGuestRequest = new BE.GuestRequest()
-            {
-                PrivateName = PrivateName.Text,
-                FamilyName = FamilyName.Text,
-                MailAddress = new MailAddress(Email.Text),
-                Area = (Regions)Enum.Parse(typeof(Regions), Area.SelectedValue.ToString()),
-                SubArea = SubArea.Text,
-                Type = (GRType)Enum.Parse(typeof(GRType), Type.SelectedValue.ToString()),
-                Adults = int.Parse(AdultsNum.Text),
-                Children = int.Parse(ChildrenNum.Text),
-                MaxPrice= (MaxPrice)Enum.Parse(typeof(MaxPrice), Price.SelectedValue.ToString()),
-                Pool= (Requirements)Enum.Parse(typeof(Requirements), Pool.SelectedValue.ToString()),
-                Jacuzzi = (Requirements)Enum.Parse(typeof(Requirements), Hottub.SelectedValue.ToString()),
-                Garden = (Requirements)Enum.Parse(typeof(Requirements), Garden.SelectedValue.ToString()),
-                ChildrensAttractions = (Requirements)Enum.Parse(typeof(Requirements), Atractions.SelectedValue.ToString()),
-                RegistrationDate=DateTime.Now,
-                EntryDate = (DateTime)entryDate,
-                ReleaseDate = (DateTime)Calendar.GetReleaseDate(),
-                Status = RequestStatus.פתוחה,                
-            };
+            //BE.GuestRequest newGuestRequest = new BE.GuestRequest()
+            //{
+            //    PrivateName = PrivateName.Text,
+            //    FamilyName = FamilyName.Text,
+            //    MailAddress = new MailAddress(Email.Text),
+            //    Area = (Regions)Enum.Parse(typeof(Regions), Area.SelectedValue.ToString()),
+            //    SubArea = SubArea.Text,
+            //    Type = (GRType)Enum.Parse(typeof(GRType), Type.SelectedValue.ToString()),
+            //    Adults = int.Parse(AdultsNum.Text),
+            //    Children = int.Parse(ChildrenNum.Text),
+            //    MaxPrice= (MaxPrice)Enum.Parse(typeof(MaxPrice), Price.SelectedValue.ToString()),
+            //    Pool= (Requirements)Enum.Parse(typeof(Requirements), Pool.SelectedValue.ToString()),
+            //    Jacuzzi = (Requirements)Enum.Parse(typeof(Requirements), Hottub.SelectedValue.ToString()),
+            //    Garden = (Requirements)Enum.Parse(typeof(Requirements), Garden.SelectedValue.ToString()),
+            //    ChildrensAttractions = (Requirements)Enum.Parse(typeof(Requirements), Atractions.SelectedValue.ToString()),
+            //    RegistrationDate=DateTime.Now,
+            //    EntryDate = (DateTime)entryDate,
+            //    ReleaseDate = (DateTime)Calendar.GetReleaseDate(),
+            //    Status = RequestStatus.פתוחה,                
+            //};
 
             try
             {
-                int code = bL.AddGuestRequest(newGuestRequest);
+                int code = bL.AddGuestRequest(guest);
                 MessageBox.Show("הבקשה נקלטה במערכת, תודה רבה!", "בקשה מספר "+code);
                 new MainWindow().Show();
                 Close();
@@ -103,7 +106,7 @@ namespace PLWPF
 
         private void PrivateName_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!Tools.ValidateString(PrivateName.Text))
+            if (!Tools.ValidateString(privateNameTextBox.Text))
                 PrivateNameMessage.Visibility = Visibility.Visible;
             else
                 PrivateNameMessage.Visibility = Visibility.Hidden;
@@ -112,7 +115,7 @@ namespace PLWPF
         private void NumbersTextBox_KeyUp(object sender, KeyEventArgs e)
         {
 
-            if (!Tools.ValidateNumber(ChildrenNum.Text,99) || !Tools.ValidateNumber(AdultsNum.Text,99))
+            if (!Tools.ValidateNumber(childrenTextBox.Text,99) || !Tools.ValidateNumber(adultsTextBox.Text,99))
                 NumbersMessage.Visibility = Visibility.Visible;
             else
                 NumbersMessage.Visibility = Visibility.Hidden;
@@ -120,7 +123,7 @@ namespace PLWPF
 
         private void FamilyName_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!Tools.ValidateString(FamilyName.Text))
+            if (!Tools.ValidateString(familyNameTextBox.Text))
                 FamilyNameMessage.Visibility = Visibility.Visible;
             else
                 FamilyNameMessage.Visibility = Visibility.Hidden;
@@ -129,11 +132,18 @@ namespace PLWPF
         private void Email_KeyUp(object sender, KeyEventArgs e)
         {
 
-            if (!Tools.ValidateEmailAddress(Email.Text))
+            if (!Tools.ValidateEmailAddress(mailAddressTextBox.Text))
                 EmailMessage.Visibility = Visibility.Visible;
             else
                 EmailMessage.Visibility = Visibility.Hidden;
         }
-        
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource guestRequestViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("guestRequestViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // guestRequestViewSource.Source = [generic data source]
+        }
     }
 }

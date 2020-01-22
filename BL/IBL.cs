@@ -37,6 +37,7 @@ namespace BL
         IEnumerable<IGrouping<bool, HostingUnit>> GetHostingUnitsGroupByArea(Regions area);
 
         HostingUnit GetHostingUnit(int key);
+        List<HostingUnit> GetHostingUnitsByOwner(int key);
         Order GetOrder(int key);
         Host GetHost(int key);
     }

@@ -63,6 +63,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HostingUnitsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrivateZone.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +100,9 @@
     </Compile>
     <Compile Include="HostingUnitForm.xaml.cs">
       <DependentUpon>HostingUnitForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HostingUnitsList.xaml.cs">
+      <DependentUpon>HostingUnitsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrivateZone.xaml.cs">
       <DependentUpon>PrivateZone.xaml</DependentUpon>

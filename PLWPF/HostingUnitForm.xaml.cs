@@ -23,8 +23,9 @@ namespace PLWPF
     public partial class HostingUnitForm : Window
     {
         IBL bL = BlFactory.getBl();
+        HostingUnit hostingUnit = null;
 
-        public HostingUnitForm(HostingUnit hostingUnit = null)
+        public HostingUnitForm(int id, HostingUnit hostingUnit = null)
         {
             InitializeComponent();
             areaComboBox.ItemsSource = Enum.GetValues(typeof(Regions));
@@ -32,16 +33,19 @@ namespace PLWPF
 
             if (hostingUnit != null) // טיפול בעדכון יחידת אירוח
             {
-                TableGrid.DataContext = hostingUnit;             
+                this.hostingUnit = hostingUnit;
                 areaComboBox.SelectedValue = hostingUnit.Area;
                 typeComboBox.SelectedValue = hostingUnit.Type;
+                TableGrid.DataContext = this.hostingUnit;
                 SubmitButton.Content = "עדכן";
                 SubmitButton.Click += UpdateHostingUnit;
             }
             else // טיפול בהוספת יחידת אירוח חדשה
             {
-                hostingUnit = new HostingUnit();
-                TableGrid.DataContext = hostingUnit;                
+                areaComboBox.SelectedIndex = 0;
+                typeComboBox.SelectedIndex = 0;
+                this.hostingUnit = new HostingUnit{ OwnerKey = id};
+                TableGrid.DataContext = this.hostingUnit;                
                 SubmitButton.Click += AddHostingUnit;
             }
         }
@@ -75,9 +79,9 @@ namespace PLWPF
             {
                 try
                 {
-                    int key=bL.AddHostingUnit((HostingUnit)TableGrid.DataContext);
+                    int key = bL.AddHostingUnit(hostingUnit);
                     MessageBox.Show("יחידת האירוח נוספה בהצלחה!", "יחידה מספר " + key);
-                    new PrivateZone(bL.GetHost(((HostingUnit)TableGrid.DataContext).OwnerKey));
+                    new PrivateZone(bL.GetHost(hostingUnit.OwnerKey)).Show();
                     Close();
                 }
                 catch (ArgumentException err)

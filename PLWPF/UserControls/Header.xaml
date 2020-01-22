@@ -4,10 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PLWPF"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignWidth="800" Height="122.667">
     <Grid Name="HeaderGrid" Height="90">
-        <Image HorizontalAlignment="Left" Height="80" Margin="333,0,0,0" VerticalAlignment="Top" Width="138" Source="https://www.hayokra.co.il/site/images/gallery/vila_462_32819_9nLM9KY.jpg"/>
+        <Image HorizontalAlignment="Left" Height="80" Margin="330,-130,0,0" VerticalAlignment="Top" Width="138" Source="https://www.hayokra.co.il/site/images/gallery/vila_462_32819_9nLM9KY.jpg"/>
 
     </Grid>
 </UserControl>

@@ -305,6 +305,14 @@ namespace BL
             return dal.GetHostingUnits().Where(k => k.HostingUnitKey == key).FirstOrDefault();
         }
 
+        public List<HostingUnit> GetHostingUnitsByOwner(int key)
+        {
+            var v= dal.GetHostingUnits().Where(k => k.OwnerKey == key);
+            if(v.Any())
+                return v.ToList();
+            return new List<HostingUnit>();
+        }
+
         public Order GetOrder(int key)
         {
             return dal.GetOrders().Where(k => k.OrderKey == key).FirstOrDefault();

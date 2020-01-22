@@ -1,0 +1,56 @@
+﻿<Window x:Class="PLWPF.HostingUnitsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        xmlns:BE="clr-namespace:BE;assembly=BE"
+        mc:Ignorable="d"
+        Title="{Binding Path=SiteName, StringFormat='רשימת יחידות אירוח - {0}'}" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="hostingUnitViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:HostingUnit}, CreateList=True}"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <BE:Configuration/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="405*"/>
+            <ColumnDefinition Width="388*"/>
+        </Grid.ColumnDefinitions>
+        <local:Header HorizontalAlignment="Left" VerticalAlignment="Top" Width="793" Height="123" Margin="10,122,-9.667,0" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="hostingUnitDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="Auto" ItemsSource="{Binding Source={StaticResource hostingUnitViewSource}}" Margin="175,95,218.333,125.667" RowDetailsVisibilityMode="VisibleWhenSelected" Width="Auto" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="areaColumn" Header="Area" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Area}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="hostingUnitKeyColumn" Header="Hosting Unit Key" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding HostingUnitKey}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="hostingUnitNameColumn" Header="Hosting Unit Name" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding HostingUnitName}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="typeColumn" Header="Type" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Type}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
