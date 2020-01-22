@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HostingUnitForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrivateZone.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -71,15 +75,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Header.xaml">
+    <Page Include="UserControls\Header.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HostLogin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="HostingUnit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -94,6 +94,9 @@
     <Compile Include="HostForm.xaml.cs">
       <DependentUpon>HostForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HostingUnitForm.xaml.cs">
+      <DependentUpon>HostingUnitForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrivateZone.xaml.cs">
       <DependentUpon>PrivateZone.xaml</DependentUpon>
     </Compile>
@@ -103,14 +106,11 @@
     <Compile Include="GuestRequest.xaml.cs">
       <DependentUpon>GuestRequest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Header.xaml.cs">
+    <Compile Include="UserControls\Header.xaml.cs">
       <DependentUpon>Header.xaml</DependentUpon>
     </Compile>
     <Compile Include="HostLogin.xaml.cs">
       <DependentUpon>HostLogin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HostingUnit.xaml.cs">
-      <DependentUpon>HostingUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

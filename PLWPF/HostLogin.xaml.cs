@@ -28,6 +28,7 @@ namespace PLWPF
         {
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            KeyTextBox.Focus();
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)

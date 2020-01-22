@@ -31,7 +31,7 @@ namespace BL
         {
             if (TimeDistance(guestRequest.EntryDate, guestRequest.ReleaseDate) < 1)
                 throw new ArgumentOutOfRangeException("על תאריך תחילת הנופש להיות קודם לפחות ביום אחד לתאריך סיום הנופש");
-return dal.AddGuestRequest(guestRequest);
+            return dal.AddGuestRequest(guestRequest);
 
         }
 
@@ -69,7 +69,7 @@ return dal.AddGuestRequest(guestRequest);
 
                 if (!CheckDiary(entryDate, releaseDate, diaryOfHostingUnit))
                     throw new DateOccupiedException("התאריך תפוס");
-return dal.AddOrder(order);
+                return dal.AddOrder(order);
             }
             else
                 throw new ExecutionOrderException("דרישת לקוח/יחידת אירוח לא קיימת");
@@ -109,21 +109,21 @@ return dal.AddOrder(order);
                     select gr;
             if (!v.Any())
                 throw new ArgumentException("דרישת לקוח אינה קיימת במקור הנתונים");
- dal.UpdateGuestRequest(guestRequest);
+            dal.UpdateGuestRequest(guestRequest);
         }
 
         public void UpdateHostingUnit(HostingUnit hostingUnit)
         {
             HostingUnit originalHostingUnit = dal.GetHostingUnits().FirstOrDefault(item => item.HostingUnitKey == hostingUnit.HostingUnitKey);
-dal.UpdateHostingUnit(hostingUnit);
+            dal.UpdateHostingUnit(hostingUnit);
         }
 
         public void UpdateOrder(Order Order)
         {
             // יחידת האירוח הקשורה להזמנה
             var hostingUnit = (from h in dal.GetHostingUnits()
-                        where h.HostingUnitKey == Order.HostingUnitKey
-                        select h).FirstOrDefault();
+                               where h.HostingUnitKey == Order.HostingUnitKey
+                               select h).FirstOrDefault();
             // סטטוס ההזמנה כפי ששמור במקור הנתונים
             var os = from order in dal.GetOrders()
                      where order.OrderKey == Order.OrderKey
@@ -162,7 +162,7 @@ dal.UpdateHostingUnit(hostingUnit);
 
                         // במידה ונסגרה ההעסקה בינהם נבצע חישוב עמלה
                         owner.ChargeAmount += CalculateFee((guestRequest.ReleaseDate - guestRequest.EntryDate).Days);
-                        
+
                         // מילוי המטריצה בתאריכים המבוקשים
                         FillDiary(hostingUnit, guestRequest.EntryDate, guestRequest.ReleaseDate);
                         // עדכון יחידת האירוח בבסיס הנתונים
@@ -173,7 +173,7 @@ dal.UpdateHostingUnit(hostingUnit);
                         dal.UpdateGuestRequest(guestRequest);
                         // עדכון העמלה אצל המארח
                         dal.UpdateHost(owner);
-                        
+
                         // עדכון שאר ההזמנות של אותה דרישת לקוח כסגורות
                         var orders = from o in dal.GetOrders()
                                      where o.GuestRequestKey == guestRequest.guestRequestKey && o.OrderKey != Order.OrderKey
@@ -183,7 +183,7 @@ dal.UpdateHostingUnit(hostingUnit);
                             order.Status = OrderStatus.נסגר_בעקבות_סגירת_עסקה_עם_מארח_אחר;
                             dal.UpdateOrder(order);
                         }
-                        
+
                     }
                 }
                 catch (Exception e)
@@ -202,7 +202,7 @@ dal.UpdateHostingUnit(hostingUnit);
         /// <returns>מחזיר אמת אם המייל נשלח בהצלחה, אחרת שקר</returns>
         private bool SendMailToGuest(int orderKey, HostingUnit hostingUnit, GuestRequest guestRequest)
         {
-            MailAddress mailAddress = dal.GetHosts().Where(h => hostingUnit.OwnerKey == h.HostKey).Select(o=>o.MailAddress).First();
+            MailAddress mailAddress = dal.GetHosts().Where(h => hostingUnit.OwnerKey == h.HostKey).Select(o => o.MailAddress).First();
             MailMessage message = new MailMessage();
             message.To.Add(guestRequest.MailAddress);
             message.Subject = "נוצרה הזמנה עבור דרישת לקוח מספר " + guestRequest.guestRequestKey;

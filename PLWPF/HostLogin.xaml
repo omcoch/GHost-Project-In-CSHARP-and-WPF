@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
+        xmlns:BE="clr-namespace:BE;assembly=BE"
         mc:Ignorable="d"
-        Title="כניסת מארח" Height="180" Width="280">
+        Title="{Binding Path=SiteName, StringFormat='כניסת מארח - {0}'}" Height="180" Width="280">
+    <Window.DataContext>
+        <BE:Configuration/>
+    </Window.DataContext>
     <Grid>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="80,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Name="KeyTextBox" />
         <TextBlock HorizontalAlignment="Left" Height="21" Margin="0,21,0,0" TextWrapping="Wrap" Text="ברוך הבא! לכניסה הכנס תעודת זהות" VerticalAlignment="Top" Width="273" FontWeight="Bold" TextAlignment="Center"/>

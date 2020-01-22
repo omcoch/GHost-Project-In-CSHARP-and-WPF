@@ -27,7 +27,6 @@ namespace PLWPF
         public MainWindow()//todo: favicon
         {
             InitializeComponent();
-            Title = Configuration.SiteName;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -38,8 +37,8 @@ namespace PLWPF
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            new HostLogin(){ Owner = this }.Show();
-            
+            new HostLogin(){ Owner = this }.ShowDialog();            
+            //new HostLogin(){ Owner = this }.Show();            
         }
     }
 }

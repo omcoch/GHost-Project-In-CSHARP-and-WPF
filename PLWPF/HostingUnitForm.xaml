@@ -1,0 +1,44 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.HostingUnitForm"
+        mc:Ignorable="d"
+        Title="{Binding Path=SiteName, StringFormat='יחידת אירוח - {0}'}" Height="450" Width="800">
+    <Window.DataContext>
+        <BE:Configuration/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid Margin="114,80,78.333,105.667" Name="TableGrid">
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="0,4,0,152" HorizontalAlignment="Right" Grid.Column="0" Content="שם יחידת אירוח"/>
+            <TextBox x:Name="hostingUnitNameTextBox" Width="153" VerticalAlignment="Center" Text="{Binding HostingUnitName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="308,5,0,155" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
+            <Label VerticalAlignment="Center" Margin="0,126,0,30" HorizontalAlignment="Right" Grid.Column="0" Content="מספר מבוגרים"/>
+            <TextBox x:Name="adultsTextBox" Width="47" VerticalAlignment="Center" Text="{Binding Adults, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="458,150,0,53" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
+            <Label VerticalAlignment="Center" Margin="0,36,0,120" HorizontalAlignment="Right" Grid.Column="0" Content="אזור"/>
+            <ComboBox x:Name="areaComboBox" Width="153" VerticalAlignment="Center" Margin="308,37,0,123" Height="Auto" HorizontalAlignment="Left"/>
+            <Label VerticalAlignment="Center" Margin="0,147,159,52" HorizontalAlignment="Right" Grid.Column="0" Content="מספר ילדים"/>
+            <TextBox x:Name="childrenTextBox" Width="50" VerticalAlignment="Center" Text="{Binding Children, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="308,147,0,56" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
+            <Label VerticalAlignment="Center" Margin="23,31,0,125" HorizontalAlignment="Left" Grid.Column="0" Content="האם יש אטרקציות לילדים?" FlowDirection="RightToLeft" Width="153"/>
+            <CheckBox x:Name="childrensAttractionsCheckBox" VerticalAlignment="Center" Margin="0,39,0,128" IsChecked="{Binding ChildrensAttractions, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Content=""/>
+            <Label VerticalAlignment="Center" Margin="96,0,0,156" HorizontalAlignment="Left" Content="האם יש גינה?" FlowDirection="RightToLeft"/>
+            <CheckBox x:Name="gardenCheckBox" VerticalAlignment="Center" Margin="0,8,0,159" IsChecked="{Binding Garden, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Content=""/>
+            <Label VerticalAlignment="Center" Margin="91,63,0,93" HorizontalAlignment="Left" Grid.Column="0" Content="האם יש ג'קוזי?" FlowDirection="RightToLeft"/>
+            <CheckBox x:Name="jacuzziCheckBox" VerticalAlignment="Center" Margin="0,71,0,96" IsChecked="{Binding Jacuzzi, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Content=""/>
+            <Label VerticalAlignment="Center" Margin="86,95,0,61" HorizontalAlignment="Left" Grid.Column="0" Content="האם יש בריכה?" FlowDirection="RightToLeft"/>
+            <CheckBox x:Name="poolCheckBox" VerticalAlignment="Center" Margin="0,103,0,64" IsChecked="{Binding Pool, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Content=""/>
+            <Label VerticalAlignment="Center" Margin="0,156,0,0" HorizontalAlignment="Right" Grid.Column="0" Content="מחיר"/>
+            <TextBox x:Name="priceTextBox" Width="153" VerticalAlignment="Center" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="308,157,0,3" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
+            <Label VerticalAlignment="Center" Margin="0,68,0,88" HorizontalAlignment="Right" Grid.Column="0" Content="תת אזור"/>
+            <TextBox x:Name="subAreaTextBox" Width="153" VerticalAlignment="Center" Text="{Binding SubArea, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="308,69,0,91" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
+            <Label VerticalAlignment="Center" Margin="0,95,0,61" HorizontalAlignment="Right" Grid.Column="0" Content="סוג יחידת אירוח"/>
+            <ComboBox x:Name="typeComboBox" Width="153" VerticalAlignment="Center" Margin="308,96,0,64" Height="Auto" HorizontalAlignment="Left"/>
+        </Grid>
+        <Button Content="הוסף" HorizontalAlignment="Left" Margin="349,339,0,0" VerticalAlignment="Top" Width="115" Height="35" Name="SubmitButton"/>
+        <local:Header HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="783"/>
+        <TextBlock HorizontalAlignment="Left" Margin="114,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="ErrorMessage" Width="200" FlowDirection="RightToLeft" Height="26" Foreground="Red" FontSize="14"/>
+
+    </Grid>
+</Window>
