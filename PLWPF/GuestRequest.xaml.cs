@@ -121,6 +121,16 @@ namespace PLWPF
                 EmailMessage.Visibility = Visibility.Hidden;
         }
 
+        /// <summary>
+        /// בודק האם טווח התאריכים שהוזן תקין בכל שינוי של השדות.    
+        /// אחראי על הופעת/הסתרת השגיאה.
+        /// <para>
+        /// בדיקה 1: תאריך יציאה לפחות יום אחד אחרי תאריך כניסה.
+        /// בדיקה 2: תאריך כניסה לא עבר כבר.
+        /// </para>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Date_CalendarClosed(object sender, RoutedEventArgs e)
         {
             TimeSpan timeSpan1 = releaseDateDatePicker.SelectedDate.Value - entryDateDatePicker.SelectedDate.Value,

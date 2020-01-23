@@ -1,4 +1,5 @@
 ﻿using BE;
+using BL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace PLWPF
     /// </summary>
     public partial class GuestsRequestList : Window
     {
+        IBL bL = BlFactory.getBl();
+
         public GuestsRequestList()
         {
             InitializeComponent();
@@ -35,7 +38,7 @@ namespace PLWPF
 
             System.Windows.Data.CollectionViewSource guestRequestViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("guestRequestViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
-            // guestRequestViewSource.Source = [generic data source]
+            guestRequestViewSource.Source = bL.GetGuestRequestsByCondition(x=>true);
         }
     }
 }

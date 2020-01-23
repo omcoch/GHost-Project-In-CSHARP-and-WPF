@@ -37,5 +37,16 @@
             <Setter Property="Padding" Value="15 15 15 15"></Setter>
         </Style>
 
+        <Style x:Key="Red" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">            
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFD1CEE7" Offset="0"/>
+                        <GradientStop Color="#FFE56493" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

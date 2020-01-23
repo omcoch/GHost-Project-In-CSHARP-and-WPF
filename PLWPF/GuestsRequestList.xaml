@@ -55,7 +55,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-               
+
                 <DataGridTemplateColumn x:Name="adultsColumn" Header="מס' מבוגרים" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -63,7 +63,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
                 <DataGridTemplateColumn x:Name="childrenColumn" Header="מס' ילדים" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -78,7 +78,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
                 <DataGridTemplateColumn x:Name="gardenColumn" Header="גינה" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -93,7 +93,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
                 <DataGridTemplateColumn x:Name="poolColumn" Header="בריכה" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -108,10 +108,9 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
-                <DataGridCheckBoxColumn x:Name="checkRow" ></DataGridCheckBoxColumn>
-                
-            </DataGrid.Columns>            
+            </DataGrid.Columns>
         </DataGrid>
+        <Button Content="אישור דרישות לקוח" HorizontalAlignment="Left" Margin="429,177.667,0,-113.333" Grid.Row="1" VerticalAlignment="Top" Width="192"/>
+        <Button Style="{StaticResource Red}" Content="מחיקת דרישות לקוח" HorizontalAlignment="Left" Margin="87,177.667,0,-115.333" Grid.Row="1" VerticalAlignment="Top" Width="206"/>
     </Grid>
 </Window>
