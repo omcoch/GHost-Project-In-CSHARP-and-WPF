@@ -40,5 +40,11 @@ namespace PLWPF
             new HostLogin(){ Owner = this }.ShowDialog();            
             //new HostLogin(){ Owner = this }.Show();            
         }
+
+        public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Cookies.LastWindow = Window.NameProperty.Name;           
+        }
+
     }
 }

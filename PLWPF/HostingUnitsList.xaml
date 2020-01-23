@@ -1,4 +1,5 @@
-﻿<Window x:Class="PLWPF.HostingUnitsList"
+﻿<Window Style="{StaticResource WindowStyle}" 
+    x:Class="PLWPF.HostingUnitsList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,6 +7,7 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE"
         mc:Ignorable="d"
+        Closing="Window_Closing"
         Title="{Binding Path=SiteName, StringFormat='רשימת יחידות אירוח - {0}'}" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="hostingUnitViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:HostingUnit}, CreateList=True}"/>
@@ -51,8 +53,8 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Button" Margin="0,321,148.333,0" VerticalAlignment="Top" Width="140" HorizontalAlignment="Right" FontSize="16" FontFamily="Tahoma" Foreground="White" Style="{DynamicResource ButtonStyle}" />
-        <Button Content="Button" HorizontalAlignment="Left" Margin="260,325,0,0" VerticalAlignment="Top" Width="75" Style="{DynamicResource ButtonStyle}" />
+        <Button Content="Button" Margin="0,321,148.333,0" VerticalAlignment="Top" HorizontalAlignment="Right" />
+        <Button Content="Button" HorizontalAlignment="Left" Margin="260,325,0,0" VerticalAlignment="Top" />
 
     </Grid>
 </Window>

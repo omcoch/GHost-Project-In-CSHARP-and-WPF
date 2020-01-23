@@ -43,5 +43,10 @@ namespace PLWPF
             new HostingUnitsList(host.HostKey).Show();
             Close();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Cookies.LastWindow = Window.NameProperty.Name;
+        }
     }
 }

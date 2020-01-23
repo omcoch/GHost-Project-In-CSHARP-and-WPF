@@ -149,5 +149,11 @@ namespace PLWPF
             else
                 DatesMessage.Visibility = Visibility.Hidden;
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Cookies.LastWindow = Window.NameProperty.Name;
+        }
+       
     }
 }

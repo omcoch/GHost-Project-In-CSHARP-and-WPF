@@ -1,4 +1,4 @@
-﻿<Window
+﻿<Window  Style="{StaticResource WindowStyle}" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,11 +7,12 @@
         xmlns:BE="clr-namespace:BE;assembly=BE"
         mc:Ignorable="d"
         Height="450" Width="800"
-        Title="{Binding Path=SiteName}">
+        Title="{Binding Path=SiteName}"
+    Closing="Window_Closing">
     <Window.DataContext>
         <BE:Configuration/>
     </Window.DataContext>
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="90" x:Name="HeaderGrid" />
             <RowDefinition Height="*" />
@@ -20,9 +21,9 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Content="הוספת דרישת לקוח" Grid.Column="1" HorizontalAlignment="Left" Margin="120,127,0,0" Grid.Row="1" VerticalAlignment="Top" Width="135" Height="55" Click="Button_Click"/>
-        <Button Content="כניסת מארח" Grid.Column="0" HorizontalAlignment="Left" Margin="145,127,0,0" Grid.Row="1" VerticalAlignment="Top" Width="135" Height="55" Click="Button_Click_1"/>
-        <local:Header></local:Header>
+        <Button Content="הוספת דרישת לקוח" Grid.Column="1" HorizontalAlignment="Left" Margin="120,127,0,0" Grid.Row="1" VerticalAlignment="Top"  Click="Button_Click"/>
+        <Button Content="כניסת מארח" Grid.Column="0" HorizontalAlignment="Left" Margin="145,127,0,0" Grid.Row="1" VerticalAlignment="Top"  Click="Button_Click_1"/>
+        <local:Header Grid.Row="0" Grid.ColumnSpan="2"></local:Header>
     </Grid>
 
 </Window>

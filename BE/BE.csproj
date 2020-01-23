@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BankBranch.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Cookies.cs" />
     <Compile Include="DateOccupiedException.cs" />
     <Compile Include="EnumTypes.cs" />
     <Compile Include="ExecutionOrderException.cs" />

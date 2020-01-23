@@ -4,9 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PLWPF"
-             mc:Ignorable="d" d:DesignWidth="800" Height="122.667">
-    <Grid Name="HeaderGrid" Height="90">
-        <Image HorizontalAlignment="Left" Height="80" Margin="330,-130,0,0" VerticalAlignment="Top" Width="138" Source="https://www.hayokra.co.il/site/images/gallery/vila_462_32819_9nLM9KY.jpg"/>
+             xmlns:BE="clr-namespace:BE;assembly=BE"
+             mc:Ignorable="d" d:DesignWidth="800" Height="122">
+    <UserControl.DataContext>
+        <BE:Configuration/>
+    </UserControl.DataContext>
 
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF4F54F2" Offset="0"/>
+            <GradientStop Color="#FF7BFFEF" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <Grid Width="800" HorizontalAlignment="Stretch" Height="auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="113*"/>
+            <ColumnDefinition Width="47*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Path=SiteName, StringFormat='אתר התאמת נופש - {0}'}" VerticalAlignment="Stretch" Grid.Column="0" Margin="16,28,0,17" Width="549" FontSize="36" FlowDirection="RightToLeft" Foreground="White" FontWeight="Bold"/>
+        
     </Grid>
+
+
+
+
 </UserControl>
