@@ -67,27 +67,6 @@ namespace PLWPF
                 return;
             }
 
-            //BE.GuestRequest newGuestRequest = new BE.GuestRequest()
-            //{
-            //    PrivateName = PrivateName.Text,
-            //    FamilyName = FamilyName.Text,
-            //    MailAddress = new MailAddress(Email.Text),
-            //    Area = (Regions)Enum.Parse(typeof(Regions), Area.SelectedValue.ToString()),
-            //    SubArea = SubArea.Text,
-            //    Type = (GRType)Enum.Parse(typeof(GRType), Type.SelectedValue.ToString()),
-            //    Adults = int.Parse(AdultsNum.Text),
-            //    Children = int.Parse(ChildrenNum.Text),
-            //    MaxPrice= (MaxPrice)Enum.Parse(typeof(MaxPrice), Price.SelectedValue.ToString()),
-            //    Pool= (Requirements)Enum.Parse(typeof(Requirements), Pool.SelectedValue.ToString()),
-            //    Jacuzzi = (Requirements)Enum.Parse(typeof(Requirements), Hottub.SelectedValue.ToString()),
-            //    Garden = (Requirements)Enum.Parse(typeof(Requirements), Garden.SelectedValue.ToString()),
-            //    ChildrensAttractions = (Requirements)Enum.Parse(typeof(Requirements), Atractions.SelectedValue.ToString()),
-            //    RegistrationDate=DateTime.Now,
-            //    EntryDate = (DateTime)entryDate,
-            //    ReleaseDate = (DateTime)Calendar.GetReleaseDate(),
-            //    Status = RequestStatus.פתוחה,                
-            //};
-
             try
             {
                 guest.MailAddress = new MailAddress(mailAddressTextBox.Text);
@@ -144,7 +123,9 @@ namespace PLWPF
 
         private void Date_CalendarClosed(object sender, RoutedEventArgs e)
         {
-            if (entryDateDatePicker.SelectedDate < DateTime.Now || releaseDateDatePicker.SelectedDate < entryDateDatePicker.SelectedDate)
+            TimeSpan timeSpan1 = releaseDateDatePicker.SelectedDate.Value - entryDateDatePicker.SelectedDate.Value,
+                timeSpan2 = entryDateDatePicker.SelectedDate.Value - DateTime.Now.Date;
+            if ( timeSpan1.TotalDays < 1 || timeSpan2.TotalDays < 0)
                 DatesMessage.Visibility = Visibility.Visible;
             else
                 DatesMessage.Visibility = Visibility.Hidden;
@@ -152,7 +133,7 @@ namespace PLWPF
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Cookies.LastWindow = Window.NameProperty.Name;
+            Cookies.LastWindow = this;
         }
        
     }

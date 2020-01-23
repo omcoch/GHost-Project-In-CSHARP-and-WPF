@@ -7,13 +7,17 @@
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.HostingUnitForm"
         mc:Ignorable="d"
     Closing="Window_Closing"
-        Title="{Binding Path=SiteName, StringFormat='יחידת אירוח - {0}'}" Height="450" Width="800">
+        Title="{Binding Path=SiteName, StringFormat='יחידת אירוח - {0}'}" Height="521" Width="800">
     <Window.DataContext>
         <BE:Configuration/>
     </Window.DataContext>
 
     <Grid>
-        <Grid Margin="114,80,78.333,105.667" Name="TableGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="105.333"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="88,80,104.333,201.667" Name="TableGrid">
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="0,4,0,152" HorizontalAlignment="Right" Grid.Column="0" Content="שם יחידת אירוח"/>
             <TextBox x:Name="hostingUnitNameTextBox" Width="153" VerticalAlignment="Center" Text="{Binding HostingUnitName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="308,5,0,155" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
             <Label VerticalAlignment="Center" Margin="0,126,0,30" HorizontalAlignment="Right" Grid.Column="0" Content="מספר מבוגרים"/>
@@ -36,10 +40,10 @@
             <TextBox x:Name="subAreaTextBox" Width="153" VerticalAlignment="Center" Text="{Binding SubArea, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="308,69,0,91" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
             <Label VerticalAlignment="Center" Margin="0,95,0,61" HorizontalAlignment="Right" Grid.Column="0" Content="סוג יחידת אירוח"/>
             <ComboBox x:Name="typeComboBox" Width="153" VerticalAlignment="Center" Margin="308,96,0,64" Height="Auto" HorizontalAlignment="Left"/>
+            <Button Content="הוסף" Padding="0" HorizontalAlignment="Left" Margin="243,306,0,0" VerticalAlignment="Top" Width="115" Height="35" Name="SubmitButton"/>
+            <TextBlock HorizontalAlignment="Left" Margin="23,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="ErrorMessage" Width="200" FlowDirection="RightToLeft" Height="26" Foreground="Red" FontSize="14"/>
         </Grid>
-        <Button Content="הוסף" HorizontalAlignment="Left" Margin="349,339,0,0" VerticalAlignment="Top" Width="115" Height="35" Name="SubmitButton"/>
-        <local:Header HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="783"/>
-        <TextBlock HorizontalAlignment="Left" Margin="114,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="ErrorMessage" Width="200" FlowDirection="RightToLeft" Height="26" Foreground="Red" FontSize="14"/>
+        <local:Header HorizontalAlignment="Left" VerticalAlignment="Top" Width="800" Margin="0,0,-6.667,0"/>
 
     </Grid>
 </Window>

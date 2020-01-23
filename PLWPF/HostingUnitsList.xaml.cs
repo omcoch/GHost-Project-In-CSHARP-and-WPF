@@ -41,7 +41,7 @@ namespace PLWPF
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Cookies.LastWindow = Window.NameProperty.Name;
+            Cookies.LastWindow = this;
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿<Window x:Class="PLWPF.Orders" 
+        Style="{StaticResource WindowStyle}"  xmlns:BE="clr-namespace:BE;assembly=BE"  Closing="Window_Closing"     
+        Title="{Binding Path=SiteName, StringFormat=' הזמנות- {0}'}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        mc:Ignorable="d"
+        Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <local:Header Grid.Row="0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="auto"/>
+
+        <Button Grid.Row="1" Content="רשימת לקוחות" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="500,158.667,158.333,-157" Click="OpenGuestRequestList"/>
+        <Button Grid.Row="1" Content="רשימת הזמנות" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="165,0,494.333,-156" Click="OpenOrderList"/>
+
+    </Grid>
+</Window>

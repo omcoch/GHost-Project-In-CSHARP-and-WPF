@@ -13,7 +13,7 @@
         <BE:Configuration/>
     </Window.DataContext>
 
-    <Grid  Name="GuestRequestGrid" Margin="0,0,0.333,10.333">
+    <Grid  Name="GuestRequestGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="auto"/>
@@ -21,8 +21,8 @@
         <Button Grid.Row="1" Panel.ZIndex="14" Content="צור דרישת  לקוח חדשה" Margin="27,51,0,0" VerticalAlignment="Top" Click="Send_Request" Foreground="White"  HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Background="#FF007BFF" />
         <TextBlock Grid.Row="1" x:Name="PrivateNameMessage" HorizontalAlignment="Left" Margin="277,54,0,0" TextWrapping="Wrap" Text="שם פרטי יכול להכיל רק אותיות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
         <TextBlock Grid.Row="1"   x:Name="FamilyNameMessage" HorizontalAlignment="Left" Margin="264,82,0,0" TextWrapping="Wrap" Text="שם משפחה יכול להכיל רק אותיות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
-        <TextBlock Grid.Row="1"  x:Name="NumbersMessage" HorizontalAlignment="Left" Margin="216,236,0,0" TextWrapping="Wrap" Text="הכנס מקסימום 2 ספרות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
-        <TextBlock Grid.Row="1"  x:Name="EmailMessage" HorizontalAlignment="Left" Margin="271,109,0,0" TextWrapping="Wrap" Text="כתובת דואר אלקטרוני לא תקינה" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
+        <TextBlock Grid.Row="1"  x:Name="NumbersMessage" HorizontalAlignment="Left" Margin="215,239,0,0" TextWrapping="Wrap" Text="הכנס מקסימום 2 ספרות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
+        <TextBlock Grid.Row="1"  x:Name="EmailMessage" HorizontalAlignment="Left" Margin="270,111,0,0" TextWrapping="Wrap" Text="כתובת דואר אלקטרוני לא תקינה" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
         <Label Grid.Row="1" Content="מספר מבוגרים" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="616,233,0,388.333"/>
         <TextBox Grid.Row="1" x:Name="adultsTextBox"  HorizontalAlignment="Left" Text="{Binding Adults, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="38" Margin="565,234,0,389.333" Height="24" KeyUp="NumbersTextBox_KeyUp"/>
         <Label Grid.Row="1" Content="אזור נופש" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="613,163,0,458.333"/>
@@ -53,7 +53,7 @@
         <TextBox Grid.Row="1"  x:Name="subAreaTextBox"  HorizontalAlignment="Left" Height="24" Margin="484,194,0,429.333" Text="{Binding SubArea, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         <Label Grid.Row="1"  Content="סוג" HorizontalAlignment="Left" Margin="613,134,0,487.333" VerticalAlignment="Center"/>
         <ComboBox Grid.Row="1"  x:Name="typeComboBox"  HorizontalAlignment="Left" Height="Auto" Margin="483,138,0,487.333" VerticalAlignment="Center" Width="120" FlowDirection="RightToLeft" Background="{x:Null}"/>
-        <TextBlock Grid.Row="1" x:Name="DatesMessage" HorizontalAlignment="Left" Margin="112,311,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFFC2F2F" FontFamily="Tahoma" ><Run FlowDirection="RightToLeft" Text="טווח תאריכים שגוי"/></TextBlock>
+        <TextBlock Grid.Row="1" x:Name="DatesMessage" HorizontalAlignment="Left" Margin="116,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFFC2F2F" FontFamily="Tahoma" Text="טווח תאריכים שגוי"/>
         <local:Header Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800"/>
     </Grid>
 </Window>

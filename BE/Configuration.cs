@@ -14,6 +14,7 @@ namespace BE
         private static int hostingUnitSerialKey = 10000000;//מספר מזהה רץ עבור יחדית אירוח
         public static readonly MailAddress AdminMailAddress = new MailAddress("omcoch@gmail.com");
         public static string SiteName { get => "G-Host"; }
+        public static string AdminPassword { get => "1234"; }
 
 
         public const int FEE = 10;//עמלה

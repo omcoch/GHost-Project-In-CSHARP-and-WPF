@@ -53,6 +53,7 @@ namespace PLWPF
                 return;
             }
 
+            Cookies.LoginUserKey = host.HostKey;
             new PrivateZone(host).Show();
             Owner.Close();
             Close();

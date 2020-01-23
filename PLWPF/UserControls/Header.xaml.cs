@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BE;
 
 namespace PLWPF
 {
@@ -23,6 +24,20 @@ namespace PLWPF
         public Header()
         {
             InitializeComponent();
+            if (Window.NameProperty.Name == "Mainindow")
+                ReturnButton.Visibility = Visibility.Hidden;
+        }
+
+        //private void GoBackWindow(object sender, RoutedEventArgs e)
+        //{
+        //    Window.GetWindow(Cookies.LastWindow).Show();
+        //    Window.GetWindow(this).Close();
+        //}
+
+        private void GoHome(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            Window.GetWindow(this).Close();
         }
     }
 }

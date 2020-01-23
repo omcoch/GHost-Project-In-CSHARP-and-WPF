@@ -13,8 +13,8 @@
     <Grid>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="80,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Name="KeyTextBox" />
         <TextBlock HorizontalAlignment="Left" Height="21" Margin="0,21,0,0" TextWrapping="Wrap" Text="ברוך הבא! לכניסה הכנס תעודת זהות" VerticalAlignment="Top" Width="273" FontWeight="Bold" TextAlignment="Center"/>
-        <Button Panel.ZIndex="2" Content="הרשמה" HorizontalAlignment="Left" Margin="43,110,0,0" VerticalAlignment="Top" Width="75" Foreground="White" Background="#FFFF03D9" FontWeight="Bold" Click="Register_Click"/>
-        <Button Panel.ZIndex="1" Content="כניסה" HorizontalAlignment="Left" Margin="159,110,0,0" VerticalAlignment="Top" Width="75" Background="#FF4B97F2" Foreground="White" FontWeight="Bold" Click="Login_Click"/>
+        <Button Padding="auto" Panel.ZIndex="2" Content="הרשמה" HorizontalAlignment="Left" Margin="43,110,0,0" VerticalAlignment="Top" Width="75" Foreground="White" Background="#FFFF03D9" FontWeight="Bold" Click="Register_Click"/>
+        <Button Padding="auto" Panel.ZIndex="1" Content="כניסה" HorizontalAlignment="Left" Margin="159,110,0,0" VerticalAlignment="Top" Width="75" Background="#FF4B97F2" Foreground="White" FontWeight="Bold" Click="Login_Click"/>
 
     </Grid>
 </Window>

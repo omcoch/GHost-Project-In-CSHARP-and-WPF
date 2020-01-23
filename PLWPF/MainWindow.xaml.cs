@@ -24,18 +24,20 @@ namespace PLWPF
     {
         IBL bL = BlFactory.getBl();
 
-        public MainWindow()//todo: favicon
+        public MainWindow()
         {
+            Cookies.LastWindow = this;
+            Cookies.LoginUserKey = 0;
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OpenGuestRequestWindow(object sender, RoutedEventArgs e)
         {
             new GuestRequest().Show();
             Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void OpenHostWindow(object sender, RoutedEventArgs e)
         {
             new HostLogin(){ Owner = this }.ShowDialog();            
             //new HostLogin(){ Owner = this }.Show();            
@@ -43,7 +45,7 @@ namespace PLWPF
 
         public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Cookies.LastWindow = Window.NameProperty.Name;           
+            Cookies.LastWindow = this;           
         }
 
     }
