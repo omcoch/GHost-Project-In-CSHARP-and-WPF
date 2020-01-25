@@ -18,42 +18,42 @@
             <RowDefinition Height="100"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="1" Panel.ZIndex="14" Content="צור דרישת  לקוח חדשה" Margin="27,51,0,0" VerticalAlignment="Top" Click="Send_Request" Foreground="White"  HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Background="#FF007BFF" />
+        <Button Grid.Row="1" Panel.ZIndex="15" Content="צור דרישת  לקוח חדשה" Margin="27,51,0,0" VerticalAlignment="Top" Click="Send_Request" Foreground="White"  HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Background="#FF007BFF" />
         <TextBlock Grid.Row="1" x:Name="PrivateNameMessage" HorizontalAlignment="Left" Margin="277,54,0,0" TextWrapping="Wrap" Text="שם פרטי יכול להכיל רק אותיות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
         <TextBlock Grid.Row="1"   x:Name="FamilyNameMessage" HorizontalAlignment="Left" Margin="264,82,0,0" TextWrapping="Wrap" Text="שם משפחה יכול להכיל רק אותיות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
         <TextBlock Grid.Row="1"  x:Name="NumbersMessage" HorizontalAlignment="Left" Margin="215,239,0,0" TextWrapping="Wrap" Text="הכנס מקסימום 2 ספרות" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
         <TextBlock Grid.Row="1"  x:Name="EmailMessage" HorizontalAlignment="Left" Margin="270,111,0,0" TextWrapping="Wrap" Text="כתובת דואר אלקטרוני לא תקינה" VerticalAlignment="Top" Foreground="#FFFC2F2F" TextDecorations="{x:Null}" FontFamily="Tahoma"/>
         <Label Grid.Row="1" Content="מספר מבוגרים" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="616,233,0,388.333"/>
-        <TextBox Grid.Row="1" x:Name="adultsTextBox"  HorizontalAlignment="Left" Text="{Binding Adults, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="38" Margin="565,234,0,389.333" Height="24" KeyUp="NumbersTextBox_KeyUp"/>
+        <TextBox Grid.Row="1" x:Name="adultsTextBox"  HorizontalAlignment="Left" Text="{Binding Adults, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="38" Margin="565,234,0,389.333" Height="24" KeyUp="NumbersTextBox_KeyUp" Panel.ZIndex="6"/>
         <Label Grid.Row="1" Content="אזור נופש" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="613,163,0,458.333"/>
-        <ComboBox Grid.Row="1"  x:Name="areaComboBox"   HorizontalAlignment="Left" Height="Auto"  VerticalAlignment="Center" Width="120" Margin="483,167,0,458.333"/>
+        <ComboBox Grid.Row="1"  x:Name="areaComboBox"   HorizontalAlignment="Left" Height="Auto"  VerticalAlignment="Center" Width="120" Margin="483,167,0,458.333" Panel.ZIndex="4"/>
         <Label Grid.Row="1" Content="מספר ילדים" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="421,233,0,388.333"/>
-        <TextBox Grid.Row="1"  x:Name="childrenTextBox"  HorizontalAlignment="Left" Text="{Binding Children, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="38" Margin="379,234,0,389.333" Height="24" KeyUp="NumbersTextBox_KeyUp"/>
+        <TextBox Grid.Row="1"  x:Name="childrenTextBox"  HorizontalAlignment="Left" Text="{Binding Children, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="38" Margin="379,234,0,389.333" Height="24" KeyUp="NumbersTextBox_KeyUp" Panel.ZIndex="7"/>
         <Label Grid.Row="1"  Content="אטרקציות לילדים" HorizontalAlignment="Left" Margin="378,343,0,278.333" VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="1"  x:Name="childrensAttractionsComboBox" HorizontalAlignment="Left" Height="Auto"  Margin="252,345,0,280.333" VerticalAlignment="Center" Width="120"/>
+        <ComboBox Grid.Row="1"  x:Name="childrensAttractionsComboBox" HorizontalAlignment="Left" Height="Auto"  Margin="252,345,0,280.333" VerticalAlignment="Center" Width="120" Panel.ZIndex="11"/>
         <Label Grid.Row="1"  Content="תאריך כניסה" HorizontalAlignment="Left" Margin="613,285,0,336.333" VerticalAlignment="Center"/>
-        <DatePicker Grid.Row="1"  x:Name="entryDateDatePicker"  HorizontalAlignment="Left" Margin="489,273,0,313.333" SelectedDate="{Binding EntryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" CalendarClosed="Date_CalendarClosed"/>
+        <DatePicker Grid.Row="1"  x:Name="entryDateDatePicker"  HorizontalAlignment="Left" Margin="489,273,0,313.333" SelectedDate="{Binding EntryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" CalendarClosed="Date_CalendarClosed" Panel.ZIndex="8"/>
         <Label Grid.Row="1"  Content="שם משפחה" HorizontalAlignment="Left" Margin="613,76,0,545.333" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1"  x:Name="familyNameTextBox"  HorizontalAlignment="Left" Height="24" Margin="483,80,0,543.333" Text="{Binding FamilyName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" KeyUp="FamilyName_KeyUp"/>
+        <TextBox Grid.Row="1"  x:Name="familyNameTextBox"  HorizontalAlignment="Left" Height="24" Margin="483,80,0,543.333" Text="{Binding FamilyName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" KeyUp="FamilyName_KeyUp" Panel.ZIndex="1"/>
         <Label Grid.Row="1"  Content="גינה" HorizontalAlignment="Left" Margin="183,345,0,276.333" VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="1"  x:Name="gardenComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="45,349,0,276.333" VerticalAlignment="Center" Width="120"/>
+        <ComboBox Grid.Row="1"  x:Name="gardenComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="45,349,0,276.333" VerticalAlignment="Center" Width="120" Panel.ZIndex="12"/>
         <Label Grid.Row="1"  Content="ג'קוזי" HorizontalAlignment="Left" Margin="183,374,0,247.333" VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="1"  x:Name="jacuzziComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="45,380,0,245.333" VerticalAlignment="Center" Width="120"/>
+        <ComboBox Grid.Row="1"  x:Name="jacuzziComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="45,380,0,245.333" VerticalAlignment="Center" Width="120" Panel.ZIndex="14"/>
         <Label Grid.Row="1"  Content="כתובת דואר אלקטרוני" HorizontalAlignment="Left" Margin="613,105,0,516.333" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1"  x:Name="mailAddressTextBox"  HorizontalAlignment="Left" Height="24" Margin="484,109,0,514.333" VerticalAlignment="Center" Width="120" KeyUp="Email_KeyUp"/>
+        <TextBox Grid.Row="1"  x:Name="mailAddressTextBox"  HorizontalAlignment="Left" Height="24" Margin="484,109,0,514.333" VerticalAlignment="Center" Width="120" KeyUp="Email_KeyUp" Panel.ZIndex="2"/>
         <Label Grid.Row="1"  Content="מחיר מקסימלי" HorizontalAlignment="Left" Margin="613,339,0,282.333" VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="1"  x:Name="maxPriceComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="483,343,0,282.333" VerticalAlignment="Center" Width="120"/>
+        <ComboBox Grid.Row="1"  x:Name="maxPriceComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="483,343,0,282.333" VerticalAlignment="Center" Width="120" Panel.ZIndex="10"/>
         <Label Grid.Row="1"  Content="בריכה" HorizontalAlignment="Left" Margin="378,376,0,245.333" VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="1"  x:Name="poolComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="252,378,0,247.333" VerticalAlignment="Center" Width="120"/>
+        <ComboBox Grid.Row="1"  x:Name="poolComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="252,378,0,247.333" VerticalAlignment="Center" Width="120" Panel.ZIndex="13"/>
         <Label Grid.Row="1"  Content="שם פרטי" HorizontalAlignment="Left" Margin="613,48,0,573.333" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1"  x:Name="privateNameTextBox"  HorizontalAlignment="Left" Height="24" Margin="484,51,0,572.333" Text="{Binding PrivateName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" KeyUp="PrivateName_KeyUp"/>
+        <TextBox Grid.Row="1" x:Name="privateNameTextBox"  HorizontalAlignment="Left" Height="24" Margin="484,51,0,572.333" Text="{Binding PrivateName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" KeyUp="PrivateName_KeyUp" Panel.ZIndex="0"/>
         <Label Grid.Row="1"  Content="תאריך יציאה" HorizontalAlignment="Left" Margin="372,290,0,331.333" VerticalAlignment="Center"/>
-        <DatePicker Grid.Row="1"  x:Name="releaseDateDatePicker"  HorizontalAlignment="Left" Margin="244,273,0,313.333" SelectedDate="{Binding ReleaseDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" CalendarClosed="Date_CalendarClosed"/>
+        <DatePicker Grid.Row="1"  x:Name="releaseDateDatePicker"  HorizontalAlignment="Left" Margin="244,273,0,313.333" SelectedDate="{Binding ReleaseDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" CalendarClosed="Date_CalendarClosed" Panel.ZIndex="9"/>
         <Label Grid.Row="1"  Content="תת אזור נופש" HorizontalAlignment="Left" Margin="613,191,0,430.333" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1"  x:Name="subAreaTextBox"  HorizontalAlignment="Left" Height="24" Margin="484,194,0,429.333" Text="{Binding SubArea, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <TextBox Grid.Row="1"  x:Name="subAreaTextBox"  HorizontalAlignment="Left" Height="24" Margin="484,194,0,429.333" Text="{Binding SubArea, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Panel.ZIndex="5"/>
         <Label Grid.Row="1"  Content="סוג" HorizontalAlignment="Left" Margin="613,134,0,487.333" VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="1"  x:Name="typeComboBox"  HorizontalAlignment="Left" Height="Auto" Margin="483,138,0,487.333" VerticalAlignment="Center" Width="120" FlowDirection="RightToLeft" Background="{x:Null}"/>
+        <ComboBox Grid.Row="1"  x:Name="typeComboBox"  HorizontalAlignment="Left" Height="Auto" Margin="483,138,0,487.333" VerticalAlignment="Center" Width="120" FlowDirection="RightToLeft" Background="{x:Null}" Panel.ZIndex="3"/>
         <TextBlock Grid.Row="1" x:Name="DatesMessage" HorizontalAlignment="Left" Margin="116,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFFC2F2F" FontFamily="Tahoma" Text="טווח תאריכים שגוי"/>
-        <local:Header Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800"/>
+        <local:Header Panel.ZIndex="1000" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800"/>
     </Grid>
 </Window>

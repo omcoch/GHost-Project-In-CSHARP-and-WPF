@@ -28,6 +28,7 @@ namespace PLWPF
         {
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            KeyTextBox.Text = "312279188";
             KeyTextBox.Focus();
         }
 
@@ -54,9 +55,15 @@ namespace PLWPF
             }
 
             Cookies.LoginUserKey = host.HostKey;
-            new PrivateZone(host).Show();
+            new PrivateZone().Show();
             Owner.Close();
             Close();
+        }
+
+        private void KeyTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.Key == Key.Return)
+              
         }
     }
 }

@@ -47,7 +47,8 @@ namespace DAL
                 Adults = hostingUnit.Adults,
                 Type = hostingUnit.Type,
                 HostingUnitKey = hostingUnit.HostingUnitKey,
-                Diary = new bool[12,31]
+                Diary = new bool[12, 31],
+                Price = hostingUnit.Price
             };
             for (int i = 0; i < 12; i++)
                 for (int j = 0; j < 31; j++)

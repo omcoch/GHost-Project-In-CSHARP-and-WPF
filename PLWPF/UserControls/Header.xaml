@@ -22,8 +22,11 @@
             <ColumnDefinition Width="47*"/>
         </Grid.ColumnDefinitions>
         <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Path=SiteName, StringFormat='אתר התאמת נופש - {0}'}" VerticalAlignment="Stretch" Grid.Column="0" Margin="16,28,0,17" Width="549" FontSize="36" FlowDirection="RightToLeft" Foreground="White" FontWeight="Bold"/>
-        <Button Name="ReturnButton" HorizontalAlignment="Left" Margin="124.667,34,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="GoHome"/>
-
+        <Button Name="ReturnButton" HorizontalAlignment="Left" Margin="131.667,19,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="GoHome" Height="71">
+            <Button.Background>
+                <ImageBrush ImageSource ="../usercontrols/home.jpg"></ImageBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 
 

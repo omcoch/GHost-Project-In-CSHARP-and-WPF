@@ -20,7 +20,7 @@
     <Grid>
         <local:Header HorizontalAlignment="Left" VerticalAlignment="Top" Width="793" Height="123"/>
 
-        <DataGrid x:Name="hostingUnitDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="Auto" ItemsSource="{Binding Source={StaticResource hostingUnitViewSource}}" Margin="176,145,157.333,145.667" RowDetailsVisibilityMode="VisibleWhenSelected" FlowDirection="RightToLeft">
+        <DataGrid x:Name="hostingUnitDataGrid" SelectionMode="Single" IsSynchronizedWithCurrentItem="False"  AutoGenerateColumns="False" Height="Auto"  CanUserAddRows="False" ItemsSource="{Binding Source={StaticResource hostingUnitViewSource}}" Margin="176,145,157.333,145.667" RowDetailsVisibilityMode="VisibleWhenSelected" FlowDirection="RightToLeft" SelectedCellsChanged="HostingUnitDataGrid_SelectedCellsChanged">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="hostingUnitKeyColumn" Header="מספר סידורי" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -53,8 +53,8 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Button" Margin="0,321,148.333,0" VerticalAlignment="Top" HorizontalAlignment="Right" />
-        <Button Content="Button" HorizontalAlignment="Left" Margin="260,325,0,0" VerticalAlignment="Top" />
+        <Button Name="update" IsEnabled="False" Content="עדכן יחידות אירוח" Margin="0,321,157.333,0" VerticalAlignment="Top" HorizontalAlignment="Right" Click="UpdateUnits"/>
+        <Button Name="remove" IsEnabled="False" Style="{StaticResource RedButton}" Content="מחיקת יחידות אירוח" HorizontalAlignment="Left" Margin="176,321,0,0" VerticalAlignment="Top" Click="DeleteUnits"/>
 
     </Grid>
 </Window>

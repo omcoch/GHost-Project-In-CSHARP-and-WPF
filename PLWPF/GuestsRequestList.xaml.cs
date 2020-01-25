@@ -40,5 +40,12 @@ namespace PLWPF
             // Load data by setting the CollectionViewSource.Source property:
             guestRequestViewSource.Source = bL.GetGuestRequestsByCondition(x=>true);
         }
+
+        private void SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            if (e.AddedCells.Count != 0)
+                CreateButton.IsEnabled = true;
+
+        }
     }
 }

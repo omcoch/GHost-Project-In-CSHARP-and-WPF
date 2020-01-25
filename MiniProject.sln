@@ -17,13 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLWPF", "PLWPF\PLWPF.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{DD71081B-5DA8-442C-9EA6-02ABD2767B81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{4046B03C-B57A-4219-A2E2-BEA4F016D91A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{DD71081B-5DA8-442C-9EA6-02ABD2767B81} = {DD71081B-5DA8-442C-9EA6-02ABD2767B81}
-		{0094BCAF-A8FE-40C3-BB38-2CD4F21195BE} = {0094BCAF-A8FE-40C3-BB38-2CD4F21195BE}
-		{342B2EEE-EBAF-4A04-8B38-01F7D107708D} = {342B2EEE-EBAF-4A04-8B38-01F7D107708D}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,10 +51,6 @@ Global
 		{DD71081B-5DA8-442C-9EA6-02ABD2767B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD71081B-5DA8-442C-9EA6-02ABD2767B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD71081B-5DA8-442C-9EA6-02ABD2767B81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4046B03C-B57A-4219-A2E2-BEA4F016D91A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4046B03C-B57A-4219-A2E2-BEA4F016D91A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4046B03C-B57A-4219-A2E2-BEA4F016D91A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4046B03C-B57A-4219-A2E2-BEA4F016D91A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

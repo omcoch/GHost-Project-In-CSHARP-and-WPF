@@ -35,11 +35,11 @@
             <Label VerticalAlignment="Center" Margin="86,95,0,61" HorizontalAlignment="Left" Grid.Column="0" Content="האם יש בריכה?" FlowDirection="RightToLeft"/>
             <CheckBox x:Name="poolCheckBox" VerticalAlignment="Center" Margin="0,103,0,64" IsChecked="{Binding Pool, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Content=""/>
             <Label VerticalAlignment="Center" Margin="0,156,0,0" HorizontalAlignment="Right" Grid.Column="0" Content="מחיר"/>
-            <TextBox x:Name="priceTextBox" Width="153" VerticalAlignment="Center" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="308,157,0,3" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
+            <TextBox x:Name="priceTextBox" Width="153" VerticalAlignment="Center" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, StringFormat=c2}" Margin="308,157,0,3" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
             <Label VerticalAlignment="Center" Margin="0,68,0,88" HorizontalAlignment="Right" Grid.Column="0" Content="תת אזור"/>
             <TextBox x:Name="subAreaTextBox" Width="153" VerticalAlignment="Center" Text="{Binding SubArea, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="308,69,0,91" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
             <Label VerticalAlignment="Center" Margin="0,95,0,61" HorizontalAlignment="Right" Grid.Column="0" Content="סוג יחידת אירוח"/>
-            <ComboBox x:Name="typeComboBox" Width="153" VerticalAlignment="Center" Margin="308,96,0,64" Height="Auto" HorizontalAlignment="Left"/>
+            <ComboBox   x:Name="typeComboBox" Width="153" VerticalAlignment="Center" Margin="308,96,0,64" Height="Auto" HorizontalAlignment="Left"/>
             <Button Content="הוסף" Padding="0" HorizontalAlignment="Left" Margin="243,306,0,0" VerticalAlignment="Top" Width="115" Height="35" Name="SubmitButton"/>
             <TextBlock HorizontalAlignment="Left" Margin="23,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="ErrorMessage" Width="200" FlowDirection="RightToLeft" Height="26" Foreground="Red" FontSize="14"/>
         </Grid>

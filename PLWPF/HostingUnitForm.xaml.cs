@@ -25,7 +25,7 @@ namespace PLWPF
         IBL bL = BlFactory.getBl();
         HostingUnit hostingUnit = null;
 
-        public HostingUnitForm(int id, HostingUnit hostingUnit = null)
+        public HostingUnitForm(HostingUnit hostingUnit = null)
         {
             InitializeComponent();
             areaComboBox.ItemsSource = Enum.GetValues(typeof(Regions));
@@ -44,7 +44,7 @@ namespace PLWPF
             {
                 areaComboBox.SelectedIndex = 0;
                 typeComboBox.SelectedIndex = 0;
-                this.hostingUnit = new HostingUnit{ OwnerKey = id};
+                this.hostingUnit = new HostingUnit{ OwnerKey = Cookies.LoginUserKey};
                 TableGrid.DataContext = this.hostingUnit;                
                 SubmitButton.Click += AddHostingUnit;
             }
@@ -57,9 +57,11 @@ namespace PLWPF
                 try
                 {
                     HostingUnit hu = (HostingUnit)TableGrid.DataContext;
+                    hu.Area = (Regions)areaComboBox.SelectedValue;
+                    hu.Type = (GRType)typeComboBox.SelectedValue;
                     bL.UpdateHostingUnit(hu);
                     MessageBox.Show("יחידת האירוח עודכנה בהצלחה!", "יחידה מספר " + hu.HostingUnitKey);
-                    new PrivateZone(bL.GetHost(hu.OwnerKey)).Show();
+                    new PrivateZone().Show();
                     Close();
                 }
                 catch (ArgumentException err)
@@ -81,7 +83,7 @@ namespace PLWPF
                 {
                     int key = bL.AddHostingUnit(hostingUnit);
                     MessageBox.Show("יחידת האירוח נוספה בהצלחה!", "יחידה מספר " + key);
-                    new PrivateZone(bL.GetHost(hostingUnit.OwnerKey)).Show();
+                    new PrivateZone().Show();
                     Close();
                 }
                 catch (ArgumentException err)
@@ -102,7 +104,7 @@ namespace PLWPF
             else if (!Tools.ValidateNumber(adultsTextBox.Text, 99) || !Tools.ValidateNumber(childrenTextBox.Text, 99)
                 || int.Parse(childrenTextBox.Text) + int.Parse(adultsTextBox.Text) <= 0)
                 ErrorMessage.Text = "מספר אורחים לא חוקי";
-            else if (!Tools.ValidateNumber(priceTextBox.Text) || int.Parse(priceTextBox.Text) < 1)
+            else if (double.TryParse(priceTextBox.Text, out double x) && double.Parse(priceTextBox.Text) < 1)
                 ErrorMessage.Text = "מחיר לא תקין";
             else
             {

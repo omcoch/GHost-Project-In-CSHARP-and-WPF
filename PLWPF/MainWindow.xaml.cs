@@ -29,6 +29,7 @@ namespace PLWPF
             Cookies.LastWindow = this;
             Cookies.LoginUserKey = 0;
             InitializeComponent();
+            
         }
 
         private void OpenGuestRequestWindow(object sender, RoutedEventArgs e)
@@ -39,8 +40,7 @@ namespace PLWPF
 
         private void OpenHostWindow(object sender, RoutedEventArgs e)
         {
-            new HostLogin(){ Owner = this }.ShowDialog();            
-            //new HostLogin(){ Owner = this }.Show();            
+            new HostLogin(){ Owner = this }.ShowDialog();                  
         }
 
         public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

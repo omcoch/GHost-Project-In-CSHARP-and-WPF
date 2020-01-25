@@ -43,5 +43,34 @@ namespace PLWPF
         {
             Cookies.LastWindow = this;
         }
+
+        private void DeleteUnits(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HostingUnit hu = (HostingUnit)hostingUnitDataGrid.SelectedItem;
+                bL.RemoveHostingUnit(hu.HostingUnitKey);
+                MessageBox.Show("יחידת האירוח נמחקה בהצלחה!");
+                new PrivateZone().Show();
+                Close();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);                
+            }
+        }
+
+        private void UpdateUnits(object sender, RoutedEventArgs e)
+        {
+            HostingUnit hu = (HostingUnit)hostingUnitDataGrid.SelectedItem;
+            new HostingUnitForm(hu).Show();
+            Close();
+        }
+
+        private void HostingUnitDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            update.IsEnabled = true;
+            remove.IsEnabled = true;
+        }
     }
 }

@@ -37,11 +37,12 @@ namespace Utilities
         {
             return !String.IsNullOrEmpty(str) && Regex.IsMatch(str, "^[א-תa-zA-Z ]+$");
         }
-        public static bool ValidateNumber(string str,int max=int.MaxValue)
+        public static bool ValidateNumber(string str, int max = int.MaxValue, bool isDouble=false)
         {
             try
             {
-                int n = int.Parse(str);
+                var n = isDouble ? int.Parse(str) :
+                                double.Parse(str);
                 return n <= max && n >= 0;
             }
             catch

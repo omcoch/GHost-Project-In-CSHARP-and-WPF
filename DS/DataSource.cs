@@ -23,7 +23,8 @@ namespace DS
                 Children = 5,
                 Adults = 5,
                 Type = GRType.מלון,
-                Diary = new bool[12,31]
+                Diary = new bool[12,31],
+                Price=1500 
             },
 
         };

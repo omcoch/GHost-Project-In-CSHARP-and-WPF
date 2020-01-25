@@ -24,17 +24,17 @@ namespace PLWPF
         IBL bL = BlFactory.getBl();
         Host host;
 
-        public PrivateZone(Host host)
+        public PrivateZone()
         {
             InitializeComponent();
+            this.host=bL.GetHost(Cookies.LoginUserKey);
             WelcomeMsg.Text = "ברוך הבא " + host.PrivateName + " " + host.FamilyName + "!";
-            this.host = host;
         }
 
         private void OpenHostingUnitForm(object sender, RoutedEventArgs e)
         {
             //new HostingUnitForm(bL.GetHostingUnit(10000000)).Show();
-            new HostingUnitForm(host.HostKey).Show();
+            new HostingUnitForm().Show();
             Close();
         }
 
