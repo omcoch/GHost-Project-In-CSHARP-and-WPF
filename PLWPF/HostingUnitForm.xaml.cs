@@ -56,11 +56,10 @@ namespace PLWPF
             {
                 try
                 {
-                    HostingUnit hu = (HostingUnit)TableGrid.DataContext;
-                    hu.Area = (Regions)areaComboBox.SelectedValue;
-                    hu.Type = (GRType)typeComboBox.SelectedValue;
-                    bL.UpdateHostingUnit(hu);
-                    MessageBox.Show("יחידת האירוח עודכנה בהצלחה!", "יחידה מספר " + hu.HostingUnitKey);
+                    this.hostingUnit.Area = (Regions)areaComboBox.SelectedValue;
+                    this.hostingUnit.Type = (GRType)typeComboBox.SelectedValue;
+                    bL.UpdateHostingUnit(this.hostingUnit);
+                    MessageBox.Show("יחידת האירוח עודכנה בהצלחה!", "יחידה מספר " + this.hostingUnit.HostingUnitKey);
                     new PrivateZone().Show();
                     Close();
                 }
@@ -81,6 +80,8 @@ namespace PLWPF
             {
                 try
                 {
+                    this.hostingUnit.Area = (Regions)areaComboBox.SelectedValue;
+                    this.hostingUnit.Type = (GRType)typeComboBox.SelectedValue;
                     int key = bL.AddHostingUnit(hostingUnit);
                     MessageBox.Show("יחידת האירוח נוספה בהצלחה!", "יחידה מספר " + key);
                     new PrivateZone().Show();

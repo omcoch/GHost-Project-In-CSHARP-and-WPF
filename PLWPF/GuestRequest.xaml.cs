@@ -72,13 +72,7 @@ namespace PLWPF
                 guest.MailAddress = new MailAddress(mailAddressTextBox.Text);
                 guest.RegistrationDate = DateTime.Now.Date;
                 guest.Status = RequestStatus.פתוחה;
-                guest.Type = (GRType)typeComboBox.SelectedValue;
-                guest.Area = (Regions)areaComboBox.SelectedValue;
-                guest.MaxPrice = (MaxPrice)maxPriceComboBox.SelectedValue;
-                guest.Pool = (Requirements)poolComboBox.SelectedValue;
-                guest.Garden = (Requirements)gardenComboBox.SelectedValue;
-                guest.Jacuzzi = (Requirements)jacuzziComboBox.SelectedValue;
-                guest.ChildrensAttractions = (Requirements)childrensAttractionsComboBox.SelectedValue;
+              
                 int code = bL.AddGuestRequest(guest);
                 MessageBox.Show("הבקשה נקלטה במערכת, תודה רבה!", "בקשה מספר " + code);
                 new MainWindow().Show();

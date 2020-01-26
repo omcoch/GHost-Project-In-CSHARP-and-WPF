@@ -347,6 +347,19 @@ namespace BL
             return dal.GetHosts().Where(h => h.HostKey == key).FirstOrDefault();
         }
 
+        public List<Order> GetOrdersByCondition(Predicate<Order> predicate)
+        {
+            return dal.GetOrders().FindAll(predicate);
+        }
+
+        public List<Order> GetOrdersByHostKey(int key)
+        {
+            return (from hu in GetHostingUnitsByOwner(key)
+                    from order in dal.GetOrders()
+                    where order.HostingUnitKey == hu.HostingUnitKey
+                    select order).ToList<Order>();
+        }
+
         //todo: לבדןוק CLONE לגבי FIRST, FIND ETC...
     }
 }

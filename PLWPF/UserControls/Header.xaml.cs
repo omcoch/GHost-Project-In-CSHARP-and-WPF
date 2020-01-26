@@ -24,8 +24,6 @@ namespace PLWPF
         public Header()
         {
             InitializeComponent();
-            if (Window.NameProperty.Name == "MainWindow")
-                ReturnButton.Visibility = Visibility.Hidden;
         }
 
         //private void GoBackWindow(object sender, RoutedEventArgs e)

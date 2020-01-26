@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:PLWPF"  
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:BE="clr-namespace:BE;assembly=BE"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
 
         <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
             <Setter Property="Background">
@@ -32,7 +34,9 @@
         <Style TargetType="ComboBox">
             <Setter Property="FlowDirection" Value="RightToLeft" />
         </Style>
-
+        <Style TargetType="TextBox">
+            <Setter Property="FlowDirection" Value="RightToLeft" />
+        </Style>
 
 
         <Style TargetType="{x:Type Button}">

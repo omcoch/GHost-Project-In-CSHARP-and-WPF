@@ -1,4 +1,5 @@
 ﻿using BE;
+using BL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace PLWPF
     /// </summary>
     public partial class OrdersList : Window
     {
+        IBL bL = BlFactory.getBl();
+
         public OrdersList()
         {
             InitializeComponent();
@@ -28,6 +31,14 @@ namespace PLWPF
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Cookies.LastWindow = this;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource orderViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("orderViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            orderViewSource.Source = bL.GetOrdersByHostKey(Cookies.LoginUserKey);
         }
     }
 }

@@ -47,5 +47,10 @@ namespace PLWPF
                 CreateButton.IsEnabled = true;
 
         }
+
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

@@ -16,56 +16,33 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Label Content="מספר חשבון בנק" Grid.Column="0" HorizontalAlignment="Right" Margin="-475,-279,390.667,285.667" Grid.Row="0" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="97"/>
-        <TextBox x:Name="bankAccountNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-279,0,288.667" Grid.Row="0" Text="{Binding BankAccountNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Content="אישור לחיוב החשבון?" Grid.Column="0" HorizontalAlignment="Right" Margin="-494,-99,387.667,108.667" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="23" Width="119"/>
-        <CheckBox x:Name="collectionClearanceCheckBox" Content="" HorizontalAlignment="Left" IsChecked="{Binding CollectionClearance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="-559,-93,0,95.667" VerticalAlignment="Center" Height="30" Width="20"/>
-        <Label Content="שם משפחה" Grid.Column="0" HorizontalAlignment="Right" Margin="-24,-220,-35.333,226.667" VerticalAlignment="Center" FlowDirection="RightToLeft" Grid.ColumnSpan="2" Height="26" Width="72"/>
-        <TextBox x:Name="familyNameTextBox" HorizontalAlignment="Left" Height="23" Margin="-225,-217,0,226.667" Text="{Binding FamilyName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Content="תעודת זהות" Grid.Column="0" HorizontalAlignment="Right" Margin="-23,-279,-35.333,285.667" VerticalAlignment="Center" FlowDirection="RightToLeft" Grid.ColumnSpan="2" Height="26" Width="71"/>
-        <TextBox x:Name="hostKeyTextBox" HorizontalAlignment="Left" Height="23" Margin="-225,-276,0,285.667" Text="{Binding HostKey, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Content="מספר פלאפון" Grid.Column="0" HorizontalAlignment="Right" Margin="-31,-188,-35.333,194.667" VerticalAlignment="Center" Grid.ColumnSpan="2" FlowDirection="RightToLeft" Height="26" Width="79"/>
-        <TextBox x:Name="phoneNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="-225,-185,0,194.667" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label x:Name="gvb" Content="שם פרטי" Grid.Column="0" HorizontalAlignment="Right" Margin="-9,-248,-35.333,254.667" VerticalAlignment="Center" FlowDirection="RightToLeft" Grid.ColumnSpan="2" Height="26" Width="57"/>
-        <TextBox x:Name="privateNameTextBox" HorizontalAlignment="Left" Height="23" Margin="-225,-245,0,254.667" Text="{Binding PrivateName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Content="שם בנק" Grid.Column="0" HorizontalAlignment="Right" Margin="-429,-248,390.667,254.667" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="51"/>
-        <TextBox x:Name="bankNameTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-248,0,257.667" Text="{Binding BankAccountDetails.BankName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Content="מספר בנק" Grid.Column="0" HorizontalAlignment="Right" Margin="-441,-216,390.667,222.667" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="63"/>
-        <TextBox x:Name="bankNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-216,0,225.667" Text="{Binding BankAccountDetails.BankNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Content="כתובת סניף" Grid.Column="0" HorizontalAlignment="Right" Margin="-449,-157,390.667,163.667" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="71"/>
-        <TextBox x:Name="branchAddressTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-157,0,166.667" Text="{Binding BankAccountDetails.BranchAddress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Content="עיר סניף" Grid.Column="0" HorizontalAlignment="Right" Margin="-432,-130,390.667,136.667" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="54"/>
-        <TextBox x:Name="branchCityTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-129,0,138.667" Text="{Binding BankAccountDetails.BranchCity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Content="מספר סניף" Grid.Column="0" HorizontalAlignment="Right" Margin="-445,-185,390.667,191.667" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="67"/>
-        <TextBox x:Name="branchNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-185,0,194.667" Text="{Binding BankAccountDetails.BranchNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        <Label Content="כתובת דואר אלקטרוני:" Grid.Column="0" HorizontalAlignment="Right" Margin="-77,-157,-35.333,166.667" VerticalAlignment="Center" Grid.ColumnSpan="2" FlowDirection="RightToLeft" Height="23" Width="125"/>
-        <TextBox x:Name="addressTextBox" HorizontalAlignment="Left" Height="23" Margin="-225,-154,0,163.667" Text="{Binding MailAddress.Address, Mode=OneWay}" VerticalAlignment="Center" Width="120"/>
-        <Label Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="-90,-93,0,120.667" VerticalAlignment="Center" Height="5" Width="10"/>
-        <local:Header HorizontalAlignment="Left" Margin="-721,-425,-92.333,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="800" Height="90"/>
-        <Button Content="עדכן" HorizontalAlignment="Left" Margin="-385,-20,0,0" VerticalAlignment="Top" Width="130" Height="30" Name="submitButton" />
+
+        <Label Content="מספר חשבון בנק" Grid.Column="0" HorizontalAlignment="Right" Margin="-475,-268,390.667,248.5"  VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="97"/>
+        <TextBox x:Name="bankAccountNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-268,0,251.5" Text="{Binding BankAccountNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <Label Content="אישור לחיוב החשבון?" Grid.Column="0" HorizontalAlignment="Right" Margin="-494,-88,387.667,71.5" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="23" Width="119"/>
+        <CheckBox x:Name="collectionClearanceCheckBox" Content="" HorizontalAlignment="Left" IsChecked="{Binding CollectionClearance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="-559,-82,0,58.5" VerticalAlignment="Center" Height="30" Width="20"/>
+        <Label Content="שם משפחה" Grid.Column="0" HorizontalAlignment="Right" Margin="-24,-209,-35.333,189.5" VerticalAlignment="Center" FlowDirection="RightToLeft" Grid.ColumnSpan="2" Height="26" Width="72"/>
+        <TextBox x:Name="familyNameTextBox" HorizontalAlignment="Left" Height="23" Margin="-225,-206,0,189.5" Text="{Binding FamilyName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <Label Content="תעודת זהות" Grid.Column="0" HorizontalAlignment="Right" Margin="-23,-268,-35.333,248.5" VerticalAlignment="Center" FlowDirection="RightToLeft" Grid.ColumnSpan="2" Height="26" Width="71"/>
+        <TextBox x:Name="hostKeyTextBox" HorizontalAlignment="Left" Height="23" Margin="-225,-265,0,248.5" Text="{Binding HostKey, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <Label Content="מספר פלאפון" Grid.Column="0" HorizontalAlignment="Right" Margin="-31,-177,-35.333,157.5" VerticalAlignment="Center" Grid.ColumnSpan="2" FlowDirection="RightToLeft" Height="26" Width="79"/>
+        <TextBox x:Name="phoneNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="-225,-174,0,157.5" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <Label x:Name="gvb" Content="שם פרטי" Grid.Column="0" HorizontalAlignment="Right" Margin="-9,-237,-35.333,217.5" VerticalAlignment="Center" FlowDirection="RightToLeft" Grid.ColumnSpan="2" Height="26" Width="57"/>
+        <TextBox x:Name="privateNameTextBox" HorizontalAlignment="Left" Height="23" Margin="-225,-234,0,217.5" Text="{Binding PrivateName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <Label Content="שם בנק" Grid.Column="0" HorizontalAlignment="Right" Margin="-429,-237,390.667,217.5" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="51"/>
+        <TextBox x:Name="bankNameTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-237,0,220.5" Text="{Binding BankAccountDetails.BankName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <Label Content="מספר בנק" Grid.Column="0" HorizontalAlignment="Right" Margin="-441,-205,390.667,185.5" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="63"/>
+        <TextBox x:Name="bankNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-205,0,188.5" Text="{Binding BankAccountDetails.BankNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <Label Content="כתובת סניף" Grid.Column="0" HorizontalAlignment="Right" Margin="-449,-146,390.667,126.5" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="71"/>
+        <TextBox x:Name="branchAddressTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-146,0,129.5" Text="{Binding BankAccountDetails.BranchAddress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <Label Content="עיר סניף" Grid.Column="0" HorizontalAlignment="Right" Margin="-432,-119,390.667,99.5" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="54"/>
+        <TextBox x:Name="branchCityTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-118,0,101.5" Text="{Binding BankAccountDetails.BranchCity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <Label Content="מספר סניף" Grid.Column="0" HorizontalAlignment="Right" Margin="-445,-174,390.667,154.5" VerticalAlignment="Center" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" Height="26" Width="67"/>
+        <TextBox x:Name="branchNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="-665,-174,0,157.5" Text="{Binding BankAccountDetails.BranchNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        <Label Content="כתובת דואר אלקטרוני:" Grid.Column="0" HorizontalAlignment="Right" Margin="-77,-146,-35.333,129.5" VerticalAlignment="Center" Grid.ColumnSpan="2" FlowDirection="RightToLeft" Height="23" Width="125"/>
+        <TextBox x:Name="addressTextBox" HorizontalAlignment="Left" Height="23" Margin="-225,-143,0,126.5" Text="{Binding MailAddress.Address, Mode=OneWay}" VerticalAlignment="Center" Width="120"/>
+        <local:Header HorizontalAlignment="Left" Margin="-721,-425,-66.333,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="800" Height="90"/>
+        <Button Content="עדכן" Name="submitButton" HorizontalAlignment="Left" Margin="-375,2,0,0" VerticalAlignment="Top" Width="115"/>
     </Grid>
 
 

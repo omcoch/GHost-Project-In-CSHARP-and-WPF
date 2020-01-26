@@ -9,6 +9,9 @@
         mc:Ignorable="d"
         Closing="Window_Closing"
         Title="{Binding Path=SiteName, StringFormat=' לקוחות - {0}'}" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.DataContext>
+        <BE:Configuration/>
+    </Window.DataContext>
     <Window.Resources>
         <CollectionViewSource x:Key="guestRequestViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:GuestRequest}, CreateList=True}"/>
     </Window.Resources>
@@ -110,6 +113,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="CreateButton" IsEnabled="False" Content="יצירת הזמנה" HorizontalAlignment="Left" Margin="308,212.667,0,-146.333" Grid.Row="1" VerticalAlignment="Top" Width="192"/>
+        <Button Name="CreateButton" IsEnabled="False" Content="יצירת הזמנה" HorizontalAlignment="Left" Margin="308,212.667,0,-146.333" Grid.Row="1" VerticalAlignment="Top" Width="192" Click="CreateButton_Click"/>
     </Grid>
 </Window>

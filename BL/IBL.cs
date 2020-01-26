@@ -38,6 +38,8 @@ namespace BL
 
         HostingUnit GetHostingUnit(int key);
         List<HostingUnit> GetHostingUnitsByOwner(int key);
+        List<Order> GetOrdersByCondition(Predicate<Order> predicate);
+        List<Order> GetOrdersByHostKey(int key);
         Order GetOrder(int key);
         Host GetHost(int key);
     }

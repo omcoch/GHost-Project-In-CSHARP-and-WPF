@@ -29,6 +29,7 @@ namespace DAL
             GR.Status = guestRequest.Status;
             GR.SubArea = guestRequest.SubArea;
             GR.Type = guestRequest.Type;
+            GR.MaxPrice = guestRequest.MaxPrice;
             return GR;
         }
         public static HostingUnit Clone(HostingUnit hostingUnit)
