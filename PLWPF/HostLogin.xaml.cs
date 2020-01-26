@@ -26,8 +26,8 @@ namespace PLWPF
 
         public HostLogin()
         {
-            InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            InitializeComponent();
             KeyTextBox.Text = "312279188";
             KeyTextBox.Focus();
         }

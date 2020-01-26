@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.HostingUnitForm"
         mc:Ignorable="d"
-    Closing="Window_Closing"
+    
         Title="{Binding Path=SiteName, StringFormat='יחידת אירוח - {0}'}" Height="521" Width="800">
     <Window.DataContext>
         <BE:Configuration/>
@@ -23,7 +23,7 @@
             <Label VerticalAlignment="Center" Margin="0,126,0,30" HorizontalAlignment="Right" Grid.Column="0" Content="מספר מבוגרים"/>
             <TextBox x:Name="adultsTextBox" Width="47" VerticalAlignment="Center" Text="{Binding Adults, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="458,150,0,53" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
             <Label VerticalAlignment="Center" Margin="0,36,0,120" HorizontalAlignment="Right" Grid.Column="0" Content="אזור"/>
-            <ComboBox x:Name="areaComboBox" Width="153" VerticalAlignment="Center" Margin="308,37,0,123" Height="Auto" HorizontalAlignment="Left"/>
+            <ComboBox SelectedItem="{Binding Area}" x:Name="areaComboBox" Width="153" VerticalAlignment="Center" Margin="308,37,0,123" Height="Auto" HorizontalAlignment="Left"/>
             <Label VerticalAlignment="Center" Margin="0,147,159,52" HorizontalAlignment="Right" Grid.Column="0" Content="מספר ילדים"/>
             <TextBox x:Name="childrenTextBox" Width="50" VerticalAlignment="Center" Text="{Binding Children, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="308,147,0,56" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
             <Label VerticalAlignment="Center" Margin="23,31,0,125" HorizontalAlignment="Left" Grid.Column="0" Content="האם יש אטרקציות לילדים?" FlowDirection="RightToLeft" Width="153"/>
@@ -39,7 +39,7 @@
             <Label VerticalAlignment="Center" Margin="0,68,0,88" HorizontalAlignment="Right" Grid.Column="0" Content="תת אזור"/>
             <TextBox x:Name="subAreaTextBox" Width="153" VerticalAlignment="Center" Text="{Binding SubArea, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="308,69,0,91" Height="22" HorizontalAlignment="Left" LostFocus="TextBox_LostFocus"/>
             <Label VerticalAlignment="Center" Margin="0,95,0,61" HorizontalAlignment="Right" Grid.Column="0" Content="סוג יחידת אירוח"/>
-            <ComboBox   x:Name="typeComboBox" Width="153" VerticalAlignment="Center" Margin="308,96,0,64" Height="Auto" HorizontalAlignment="Left"/>
+            <ComboBox SelectedItem="{Binding Type}" x:Name="typeComboBox" Width="153" VerticalAlignment="Center" Margin="308,96,0,64" Height="Auto" HorizontalAlignment="Left"/>
             <Button Content="הוסף" Padding="0" HorizontalAlignment="Left" Margin="243,306,0,0" VerticalAlignment="Top" Width="115" Height="35" Name="SubmitButton"/>
             <TextBlock HorizontalAlignment="Left" Margin="23,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="ErrorMessage" Width="200" FlowDirection="RightToLeft" Height="26" Foreground="Red" FontSize="14"/>
         </Grid>

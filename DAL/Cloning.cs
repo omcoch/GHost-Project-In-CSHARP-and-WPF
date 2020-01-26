@@ -11,25 +11,27 @@ namespace DAL
     {
         public static GuestRequest Clone(GuestRequest guestRequest)
         {
-            GuestRequest GR = new GuestRequest();
-            GR.Adults = guestRequest.Adults;
-            GR.Area = guestRequest.Area;
-            GR.Children = guestRequest.Children;
-            GR.ChildrensAttractions = guestRequest.ChildrensAttractions;
-            GR.EntryDate = guestRequest.EntryDate;
-            GR.FamilyName = guestRequest.FamilyName;
-            GR.Garden = guestRequest.Garden;
-            GR.guestRequestKey = guestRequest.guestRequestKey;
-            GR.Jacuzzi = guestRequest.Jacuzzi;
-            GR.MailAddress = guestRequest.MailAddress;
-            GR.Pool = GR.Pool;
-            GR.PrivateName = guestRequest.PrivateName;
-            GR.RegistrationDate = guestRequest.RegistrationDate;
-            GR.ReleaseDate = guestRequest.ReleaseDate;
-            GR.Status = guestRequest.Status;
-            GR.SubArea = guestRequest.SubArea;
-            GR.Type = guestRequest.Type;
-            GR.MaxPrice = guestRequest.MaxPrice;
+            GuestRequest GR = new GuestRequest()
+            {
+                Adults = guestRequest.Adults,
+                Area = guestRequest.Area,
+                Children = guestRequest.Children,
+                ChildrensAttractions = guestRequest.ChildrensAttractions,
+                EntryDate = guestRequest.EntryDate,
+                FamilyName = guestRequest.FamilyName,
+                Garden = guestRequest.Garden,
+                guestRequestKey = guestRequest.guestRequestKey,
+                Jacuzzi = guestRequest.Jacuzzi,
+                MailAddress = guestRequest.MailAddress,
+                Pool = guestRequest.Pool,
+                PrivateName = guestRequest.PrivateName,
+                RegistrationDate = guestRequest.RegistrationDate,
+                ReleaseDate = guestRequest.ReleaseDate,
+                Status = guestRequest.Status,
+                SubArea = guestRequest.SubArea,
+                Type = guestRequest.Type,
+                MaxPrice = guestRequest.MaxPrice
+            };
             return GR;
         }
         public static HostingUnit Clone(HostingUnit hostingUnit)

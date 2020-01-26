@@ -1,5 +1,5 @@
 ﻿<Window x:Class="PLWPF.Orders" 
-        Style="{StaticResource WindowStyle}"  xmlns:BE="clr-namespace:BE;assembly=BE" Closing="Window_Closing"     
+        Style="{StaticResource WindowStyle}"  xmlns:BE="clr-namespace:BE;assembly=BE"      
         Title="{Binding Path=SiteName, StringFormat=' הזמנות- {0}'}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

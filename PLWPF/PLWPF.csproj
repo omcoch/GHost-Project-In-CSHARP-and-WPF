@@ -83,10 +83,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\CalendarUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="GuestRequest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,9 +123,6 @@
     </Compile>
     <Compile Include="PrivateZone.xaml.cs">
       <DependentUpon>PrivateZone.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\CalendarUserControl.xaml.cs">
-      <DependentUpon>CalendarUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GuestRequest.xaml.cs">
       <DependentUpon>GuestRequest.xaml</DependentUpon>

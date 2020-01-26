@@ -25,29 +25,41 @@ namespace PLWPF
         IBL bL = BlFactory.getBl();
         HostingUnit hostingUnit = null;
 
-        public HostingUnitForm(HostingUnit hostingUnit = null)
+        /// <summary>
+        /// קונסטרקטור שמטפל ביצירת יחידת אירוח חדשה
+        /// </summary>
+        public HostingUnitForm()
         {
+            Cookies.PrevWindow = this.GetType().Name;
             InitializeComponent();
             areaComboBox.ItemsSource = Enum.GetValues(typeof(Regions));
             typeComboBox.ItemsSource = Enum.GetValues(typeof(GRType));
 
-            if (hostingUnit != null) // טיפול בעדכון יחידת אירוח
-            {
-                this.hostingUnit = hostingUnit;
-                areaComboBox.SelectedValue = hostingUnit.Area;
-                typeComboBox.SelectedValue = hostingUnit.Type;
-                TableGrid.DataContext = this.hostingUnit;
-                SubmitButton.Content = "עדכן";
-                SubmitButton.Click += UpdateHostingUnit;
-            }
-            else // טיפול בהוספת יחידת אירוח חדשה
-            {
-                areaComboBox.SelectedIndex = 0;
-                typeComboBox.SelectedIndex = 0;
-                this.hostingUnit = new HostingUnit{ OwnerKey = Cookies.LoginUserKey};
-                TableGrid.DataContext = this.hostingUnit;                
-                SubmitButton.Click += AddHostingUnit;
-            }
+            areaComboBox.SelectedIndex = 0;
+            typeComboBox.SelectedIndex = 0;
+            this.hostingUnit = new HostingUnit { OwnerKey = Cookies.LoginUserKey };
+            TableGrid.DataContext = this.hostingUnit;
+            SubmitButton.Click += AddHostingUnit;
+        }
+
+        /// <summary>
+        /// קונסטרקטור שמטפל בעדכון יחידת אירוח
+        /// </summary>
+        /// <param name="hostingUnit">יחידת האירוח לעדכון</param>
+        public HostingUnitForm(HostingUnit hostingUnit)
+        {
+            Cookies.PrevWindow = this.GetType().Name;
+            InitializeComponent();
+            areaComboBox.ItemsSource = Enum.GetValues(typeof(Regions));
+            typeComboBox.ItemsSource = Enum.GetValues(typeof(GRType));
+
+            this.hostingUnit = hostingUnit;
+            areaComboBox.SelectedValue = hostingUnit.Area;
+            typeComboBox.SelectedValue = hostingUnit.Type;
+            TableGrid.DataContext = this.hostingUnit;
+            SubmitButton.Content = "עדכן";
+            SubmitButton.Click += UpdateHostingUnit;     
+            
         }
 
         private void UpdateHostingUnit(object sender, RoutedEventArgs e)
@@ -56,8 +68,6 @@ namespace PLWPF
             {
                 try
                 {
-                    this.hostingUnit.Area = (Regions)areaComboBox.SelectedValue;
-                    this.hostingUnit.Type = (GRType)typeComboBox.SelectedValue;
                     bL.UpdateHostingUnit(this.hostingUnit);
                     MessageBox.Show("יחידת האירוח עודכנה בהצלחה!", "יחידה מספר " + this.hostingUnit.HostingUnitKey);
                     new PrivateZone().Show();
@@ -80,8 +90,6 @@ namespace PLWPF
             {
                 try
                 {
-                    this.hostingUnit.Area = (Regions)areaComboBox.SelectedValue;
-                    this.hostingUnit.Type = (GRType)typeComboBox.SelectedValue;
                     int key = bL.AddHostingUnit(hostingUnit);
                     MessageBox.Show("יחידת האירוח נוספה בהצלחה!", "יחידה מספר " + key);
                     new PrivateZone().Show();
@@ -120,9 +128,5 @@ namespace PLWPF
             ValidateForm();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Cookies.LastWindow = this;
-        }
     }
 }

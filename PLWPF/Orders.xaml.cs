@@ -22,13 +22,10 @@ namespace PLWPF
     {
         public Orders()
         {
+            Cookies.PrevWindow = this.GetType().Name;
+
             InitializeComponent();
 
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Cookies.LastWindow = this;
         }
 
         private void OpenGuestRequestList(object sender, RoutedEventArgs e)

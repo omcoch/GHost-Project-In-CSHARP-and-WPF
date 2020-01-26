@@ -30,15 +30,6 @@ namespace DS
         };
         public static List<Order> Orders = new List<Order>()
         {
-            new Order()
-            {
-                CreateDate=DateTime.Now.AddDays(-6),
-                GuestRequestKey=2938373,
-                HostingUnitKey=10000000,
-                OrderDate=DateTime.Now,
-                OrderKey = Configuration.GenerateOrderSerialKey,
-                Status = OrderStatus.טרם_טופל,                
-            }
         };
         public static List<Host> Hosts = new List<Host>()
         {

@@ -26,24 +26,33 @@ namespace PLWPF
         IBL bL = BlFactory.getBl();
         Host host; 
         
-        public HostForm(int hostKey = 0)
+        /// <summary>
+        /// קונסטרקטור ליצירת מארח חדש
+        /// </summary>
+        public HostForm()
         {
+            Cookies.PrevWindow = this.GetType().Name;
             InitializeComponent();
 
-            if (hostKey == 0)//במקרה של הרשמה
-            {
-                submitButton.Content = "הוסף";
-                submitButton.Click += AddHost;
-                host = new Host();// get default Host if does not exists
-                grid1.DataContext = host; /// data binding the host to the visual form 
-            }
-            else//במקרה של עדכון
-            {
-                submitButton.Click += UpdateHost;
-                host = bL.GetHost(hostKey); // get default Host if does not exists
-                grid1.DataContext = host; /// data binding the host to the visual form 
-                hostKeyTextBox.IsEnabled = false;
-            }
+            submitButton.Content = "הוסף";
+            submitButton.Click += AddHost;
+            host = new Host();// get default Host if does not exists
+            grid1.DataContext = host; /// data binding the host to the visual form 
+        }
+
+        /// <summary>
+        /// קונסטרקטור לעדכון מארח
+        /// </summary>
+        /// <param name="hostKey">מזהה מארח</param>
+        public HostForm(int hostKey)
+        {
+            Cookies.PrevWindow = this.GetType().Name;
+            InitializeComponent();
+
+            submitButton.Click += UpdateHost;
+            host = bL.GetHost(hostKey); // get default Host if does not exists
+            grid1.DataContext = host; /// data binding the host to the visual form 
+            hostKeyTextBox.IsEnabled = false;            
         }
 
         private void AddHost(object sender, RoutedEventArgs e)
@@ -91,11 +100,6 @@ namespace PLWPF
                     MessageBox.Show(err.Message);
                 }
             
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Cookies.LastWindow = this;
         }
     }
 }

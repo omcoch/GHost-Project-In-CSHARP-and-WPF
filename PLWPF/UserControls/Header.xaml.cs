@@ -24,16 +24,28 @@ namespace PLWPF
         public Header()
         {
             InitializeComponent();
+            if (Cookies.NoHistory())
+                GoBackButton.Visibility = Visibility.Hidden;
+            if (Cookies.LoginUserKey==0)
+                LogOutButton.Visibility = Visibility.Hidden;
         }
 
-        //private void GoBackWindow(object sender, RoutedEventArgs e)
-        //{
-        //    Window.GetWindow(Cookies.LastWindow).Show();
-        //    Window.GetWindow(this).Close();
-        //}
+        private void GoBackWindow(object sender, RoutedEventArgs e)
+        {
+            var w = (Window)Activator.CreateInstance(Type.GetType("PLWPF."+Cookies.PrevWindow));
+            w.Show();
+            Window.GetWindow(this).Close();
+        }
 
         private void GoHome(object sender, RoutedEventArgs e)
         {
+            new MainWindow().Show();
+            Window.GetWindow(this).Close();
+        }
+
+        private void LogOut(object sender, MouseButtonEventArgs e)
+        {
+            Cookies.LogOut();
             new MainWindow().Show();
             Window.GetWindow(this).Close();
         }

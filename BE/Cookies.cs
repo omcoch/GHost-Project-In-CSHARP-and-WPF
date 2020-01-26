@@ -9,7 +9,33 @@ namespace BE
 {
     public class Cookies
     {
-        public static Window LastWindow { get; set; }
-        public static int LoginUserKey { get; set; }
+        private static Stack<string> prevWindow = new Stack<string>(); // Stack for history navigation
+        public static int LoginUserKey { get; set; } // Holds the login-key of the current host
+        public static string PrevWindow
+        {
+            get {
+                prevWindow.Pop();
+                return prevWindow.Peek();
+            }
+            set {
+                if (prevWindow.Count == 0 || value != prevWindow.Peek())
+                    prevWindow.Push(value);
+            }
+        }
+
+        /// <summary>
+        /// Check if the stack of history is empty (except from the main-window
+        /// </summary>
+        /// <returns>True if the only window in the history is the Main Window, else False</returns>
+        public static bool NoHistory()
+        {
+            return  prevWindow.Count <= 1;
+        }
+
+        public static void LogOut()
+        {
+            prevWindow.Clear();
+            LoginUserKey = 0;
+        }
     }
 }

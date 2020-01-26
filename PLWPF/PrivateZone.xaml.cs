@@ -26,6 +26,7 @@ namespace PLWPF
 
         public PrivateZone()
         {
+            Cookies.PrevWindow = this.GetType().Name;
             InitializeComponent();
             this.host=bL.GetHost(Cookies.LoginUserKey);
             WelcomeMsg.Text = "ברוך הבא " + host.PrivateName + " " + host.FamilyName + "!";
@@ -40,13 +41,8 @@ namespace PLWPF
 
         private void HostingUnitsList_Click(object sender, RoutedEventArgs e)
         {
-            new HostingUnitsList(host.HostKey).Show();
+            new HostingUnitsList().Show();
             Close();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Cookies.LastWindow = this;
         }
 
         private void Orders_Click(object sender, RoutedEventArgs e)

@@ -38,13 +38,4 @@
         אפשרי,
         לא_מעוניין
     }
-    
-
-    public enum MaxPrice
-    {
-        Low = 200,
-        MEDIUM = 500,
-        HIGH = 1000,
-        EXPENSIVE = 1500
-    }
 }

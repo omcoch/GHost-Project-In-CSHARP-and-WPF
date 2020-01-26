@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Height="450" Width="800"
         Title="{Binding Path=SiteName}"
-    Closing="Window_Closing">
+    >
     <Window.DataContext>
         <BE:Configuration/>
     </Window.DataContext>
@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
         <Button Content="הוספת דרישת לקוח" Grid.Column="1" HorizontalAlignment="Left" Margin="120,127,0,0" Grid.Row="1" VerticalAlignment="Top"  Click="OpenGuestRequestWindow"/>
         <Button Content="כניסת מארח" Grid.Column="0" HorizontalAlignment="Left" Margin="145,127,0,0" Grid.Row="1" VerticalAlignment="Top"  Click="OpenHostWindow"/>
-        <local:Header Grid.Row="0" Grid.ColumnSpan="2"></local:Header>
+        <local:Header x:Name="Header" Grid.Row="0" Grid.ColumnSpan="2"></local:Header>
     </Grid>
 
 </Window>

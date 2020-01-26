@@ -26,10 +26,11 @@ namespace PLWPF
 
         public MainWindow()
         {
-            Cookies.LastWindow = this;
-            Cookies.LoginUserKey = 0;
+            Cookies.PrevWindow = this.GetType().Name;
+
             InitializeComponent();
-            
+
+            Header.HomeButton.Visibility = Visibility.Hidden;
         }
 
         private void OpenGuestRequestWindow(object sender, RoutedEventArgs e)
@@ -41,11 +42,6 @@ namespace PLWPF
         private void OpenHostWindow(object sender, RoutedEventArgs e)
         {
             new HostLogin(){ Owner = this }.ShowDialog();                  
-        }
-
-        public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Cookies.LastWindow = this;           
         }
 
     }

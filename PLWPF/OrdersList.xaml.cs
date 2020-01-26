@@ -25,12 +25,8 @@ namespace PLWPF
 
         public OrdersList()
         {
+            Cookies.PrevWindow = this.GetType().Name;
             InitializeComponent();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Cookies.LastWindow = this;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -39,6 +35,22 @@ namespace PLWPF
             System.Windows.Data.CollectionViewSource orderViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("orderViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             orderViewSource.Source = bL.GetOrdersByHostKey(Cookies.LoginUserKey);
+        }
+
+        private void UpdateOrders(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (Order order in orderDataGrid.SelectedItems)
+                {
+                    bL.UpdateOrder(order);
+                }
+                MessageBox.Show("ההזמנות עודכנו בהצלחה!");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
         }
     }
 }

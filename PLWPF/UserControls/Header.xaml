@@ -18,15 +18,20 @@
     </UserControl.Background>
     <Grid Width="800" HorizontalAlignment="Stretch" Height="auto">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="113*"/>
-            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Path=SiteName, StringFormat='אתר התאמת נופש - {0}'}" VerticalAlignment="Stretch" Grid.Column="0" Margin="16,28,0,17" Width="549" FontSize="36" FlowDirection="RightToLeft" Foreground="White" FontWeight="Bold"/>
-        <Button Name="ReturnButton" HorizontalAlignment="Left" Margin="131.667,19,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="GoHome" Height="71">
+        <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="88,28,0,17" Width="549" FontSize="36" FlowDirection="RightToLeft" Foreground="White" FontWeight="Bold" Grid.ColumnSpan="3"><Run Text="אתר התאמת נופש - G-Host"/></TextBlock>
+        <Button Name="HomeButton" HorizontalAlignment="Left" Margin="13,16,0,0" VerticalAlignment="Top" Width="75" Grid.Column="0" Click="GoHome" Height="71">
             <Button.Background>
                 <ImageBrush ImageSource ="../usercontrols/home.jpg"></ImageBrush>
             </Button.Background>
         </Button>
+        <Button Name="GoBackButton" Content="הקודם" Grid.Column="2" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="75" Click="GoBackWindow" />
+        <TextBlock Name="LogOutButton" HorizontalAlignment="Left" Margin="33,96,0,0" TextWrapping="Wrap" Text="התנתק" VerticalAlignment="Top" Foreground="Black" TextDecorations="Underline" MouseLeftButtonUp="LogOut">
+        </TextBlock>
+
     </Grid>
 
 

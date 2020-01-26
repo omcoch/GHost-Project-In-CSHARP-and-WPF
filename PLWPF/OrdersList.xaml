@@ -6,21 +6,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE"    
-        mc:Ignorable="d"
-        Closing="Window_Closing"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"        
         Title="{Binding Path=SiteName, StringFormat='רשימת הזמנות - {0}'}" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="orderViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Order}, CreateList=True}"/>
+        <BE:Configuration x:Key="configuration"></BE:Configuration>
+
+        <ObjectDataProvider x:Key="OrderStatusEnum" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="BE:OrderStatus"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Window.Resources>
+
     <Grid DataContext="{StaticResource orderViewSource}">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <local:Header Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800"/>
-        <DataGrid FlowDirection="RightToLeft" x:Name="orderDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="54,25.667,62.333,-224.333" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionMode="Single" IsSynchronizedWithCurrentItem="False">
+        <DataGrid CanUserDeleteRows="False" FlowDirection="RightToLeft" x:Name="orderDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="54,25.667,62.333,-165.333" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionMode="Single" IsSynchronizedWithCurrentItem="False">
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="orderKeyColumn" Header="הזמנה" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="orderKeyColumn" Header="הזמנה">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding OrderKey}"/>
@@ -55,17 +63,19 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="statusColumn" Header="סטטוס" Width="SizeToHeader">
+
+                <DataGridTemplateColumn x:Name="updateStatus" Header="סטטוס">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox>
-                                <ComboBoxItem Content="{Binding Path=Status}"/>
-                            </ComboBox>
+                            <ComboBox ItemsSource="{Binding Source={StaticResource OrderStatusEnum}}" SelectedItem="{Binding Status, Mode=TwoWay}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
+
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="עדכון הזמנות" HorizontalAlignment="Left" Margin="310,255.667,0,-247.667" Grid.Row="1" VerticalAlignment="Top" Width="150" Click="UpdateOrders"/>
     </Grid>
-    
+
 </Window>

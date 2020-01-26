@@ -28,6 +28,8 @@ namespace PLWPF
 
         public GuestRequest()
         {
+            Cookies.PrevWindow = this.GetType().Name;
+
             InitializeComponent();
             guest.EntryDate = DateTime.Now.Date;
             guest.ReleaseDate = DateTime.Now.Date;
@@ -44,8 +46,6 @@ namespace PLWPF
             areaComboBox.SelectedIndex = 1;
             typeComboBox.ItemsSource = Enum.GetValues(typeof(GRType));
             typeComboBox.SelectedIndex = 0;
-            maxPriceComboBox.ItemsSource = Enum.GetValues(typeof(MaxPrice));
-            maxPriceComboBox.SelectedIndex = 3;
             poolComboBox.ItemsSource = Enum.GetValues(typeof(Requirements));
             poolComboBox.SelectedIndex = 1;
             jacuzziComboBox.ItemsSource = Enum.GetValues(typeof(Requirements));
@@ -53,8 +53,7 @@ namespace PLWPF
             gardenComboBox.ItemsSource = Enum.GetValues(typeof(Requirements));
             gardenComboBox.SelectedIndex = 1;
             childrensAttractionsComboBox.ItemsSource = Enum.GetValues(typeof(Requirements));
-            childrensAttractionsComboBox.SelectedIndex = 1;
-
+            childrensAttractionsComboBox.SelectedIndex = 1;            
         }
 
         private void Send_Request(object sender, RoutedEventArgs e)
@@ -141,10 +140,5 @@ namespace PLWPF
                 DatesMessage.Visibility = Visibility.Hidden;
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Cookies.LastWindow = this;
-        }
-       
     }
 }

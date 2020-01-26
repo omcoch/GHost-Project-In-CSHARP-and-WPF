@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE"
         mc:Ignorable="d"
-        Closing="Window_Closing"        
+                
         Title="{Binding Path=SiteName, Mode=OneTime, StringFormat='דרישת לקוח - {0}'}"  Width="800" Height="571">
 
     <Window.DataContext>
@@ -42,7 +42,7 @@
         <Label Grid.Row="1"  Content="כתובת דואר אלקטרוני" HorizontalAlignment="Left" Margin="613,105,0,516.333" VerticalAlignment="Center"/>
         <TextBox Grid.Row="1"  x:Name="mailAddressTextBox"  HorizontalAlignment="Left" Height="24" Margin="484,109,0,514.333" VerticalAlignment="Center" Width="120" KeyUp="Email_KeyUp" Panel.ZIndex="2"/>
         <Label Grid.Row="1"  Content="מחיר מקסימלי" HorizontalAlignment="Left" Margin="613,339,0,282.333" VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="1" SelectedItem="{Binding MaxPrice}" x:Name="maxPriceComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="483,343,0,282.333" VerticalAlignment="Center" Width="120" Panel.ZIndex="10"/>
+        <TextBox Grid.Row="1" Text="{Binding MaxPrice, StringFormat=c2}" x:Name="maxPriceComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="483,343,0,282.333" VerticalAlignment="Center" Width="120" Panel.ZIndex="10"/>
         <Label Grid.Row="1"  Content="בריכה" HorizontalAlignment="Left" Margin="378,376,0,245.333" VerticalAlignment="Center"/>
         <ComboBox Grid.Row="1" SelectedItem="{Binding Pool}" x:Name="poolComboBox"  HorizontalAlignment="Left" Height="Auto"  Margin="252,378,0,247.333" VerticalAlignment="Center" Width="120" Panel.ZIndex="13"/>
         <Label Grid.Row="1"  Content="שם פרטי" HorizontalAlignment="Left" Margin="613,48,0,573.333" VerticalAlignment="Center"/>

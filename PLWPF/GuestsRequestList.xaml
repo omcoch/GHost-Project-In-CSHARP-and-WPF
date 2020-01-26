@@ -7,13 +7,14 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE"
         mc:Ignorable="d"
-        Closing="Window_Closing"
-        Title="{Binding Path=SiteName, StringFormat=' לקוחות - {0}'}" Height="450" Width="800" Loaded="Window_Loaded">
+        
+        Title="{Binding SiteName, StringFormat=' לקוחות - {0}'}" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.DataContext>
         <BE:Configuration/>
     </Window.DataContext>
     <Window.Resources>
         <CollectionViewSource x:Key="guestRequestViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:GuestRequest}, CreateList=True}"/>
+        <CollectionViewSource x:Key="hostingUnitViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:HostingUnit}, CreateList=True}"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource guestRequestViewSource}">
         <Grid.RowDefinitions>
@@ -21,7 +22,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <local:Header Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800"/>
-        <DataGrid FlowDirection="RightToLeft" x:Name="guestRequestDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="6.5,25.667,10.333,-224.333" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected"  CanUserAddRows="False" SelectionMode="Single" IsSynchronizedWithCurrentItem="False" SelectedCellsChanged="SelectedCellsChanged">
+        <DataGrid CanUserDeleteRows="False" FlowDirection="RightToLeft" x:Name="guestRequestDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="6,9.667,10.333,-23.333" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected"  CanUserAddRows="False" SelectionMode="Single" IsSynchronizedWithCurrentItem="False" SelectedCellsChanged="SelectedCellsChanged">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="areaColumn" Header="אזור" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>
@@ -82,14 +83,14 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn x:Name="gardenColumn" Header="גינה" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="gardenColumn" Header="גינה">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Garden}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="jacuzziColumn" Header="ג'קוזי" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="jacuzziColumn" Header="ג'קוזי">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Jacuzzi}"/>
@@ -97,7 +98,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn x:Name="poolColumn" Header="בריכה" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="poolColumn" Header="בריכה">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Pool}"/>
@@ -113,6 +114,9 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="CreateButton" IsEnabled="False" Content="יצירת הזמנה" HorizontalAlignment="Left" Margin="308,212.667,0,-146.333" Grid.Row="1" VerticalAlignment="Top" Width="192" Click="CreateButton_Click"/>
+        <Button Name="CreateButton" IsEnabled="False" Content="יצירת הזמנה" HorizontalAlignment="Left" Margin="296,255.667,0,-128.333" Grid.Row="1" VerticalAlignment="Top" Width="192" Click="CreateButton_Click"/>
+        <Label Content="בחר יחידת אירוח עבור ההזמנה" HorizontalAlignment="Left" Margin="429,217.667,0,-57.667" Grid.Row="1" VerticalAlignment="Top"/>
+        <ComboBox x:Name="hostingUnitComboBox" DisplayMemberPath="HostingUnitName" ItemsSource="{Binding Source={StaticResource hostingUnitViewSource}}" Margin="252,219.667,425.333,-50.333" Grid.Row="1">
+        </ComboBox>
     </Grid>
 </Window>

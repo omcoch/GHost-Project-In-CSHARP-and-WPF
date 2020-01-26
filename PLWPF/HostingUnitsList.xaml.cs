@@ -22,13 +22,12 @@ namespace PLWPF
     public partial class HostingUnitsList : Window
     {
         IBL bL = BlFactory.getBl();
-        int id;
 
-        public HostingUnitsList(int key)
+        public HostingUnitsList()
         {
+            Cookies.PrevWindow = this.GetType().Name;
+
             InitializeComponent();
-            id = key;
-            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -36,12 +35,7 @@ namespace PLWPF
 
             System.Windows.Data.CollectionViewSource hostingUnitViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("hostingUnitViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
-            hostingUnitViewSource.Source = bL.GetHostingUnitsByOwner(id);
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Cookies.LastWindow = this;
+            hostingUnitViewSource.Source = bL.GetHostingUnitsByOwner(Cookies.LoginUserKey);
         }
 
         private void DeleteUnits(object sender, RoutedEventArgs e)

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.HostForm"
         mc:Ignorable="d"
-    Closing="Window_Closing"
+    
         Title="{Binding Path=SiteName, StringFormat='מארח - {0}'}" Height="550" Width="800">
     <Window.DataContext>
         <BE:Configuration/>
