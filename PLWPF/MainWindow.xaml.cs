@@ -41,7 +41,13 @@ namespace PLWPF
 
         private void OpenHostWindow(object sender, RoutedEventArgs e)
         {
-            new HostLogin(){ Owner = this }.ShowDialog();                  
+            if (Cookies.LoginUserKey == 0)
+                new HostLogin() { Owner = this }.ShowDialog();
+            else//במקרה שהוא כבר מחובר
+            {
+                new PrivateZone().Show();
+                Close();
+            }
         }
         private void OpenAdmin(object sender, RoutedEventArgs e)
         {
