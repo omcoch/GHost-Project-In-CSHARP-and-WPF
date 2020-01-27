@@ -32,9 +32,9 @@ namespace PLWPF
         {
             Cookies.PrevWindow = this.GetType().Name;
             InitializeComponent();
+
             areaComboBox.ItemsSource = Enum.GetValues(typeof(Regions));
             typeComboBox.ItemsSource = Enum.GetValues(typeof(GRType));
-
             areaComboBox.SelectedIndex = 0;
             typeComboBox.SelectedIndex = 0;
             this.hostingUnit = new HostingUnit { OwnerKey = Cookies.LoginUserKey };

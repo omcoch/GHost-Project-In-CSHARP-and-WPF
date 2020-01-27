@@ -15,7 +15,7 @@
 
         <ObjectDataProvider x:Key="OrderStatusEnum" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
             <ObjectDataProvider.MethodParameters>
-                <x:Type Type="BE:OrderStatus"/>
+                <x:Type TypeName="BE:OrderStatus"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </Window.Resources>
@@ -24,9 +24,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <local:Header Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800"/>
-        <DataGrid CanUserDeleteRows="False" FlowDirection="RightToLeft" x:Name="orderDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="54,25.667,62.333,-165.333" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionMode="Single" IsSynchronizedWithCurrentItem="False">
+        <DataGrid CanUserDeleteRows="False" FlowDirection="RightToLeft" x:Name="orderDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="54,25.667,62.333,-165.333" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionMode="Single" IsSynchronizedWithCurrentItem="False" MaxHeight="230" Height="230">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="orderKeyColumn" Header="הזמנה">
                     <DataGridTemplateColumn.CellTemplate>
@@ -64,18 +65,25 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn x:Name="updateStatus" Header="סטטוס">
+                <DataGridTemplateColumn x:Name="statusColumn" Header="סטטוס נוכחי" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Source={StaticResource OrderStatusEnum}}" SelectedItem="{Binding Status, Mode=TwoWay}"/>
+                            <TextBlock Text="{Binding Status}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
+                <DataGridTemplateColumn Header="עדכון סטטוס" x:Name="updateStatus">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Source={StaticResource OrderStatusEnum}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="עדכון הזמנות" HorizontalAlignment="Left" Margin="310,255.667,0,-247.667" Grid.Row="1" VerticalAlignment="Top" Width="150" Click="UpdateOrders"/>
+        <Button Content="עדכון הזמנות" HorizontalAlignment="Left" Margin="303,170.333,0,0" Grid.Row="2" VerticalAlignment="Top" Width="150" Click="UpdateOrders"/>
     </Grid>
 
 </Window>

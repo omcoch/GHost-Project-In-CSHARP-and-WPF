@@ -23,6 +23,7 @@ namespace PLWPF
     {
         IBL bL = BlFactory.getBl();
 
+
         public OrdersList()
         {
             Cookies.PrevWindow = this.GetType().Name;
@@ -43,6 +44,7 @@ namespace PLWPF
             {
                 foreach (Order order in orderDataGrid.SelectedItems)
                 {
+                    
                     bL.UpdateOrder(order);
                 }
                 MessageBox.Show("ההזמנות עודכנו בהצלחה!");

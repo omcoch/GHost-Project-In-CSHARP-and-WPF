@@ -12,7 +12,7 @@ namespace BE
         public int HostingUnitKey { get; set;}
         public int GuestRequestKey { get; set; }
         public int OrderKey { get; set; }
-
+        /// <summary> סטטוס ההזמנה </summary>
         public OrderStatus Status { get; set; }
         /// <summary> תאריך יצירת ההזמנה </summary>
         public DateTime CreateDate { get; set; } 
