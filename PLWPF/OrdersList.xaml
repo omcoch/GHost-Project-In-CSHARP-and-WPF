@@ -27,7 +27,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <local:Header Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800"/>
-        <DataGrid CanUserDeleteRows="False" FlowDirection="RightToLeft" x:Name="orderDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="54,25.667,62.333,-165.333" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionMode="Single" IsSynchronizedWithCurrentItem="False" MaxHeight="230" Height="230">
+        <DataGrid CanUserDeleteRows="False" FlowDirection="RightToLeft" x:Name="orderDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="54,25.667,62.333,-165.333" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionMode="Extended" IsSynchronizedWithCurrentItem="False" MaxHeight="230" Height="230">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="orderKeyColumn" Header="הזמנה">
                     <DataGridTemplateColumn.CellTemplate>
@@ -65,18 +65,10 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn x:Name="statusColumn" Header="סטטוס נוכחי" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Status}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
                 <DataGridTemplateColumn Header="עדכון סטטוס" x:Name="updateStatus">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Source={StaticResource OrderStatusEnum}}"/>
+                            <ComboBox ItemsSource="{Binding Source={StaticResource OrderStatusEnum}}" SelectedItem="{Binding Status, Mode=TwoWay}" SelectionChanged="status_SelectionChanged"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

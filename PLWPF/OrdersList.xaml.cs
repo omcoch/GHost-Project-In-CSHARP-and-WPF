@@ -43,8 +43,7 @@ namespace PLWPF
             try
             {
                 foreach (Order order in orderDataGrid.SelectedItems)
-                {
-                    
+                {                    
                     bL.UpdateOrder(order);
                 }
                 MessageBox.Show("ההזמנות עודכנו בהצלחה!");
@@ -53,6 +52,11 @@ namespace PLWPF
             {
                 MessageBox.Show(err.Message);
             }
+        }
+
+        private void status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
