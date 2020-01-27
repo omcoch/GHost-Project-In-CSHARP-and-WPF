@@ -22,12 +22,12 @@
 
     <Grid DataContext="{StaticResource orderViewSource}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <local:Header Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800"/>
-        <DataGrid CanUserDeleteRows="False" FlowDirection="RightToLeft" x:Name="orderDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="54,25.667,62.333,-165.333" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionMode="Extended" IsSynchronizedWithCurrentItem="False" MaxHeight="230" Height="230">
+        <DataGrid CanUserDeleteRows="False" FlowDirection="RightToLeft" x:Name="orderDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="58,25,58,75" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionMode="Extended" IsSynchronizedWithCurrentItem="False" MaxHeight="230" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="orderKeyColumn" Header="הזמנה">
                     <DataGridTemplateColumn.CellTemplate>
@@ -68,14 +68,14 @@
                 <DataGridTemplateColumn Header="עדכון סטטוס" x:Name="updateStatus">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Source={StaticResource OrderStatusEnum}}" SelectedItem="{Binding Status, Mode=TwoWay}" SelectionChanged="status_SelectionChanged"/>
+                            <ComboBox ItemsSource="{Binding Source={StaticResource OrderStatusEnum}}" SelectedItem="{Binding Status, Mode=TwoWay}" SelectionChanged="Status_SelectionChanged"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="עדכון הזמנות" HorizontalAlignment="Left" Margin="303,170.333,0,0" Grid.Row="2" VerticalAlignment="Top" Width="150" Click="UpdateOrders"/>
+        <Button Content="עדכון הזמנות" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Bottom" Width="150" Click="UpdateOrders" Margin="322,0,321.6,10" />
     </Grid>
 
 </Window>

@@ -33,8 +33,7 @@ namespace PLWPF
         }
 
         private void OpenHostingUnitForm(object sender, RoutedEventArgs e)
-        {
-            //new HostingUnitForm(bL.GetHostingUnit(10000000)).Show();
+        { 
             new HostingUnitForm().Show();
             Close();
         }

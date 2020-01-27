@@ -13,13 +13,13 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <local:Header Grid.Row="0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="auto"/>
+        <local:Header Grid.Row="0"/>
 
-        <Button Grid.Row="1" Content="רשימת לקוחות" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="500,159.667,149.333,-156" Click="OpenGuestRequestList"/>
-        <Button Grid.Row="1" Content="רשימת הזמנות" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="165,0,494.333,-156" Click="OpenOrderList"/>
+        <Button Grid.Row="1" Content="רשימת לקוחות" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="505,160.2,150.6,-155.8" Click="OpenGuestRequestList" Width="138"/>
+        <Button Grid.Row="1" Content="רשימת הזמנות" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="161,0,494.6,-155.8" Click="OpenOrderList" Width="138"/>
 
     </Grid>
 </Window>

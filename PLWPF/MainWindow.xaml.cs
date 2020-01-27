@@ -43,6 +43,11 @@ namespace PLWPF
         {
             new HostLogin(){ Owner = this }.ShowDialog();                  
         }
+        private void OpenAdmin(object sender, RoutedEventArgs e)
+        {
+            new AdminWindow().Show();
+            Close();
+        }
 
     }
 }

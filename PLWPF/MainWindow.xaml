@@ -14,16 +14,18 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="90" x:Name="HeaderGrid" />
+            <RowDefinition Height="auto" x:Name="HeaderGrid" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Content="הוספת דרישת לקוח" Grid.Column="1" HorizontalAlignment="Left" Margin="120,127,0,0" Grid.Row="1" VerticalAlignment="Top"  Click="OpenGuestRequestWindow"/>
-        <Button Content="כניסת מארח" Grid.Column="0" HorizontalAlignment="Left" Margin="145,127,0,0" Grid.Row="1" VerticalAlignment="Top"  Click="OpenHostWindow"/>
-        <local:Header x:Name="Header" Grid.Row="0" Grid.ColumnSpan="2"></local:Header>
+        <Button Content="הוספת דרישת לקוח" Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center"  Click="OpenGuestRequestWindow"/>
+        <Button Content="כניסת מארח" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center"  Click="OpenHostWindow"/>
+        <Button Content="מנהל האתר" Grid.Column="0" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center"  Click="OpenAdmin"/>
+        <local:Header x:Name="Header" Grid.Row="0" Grid.ColumnSpan="3"></local:Header>
     </Grid>
 
 </Window>

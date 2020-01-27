@@ -54,9 +54,10 @@ namespace PLWPF
             }
         }
 
-        private void status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if(orderDataGrid.SelectedItem!=null)
+                ((Order)orderDataGrid.SelectedItem).Status = (OrderStatus)e.AddedItems[0];
         }
     }
 }

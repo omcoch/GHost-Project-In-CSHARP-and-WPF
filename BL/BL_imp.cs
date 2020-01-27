@@ -79,7 +79,7 @@ namespace BL
         {
             while (entryDate <= releaseDate)
             {
-                if (diary[entryDate.Month, entryDate.Day])
+                if (diary[entryDate.Month-1, entryDate.Day-1])
                     return false;
                 entryDate = entryDate.AddDays(1);
             }
@@ -206,7 +206,7 @@ namespace BL
             MailMessage message = new MailMessage();
             message.To.Add(guestRequest.MailAddress);
             message.Subject = "נוצרה הזמנה עבור דרישת לקוח מספר " + guestRequest.guestRequestKey;
-            message.Body = "שלום, " + guestRequest.PrivateName + "\nנפתחנ עבורך הזמנה לאירוח אצל " + hostingUnit.HostingUnitName
+            message.Body = "שלום, " + guestRequest.PrivateName + "\nנפתחה עבורך הזמנה לאירוח אצל " + hostingUnit.HostingUnitName
                 + ".\nמספר ההזמנה: " + orderKey + "\nאנא צור קשר עם המארח בכתובת " + mailAddress + "\nבברכת חופשה מהנה, \n" + Configuration.SiteName;
             return Tools.SendMail(message);
         }
@@ -220,7 +220,7 @@ namespace BL
         {
             while (entry <= release)
             {
-                hostingUnit.Diary[entry.Month, entry.Day] = true;
+                hostingUnit.Diary[entry.Month-1, entry.Day-1] = true;
                 entry = entry.AddDays(1);
             }
         }

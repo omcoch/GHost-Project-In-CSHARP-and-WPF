@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PLWPF"
              xmlns:BE="clr-namespace:BE;assembly=BE"
-             mc:Ignorable="d" d:DesignWidth="800" Height="122">
+             mc:Ignorable="d" d:DesignWidth="790" Height="122">
     <UserControl.DataContext>
         <BE:Configuration/>
     </UserControl.DataContext>
@@ -16,20 +16,20 @@
             <GradientStop Color="#FF7BFFEF" Offset="1"/>
         </LinearGradientBrush>
     </UserControl.Background>
-    <Grid Width="800" HorizontalAlignment="Stretch" Height="auto">
+    <Grid HorizontalAlignment="Stretch" Height="auto" Margin="0,0,0.4,-0.4">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="160*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="88,28,0,17" Width="549" FontSize="36" FlowDirection="RightToLeft" Foreground="White" FontWeight="Bold" Grid.ColumnSpan="3"><Run Text="אתר התאמת נופש - G-Host"/></TextBlock>
-        <Button Name="HomeButton" HorizontalAlignment="Left" Margin="13,16,0,0" VerticalAlignment="Top" Width="75" Grid.Column="0" Click="GoHome" Height="71">
+        <TextBlock  HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"  Width="461" FontSize="36" FlowDirection="RightToLeft" Foreground="White" FontWeight="Bold" Grid.Column="1"><Run Text="אתר התאמת נופש - G-Host"/></TextBlock>
+        <Button Name="HomeButton" HorizontalAlignment="Left" Margin="20,16,0,0" VerticalAlignment="Top" Width="75" Grid.Column="0" Click="GoHome" Height="71">
             <Button.Background>
                 <ImageBrush ImageSource ="../usercontrols/home.jpg"></ImageBrush>
             </Button.Background>
         </Button>
-        <Button Name="GoBackButton" Content="הקודם" Grid.Column="2" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="75" Click="GoBackWindow" />
-        <TextBlock Name="LogOutButton" HorizontalAlignment="Left" Margin="33,96,0,0" TextWrapping="Wrap" Text="התנתק" VerticalAlignment="Top" Foreground="Black" TextDecorations="Underline" MouseLeftButtonUp="LogOut">
+        <Button Name="GoBackButton" Content="הקודם" Grid.Column="2" HorizontalAlignment="Right" Margin="0,16,20,0" VerticalAlignment="Top" Width="75" Click="GoBackWindow" Height="71" />
+        <TextBlock Name="LogOutButton" HorizontalAlignment="Left" Margin="38,96,0,0" TextWrapping="Wrap" Text="התנתק" VerticalAlignment="Top" Foreground="Black" TextDecorations="Underline" MouseLeftButtonUp="LogOut">
         </TextBlock>
 
     </Grid>

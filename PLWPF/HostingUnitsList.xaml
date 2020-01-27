@@ -18,7 +18,7 @@
     </Window.DataContext>
 
     <Grid>
-        <local:Header HorizontalAlignment="Left" VerticalAlignment="Top" Width="793" Height="123"/>
+        <local:Header HorizontalAlignment="Left" VerticalAlignment="Top" Width="794" Height="123" Margin="0,0,-0.4,0"/>
 
         <DataGrid CanUserDeleteRows="False" x:Name="hostingUnitDataGrid" SelectionMode="Single" IsSynchronizedWithCurrentItem="False"  AutoGenerateColumns="False" Height="Auto"  CanUserAddRows="False" ItemsSource="{Binding Source={StaticResource hostingUnitViewSource}}" Margin="176,145,157.333,145.667" RowDetailsVisibilityMode="VisibleWhenSelected" FlowDirection="RightToLeft" SelectedCellsChanged="HostingUnitDataGrid_SelectedCellsChanged">
             <DataGrid.Columns>
