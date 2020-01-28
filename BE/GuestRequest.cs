@@ -38,16 +38,12 @@ namespace BE
         public override string ToString()
         {
             string str = "Name: " + PrivateName + " " + FamilyName +
-                "\nStatus: " + Status +
-                "\nRegistration date: " + RegistrationDate.ToShortDateString() +
+                "\nStatus: " + Status + "Registration date: " + RegistrationDate.ToShortDateString() +
                 "\nEntry date: " + EntryDate.ToShortDateString() + " Release date: " + ReleaseDate.ToShortDateString() +
-                "\nArea: " + Area + " sub area: " + SubArea +
-                "\nType: " + Type +
+                "\nArea: " + Area + " sub area: " + SubArea + "Type: " + Type +
                 "\nNumber of adults: " + Adults + " and childrens: " + Children +
-                "\nWant Pool: " + Pool +
-                "\nWant Jacuzzi: " + Jacuzzi +
-                "\nWant Garden: " + Garden +
-                "\nWant Childrens Attractions: " + ChildrensAttractions;
+                "\nWant Pool: " + Pool + "Want Jacuzzi: " + Jacuzzi +     
+                "\nWant Garden: " + Garden + "Want Childrens Attractions: " + ChildrensAttractions;     
             return str;
         }
     }

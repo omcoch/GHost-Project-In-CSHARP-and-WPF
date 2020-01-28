@@ -80,7 +80,7 @@ namespace DAL
 
         public List<BankBranch> GetBankBranches()
         {
-            
+            throw new Exception();//ToDo: צריך לעשות את זה
         }
 
         public List<GuestRequest> GetGuestRequests()
@@ -112,6 +112,7 @@ namespace DAL
                 throw new KeyNotFoundException("יחידת אירוח לא קיימת");
             else
                 hostingUnit.Remove();
+            DSXML.SaveHostingUnits();
         }
 
         public void UpdateGuestRequest(GuestRequest guestRequest)
@@ -125,6 +126,7 @@ namespace DAL
             {
                 oldGR.Remove();
                 DSXML.GuestRequests.Add(guestRequest.ToXML());
+                DSXML.SaveGuestRequests();
             }
             else
                 throw new ArgumentException("דרישת לקוח לא קיימת") { Source = "DAL" };
@@ -139,6 +141,7 @@ namespace DAL
             {
                 oldH.Remove();
                 DSXML.Hosts.Add(host.ToXML());
+                DSXML.SaveHosts();
             }
             else
                 throw new ArgumentException("המארח לא קיים") { Source = "DAL" };
@@ -167,6 +170,7 @@ namespace DAL
             {
                 old.Remove();
                 DSXML.Orders.Add(order.ToXML());
+                DSXML.SaveOrders();
             }
             else
                 throw new ArgumentException("הזמנה לא קיימת") { Source = "DAL" };

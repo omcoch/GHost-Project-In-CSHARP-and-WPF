@@ -77,10 +77,18 @@ namespace PLWPF
             {
                 case ChoiceList.GuestRequest:
                     if (QueryComboBox.SelectedItem.ToString() == "קבץ לפי אזור")
-                        foreach (var group in bL.GetGuestRequestsGroupByArea())
+                    {
+                        var v=new UserControls.GuestRequestView();
+                        
+                        foreach (var item in bL.GetGuestRequestsGroupByArea())
                         {
-                            
+                            foreach (var gu in item)
+                            {
+                                v.Collection.Add(gu);
+                            } 
                         }
+                        ContentControl.Content = v;
+                    }
                     else
                         bL.GetGuestRequestsGroupByVacationersNumber();
                     break;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,11 @@ namespace PLWPF.UserControls
     /// </summary>
     public partial class GuestRequestView : UserControl
     {
+        public ObservableCollection<BE.GuestRequest> Collection=new ObservableCollection<BE.GuestRequest>();
         public GuestRequestView()
         {
             InitializeComponent();
+            DataContext = Collection;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
