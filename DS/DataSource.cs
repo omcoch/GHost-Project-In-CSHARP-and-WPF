@@ -6,7 +6,7 @@ namespace DS
 {
     public class DataSource
     {
-        public static List<GuestRequest> GuestRequests = new List<GuestRequest>() { new GuestRequest() { guestRequestKey=Configuration.GenerateGuestRequestSerialKey } };
+        public static List<GuestRequest> GuestRequests = new List<GuestRequest>() { new GuestRequest() { guestRequestKey=Configuration.GenerateGuestRequestSerialKey,Area=Regions.דרום }, new GuestRequest() { guestRequestKey = Configuration.GenerateGuestRequestSerialKey, Area = Regions.צפון } };
         public static List<HostingUnit> HostingUnits = new List<HostingUnit>()
         {
             new HostingUnit()

@@ -35,16 +35,15 @@ namespace BE
 
         public override string ToString()
         {
-            string str = 
-                "Owner ID: " + OwnerKey +
-                "\nHosting Unit Name: " + HostingUnitName +
-                "\nArea: " + Area + " sub area: " + SubArea +
-                "\nType: " + Type +
-                "\nNumber of adults: " + Adults + " and childrens: " + Children +
-                "\nHave Pool? " + Pool +
-                "\nHave Jacuzzi? " + Jacuzzi +
-                "\nHave Garden? " + Garden +
-                "\nHave Childrens Attractions? " + ChildrensAttractions;
+            string str ="מספר זהות בעל היחידה: " + OwnerKey +
+                "\nשם יחידת אירוח: " + HostingUnitName +
+                "\nאזור: " + Area + " תת אזור: " + SubArea +
+                "\nסוג: " + Type +
+                "\nמספר מבוגרים: " + Adults + " וילדים: " + Children +
+                "\nיש בריכה? " + (Pool ? "כן" : "לא") +
+                "\nיש ג'קוזי? " + (Jacuzzi ? "כן" : "לא") +
+                "\nיש גינה? " + (Garden ? "כן" : "לא") +
+                "\nיש אטרקציות לילדים? " + ChildrensAttractions;
             return str;
         }
     }

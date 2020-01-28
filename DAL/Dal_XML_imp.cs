@@ -80,7 +80,7 @@ namespace DAL
 
         public List<BankBranch> GetBankBranches()
         {
-            throw new Exception();
+            throw new Exception();//ToDo: צריך לעשות את זה
         }
 
         public List<GuestRequest> GetGuestRequests()
@@ -110,9 +110,8 @@ namespace DAL
 
             if (null == hostingUnit)
                 throw new KeyNotFoundException("יחידת אירוח לא קיימת");
-            
-            hostingUnit.Remove();
-            DSXML.SaveHostingUnits();
+            else
+                hostingUnit.Remove();
         }
 
         public void UpdateGuestRequest(GuestRequest guestRequest)

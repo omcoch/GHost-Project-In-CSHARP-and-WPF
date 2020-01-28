@@ -21,9 +21,11 @@ namespace BE
 
         public override string ToString()
         {
-            return "Status: " + Status
-                + "\nCreate Date: " + CreateDate
-                + "\nOrder Date: " + OrderDate;
+            return "מספר הזמנה:"+
+                "\nמזהה לקוח: " + HostingUnitKey+" מזהה יחידת אירוח: "+ GuestRequestKey+
+                "\nסטטוס: " + Status
+                + "\nתאריך יצירה: " + CreateDate
+                + "\nתאריך שליחת מייל: " + OrderDate;
         }
     }
 }

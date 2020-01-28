@@ -9,33 +9,39 @@
         mc:Ignorable="d"
         xmlns:core="clr-namespace:System;assembly=mscorlib"
         Title="{Binding Path=SiteName, StringFormat=' מנהל האתר- {0}'}"
-        Height="450" Width="800">
+        Height="{Binding ElementName=listBox, Path=ActualHeight }" Width="800">
     <Window.DataContext>
         <BE:Configuration/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="140*" x:Name="HeaderGrid" />
-            <RowDefinition Height="71*" />
-            <RowDefinition Height="210*"/>
+            <RowDefinition Height="136" x:Name="HeaderGrid" />
+            <RowDefinition Height="68.8" />
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <local:Header  Grid.Row="0" Margin="0,9,0.333,9" ></local:Header>
+        <local:Header  Grid.Row="0" Margin="0,9,0.6,4" Height="Auto" ></local:Header>
 
-        <ComboBox Grid.Row="1" Name="ConditionComboBox" HorizontalAlignment="Left" Margin="113,27,0,0" VerticalAlignment="Top" Width="120" />
+        <ComboBox Grid.Row="1" Name="ConditionComboBox" HorizontalAlignment="Left" Margin="113,26,0,0" VerticalAlignment="Top" Width="120" Height="23" />
 
-        <Label Grid.Row="1" Name="QueryLabel" Content="בחר שאילתא:" HorizontalAlignment="Left" Margin="408,23,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
-        <ComboBox Grid.Row="1" SelectionChanged="QueryComboBox_SelectionChanged" FlowDirection="RightToLeft" Name="QueryComboBox" HorizontalAlignment="Left" Margin="238,27,0,0" VerticalAlignment="Top" Width="auto"/>
+        <Label Grid.Row="1" Name="QueryLabel" Content="בחר שאילתא:" HorizontalAlignment="Left" Margin="408,22,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" Height="26" Width="80"/>
+        <ComboBox Grid.Row="1" SelectionChanged="QueryComboBox_SelectionChanged" FlowDirection="RightToLeft" Name="QueryComboBox" HorizontalAlignment="Left" Margin="238,26,0,0" VerticalAlignment="Top" Width="auto" Height="23"/>
 
-        <Label Grid.Row="1" Content="בחר רשימה:" HorizontalAlignment="Left" Margin="695,27,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
-        <ComboBox Grid.Row="1" x:Name="ListComboBox" SelectedIndex="0" HorizontalAlignment="Left" Margin="545,27,0,0" VerticalAlignment="Top" Width="auto" SelectionChanged="ComboBox_SelectionChanged">
+        <Label Grid.Row="1" Content="בחר רשימה:" HorizontalAlignment="Left" Margin="695,26,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" Height="26" Width="74"/>
+        <ComboBox Grid.Row="1" x:Name="ListComboBox" SelectedIndex="0" HorizontalAlignment="Left" Margin="545,26,0,0" VerticalAlignment="Top" Width="134" SelectionChanged="ComboBox_SelectionChanged" Height="23">
             <ComboBoxItem  Content="רשימת דרישות לקוח"/>
             <ComboBoxItem Content="רשימת מארחים"/>
             <ComboBoxItem Content="רשימת יחידות אירוח"/>
             <ComboBoxItem Content="רשימת הזמנות"/>
         </ComboBox>
-        <Button Padding="0" Grid.Row="1" Content="בחר" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Width="58" Height="23" Click="Choose_Click"/>
-
-        
-
+        <Button Padding="0" Grid.Row="1" Content="בחר" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="58" Height="23" Click="Choose_Click"/>
+        <ListBox Grid.Row="2" ItemsSource="{Binding}" x:Name="listBox" FlowDirection="RightToLeft"
+                 MinHeight="60"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
     </Grid>
 </Window>

@@ -1,11 +1,10 @@
-﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl x:Class="PLWPF.UserControls.HostView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PLWPF.UserControls"
-             xmlns:BE="clr-namespace:BE;assembly=BE" 
-             x:Class="PLWPF.UserControls.GuestRequestView"
-             mc:Ignorable="d" Width="auto" Height="auto">
+             xmlns:BE="clr-namespace:BE;assembly=BE" >
     <StackPanel>
         <GroupBox Header="GroupBox" HorizontalAlignment="Left"   VerticalAlignment="Top"   Name="group">
             <ListView ItemsSource="{Binding}"  HorizontalContentAlignment="Stretch" MaxHeight="400" >
