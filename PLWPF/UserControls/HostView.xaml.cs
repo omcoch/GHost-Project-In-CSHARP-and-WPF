@@ -17,17 +17,15 @@ using System.Windows.Shapes;
 namespace PLWPF.UserControls
 {
     /// <summary>
-    /// Interaction logic for GuestRequestView.xaml
+    /// Interaction logic for HostView.xaml
     /// </summary>
-    public partial class GuestRequestView : UserControl
+    public partial class HostView : UserControl
     {
-        public ObservableCollection<BE.GuestRequest> Collection=new ObservableCollection<BE.GuestRequest>();
-        public GuestRequestView()
+        public ObservableCollection<BE.Host> Collection = new ObservableCollection<BE.Host>();
+        public HostView()
         {
             InitializeComponent();
             DataContext = Collection;
         }
-
-
     }
 }

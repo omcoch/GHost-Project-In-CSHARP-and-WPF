@@ -37,13 +37,14 @@ namespace BE
 
         public override string ToString()
         {
-            string str = "Name: " + PrivateName + " " + FamilyName +
-                "\nStatus: " + Status + "Registration date: " + RegistrationDate.ToShortDateString() +
-                "\nEntry date: " + EntryDate.ToShortDateString() + " Release date: " + ReleaseDate.ToShortDateString() +
-                "\nArea: " + Area + " sub area: " + SubArea + "Type: " + Type +
-                "\nNumber of adults: " + Adults + " and childrens: " + Children +
-                "\nWant Pool: " + Pool + "Want Jacuzzi: " + Jacuzzi +     
-                "\nWant Garden: " + Garden + "Want Childrens Attractions: " + ChildrensAttractions;     
+            string str = "מזהה בקשת לקוח: "+ guestRequestKey+
+                "\nשם: " + PrivateName + " " + FamilyName +
+                "\nסטטוס: " + Status + " תאריך הרשמה: " + RegistrationDate.ToShortDateString() +
+                "\nתאריך כניסה: " + EntryDate.ToShortDateString() + " תאריך עזיבה: " + ReleaseDate.ToShortDateString() +
+                "\nאזור: " + Area + " תת אזור: " + SubArea + " סוג: " + Type +
+                "\nמספר מבוגרים: " + Adults + " וילדים: " + Children +
+                "\nבריכה: " + Pool + " ג'קוזי: " + Jacuzzi +     
+                "\nגינה: " + Garden + " אטרקציות לילדים: " + ChildrensAttractions;     
             return str;
         }
     }
