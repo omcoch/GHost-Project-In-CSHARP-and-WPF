@@ -116,22 +116,60 @@ namespace DAL
 
         public void UpdateGuestRequest(GuestRequest guestRequest)
         {
-            
+            var oldGR = (from GR in DSXML.GuestRequests.Elements("GuestRequest")
+                    where int.Parse(GR.Element("guestRequestKey").Value) == guestRequest.guestRequestKey
+                    select GR)
+                    .FirstOrDefault();
+
+            if (oldGR != null)
+            {
+                oldGR.Remove();
+                DSXML.GuestRequests.Add(guestRequest.ToXML());
+            }
+            else
+                throw new ArgumentException("דרישת לקוח לא קיימת") { Source = "DAL" };
         }
 
         public void UpdateHost(Host host)
         {
-            throw new NotImplementedException();
+            var oldH = (from h in DSXML.Hosts.Elements("Host")
+                    where int.Parse(h.Element("HostKey").Value) == host.HostKey
+                    select h).FirstOrDefault();
+            if (oldH != null)
+            {
+                oldH.Remove();
+                DSXML.Hosts.Add(host.ToXML());
+            }
+            else
+                throw new ArgumentException("המארח לא קיים") { Source = "DAL" };
         }
 
         public void UpdateHostingUnit(HostingUnit hostingUnit)
         {
-            throw new NotImplementedException();
+            var old = DSXML.HostingUnits.Elements("hostingUnit")
+                .FirstOrDefault(hu => int.Parse(hu.Element("HostingUnitKey").Value) == hostingUnit.HostingUnitKey);
+
+            if (old != null)
+            {
+                old.Remove();
+                DSXML.SaveToXMLSerialize(hostingUnit, "HostingUnit");
+            }
+            else
+                throw new ArgumentException("יחידת אירוח לא קיימת") { Source = "DAL" };
         }
 
         public void UpdateOrder(Order order)
         {
-            throw new NotImplementedException();
+            var old = (from O in DSXML.Orders.Elements("Order")
+                    where int.Parse(O.Element("OrderKey").Value) == order.OrderKey
+                    select O).FirstOrDefault();
+            if (old != null)
+            {
+                old.Remove();
+                DSXML.Orders.Add(order.ToXML());
+            }
+            else
+                throw new ArgumentException("הזמנה לא קיימת") { Source = "DAL" };
         }
     }
 }
