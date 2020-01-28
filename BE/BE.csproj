@@ -54,5 +54,11 @@
     <Compile Include="Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{dd71081b-5da8-442c-9ea6-02abd2767b81}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

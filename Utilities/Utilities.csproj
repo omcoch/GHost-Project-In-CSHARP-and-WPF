@@ -46,11 +46,5 @@
     <Compile Include="Tools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BE\BE.csproj">
-      <Project>{342b2eee-ebaf-4a04-8b38-01f7d107708d}</Project>
-      <Name>BE</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

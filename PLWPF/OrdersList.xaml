@@ -27,7 +27,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <local:Header Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="800"/>
-        <DataGrid CanUserDeleteRows="False" FlowDirection="RightToLeft" x:Name="orderDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="58,25,58,75" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionMode="Extended" IsSynchronizedWithCurrentItem="False" MaxHeight="230" Grid.RowSpan="2">
+        <DataGrid CanUserDeleteRows="False" FlowDirection="RightToLeft" x:Name="orderDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="22,19,37.333,80.667" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionMode="Extended" IsSynchronizedWithCurrentItem="False" MaxHeight="230" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="orderKeyColumn" Header="הזמנה">
                     <DataGridTemplateColumn.CellTemplate>

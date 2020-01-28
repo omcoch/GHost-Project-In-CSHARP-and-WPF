@@ -6,33 +6,12 @@ using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using BE;
 
 namespace Utilities
 {
-    public class Tools
+    public static class Tools
     {
-        public static bool SendMail(MailMessage message)
-        {
-            message.From = new MailAddress(Configuration.SiteName);
-            // Smtp
-            SmtpClient smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Credentials = new System.Net.NetworkCredential(Configuration.AdminMailAddress.ToString(), "myGmailPassword"), // todo: להכניס סיסמה אמיתית
-                EnableSsl = true
-            };
-
-            try
-            {
-                smtp.Send(message);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        
         public static bool ValidateString(string str)
         {
             return !String.IsNullOrEmpty(str) && Regex.IsMatch(str, "^[א-תa-zA-Z ]+$");
@@ -58,6 +37,36 @@ namespace Utilities
         public static bool ValidateEmailAddress(string text)
         {
             return !String.IsNullOrEmpty(text) && new EmailAddressAttribute().IsValid(text);
+        }
+
+        public static T[] Flatten<T>(this T[,] arr)
+        {
+            int rows = arr.GetLength(0);
+            int columns = arr.GetLength(1);
+            T[] arrFlattened = new T[rows * columns];
+            for (int j = 0; j < columns; j++)
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    var test = arr[i, j];
+                    arrFlattened[i + j * rows] = arr[i, j];
+                }
+            }
+            return arrFlattened;
+        }
+        public static T[,] Expand<T>(this T[] arr, int rows)
+        {
+            int length = arr.GetLength(0);
+            int columns = length / rows;
+            T[,] arrExpanded = new T[rows, columns];
+            for (int j = 0; j < rows; j++)
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    arrExpanded[i, j] = arr[i + j * rows];
+                }
+            }
+            return arrExpanded;
         }
     }
 }

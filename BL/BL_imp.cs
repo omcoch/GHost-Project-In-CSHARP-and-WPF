@@ -208,7 +208,7 @@ namespace BL
             message.Subject = "נוצרה הזמנה עבור דרישת לקוח מספר " + guestRequest.guestRequestKey;
             message.Body = "שלום, " + guestRequest.PrivateName + "\nנפתחה עבורך הזמנה לאירוח אצל " + hostingUnit.HostingUnitName
                 + ".\nמספר ההזמנה: " + orderKey + "\nאנא צור קשר עם המארח בכתובת " + mailAddress + "\nבברכת חופשה מהנה, \n" + Configuration.SiteName;
-            return Tools.SendMail(message);
+            return SendMail(message);
         }
 
         int CalculateFee(int amountDays)
@@ -275,6 +275,10 @@ namespace BL
         {
             return dal.GetGuestRequests().GroupBy(item => item.Area == area);
         }
+        public IEnumerable<IGrouping<Regions, GuestRequest>> GetGuestRequestsGroupByArea()
+        {
+            return dal.GetGuestRequests().GroupBy(item => item.Area);
+        }
 
         public IEnumerable<IGrouping<int, GuestRequest>> GetGuestRequestsGroupByVacationersNumber()
         {
@@ -293,7 +297,11 @@ namespace BL
             return from hu in dal.GetHostingUnits()
                    group hu by (hu.Area == area);
         }
-
+        public IEnumerable<IGrouping<Regions, HostingUnit>> GetHostingUnitsGroupByArea()
+        {
+            return from hu in dal.GetHostingUnits()
+                   group hu by (hu.Area);
+        }
         public IEnumerable<IGrouping<BankBranch, Host>> GetHostsGroupByBankBranch()
         {
             return from host in dal.GetHosts()
@@ -360,6 +368,26 @@ namespace BL
                     select order).ToList<Order>();
         }
 
-        //todo: לבדןוק CLONE לגבי FIRST, FIND ETC...
+        public static bool SendMail(MailMessage message)
+        {
+            message.From = new MailAddress(Configuration.SiteName);
+            // Smtp
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Credentials = new System.Net.NetworkCredential(Configuration.AdminMailAddress.ToString(), "myGmailPassword"), // todo: להכניס סיסמה אמיתית
+                EnableSsl = true
+            };
+
+            try
+            {
+                smtp.Send(message);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Utilities;
 
 namespace BE
 {
@@ -11,8 +13,15 @@ namespace BE
         public int HostingUnitKey { get; set; }
         public int OwnerKey { get; set; }
         public string HostingUnitName { get; set; }
+        [XmlIgnore]
         public bool[,] Diary { get; set; }
-
+        //optional. tell the XmlSerializer to name the Array Element as'Board' instead of 'BoaredDto'
+        [XmlArray("Diary")]
+        public bool[] DiaryArray
+        {
+            get { return Diary.Flatten(); }
+            set { Diary = value.Expand(5); } //5 is the number of roes in the matrix
+        }
         public Regions Area { get; set; }
         public string SubArea { get; set; }
         public GRType Type { get; set; }

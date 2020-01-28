@@ -9,7 +9,8 @@ namespace DAL
     {
         public static IDAL getDal()
         {
-            return Dal_list_imp.GetInstance();
+            //return Dal_imp.GetInstance();
+            return Dal_XML_imp.GetInstance();
         }
     }
 }
