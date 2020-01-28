@@ -162,6 +162,7 @@ namespace DS
 
         public static void SaveToXMLSerialize<T>(T source, string path)
         {
+            path = Path.Combine(filePath, path + ".xml");
             FileStream file = new FileStream(path, FileMode.Create);
             XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
             xmlSerializer.Serialize(file, source);
@@ -170,6 +171,7 @@ namespace DS
 
         public static T LoadFromXMLSerialize<T>(string path)
         {
+            path = Path.Combine(filePath, path + ".xml");
             FileStream file = new FileStream(path, FileMode.Open);
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             T result = (T)xmlSerializer.Deserialize(file);
@@ -177,7 +179,15 @@ namespace DS
             return result;
         }
 
-    
+        public static string ToXMLstring<T>(this T toSerialize)
+        {
+            using (StringWriter textWriter = new StringWriter())
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                xmlSerializer.Serialize(textWriter, toSerialize);
+                return textWriter.ToString();
+            }
+        }
 
         public static T ToObject<T>(this string toDeserialize)
         {

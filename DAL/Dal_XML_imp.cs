@@ -59,52 +59,64 @@ namespace DAL
 
         public int AddHostingUnit(HostingUnit hostingUnit)
         {
-            hostingUnit.HostingUnitKey = hostingUnitSerialKey++;
-
-            
+            hostingUnit.HostingUnitKey = hostingUnitSerialKey++;            
             hostingUnit.Diary = new bool[12, 31]; // יצירת יומן חדש
-            hostingUnit.
+            DSXML.SaveToXMLSerialize(hostingUnit, "HostingUnit");
             return hostingUnit.HostingUnitKey;
         }
 
         public int AddOrder(Order order)
         {
-            throw new NotImplementedException();
+            order.OrderKey = orderSerialKey++;
+
+            DS.DSXML.Orders.Add(order.ToXML());
+            DS.DSXML.SaveOrders();
+
+            DS.DSXML.Configs.Element("orderSerialKey").Value = orderSerialKey.ToString();
+            DS.DSXML.SaveConfigs();
+
+            return order.OrderKey;
         }
 
         public List<BankBranch> GetBankBranches()
         {
-            throw new NotImplementedException();
+            
         }
 
         public List<GuestRequest> GetGuestRequests()
         {
-            throw new NotImplementedException();
+            return DSXML.LoadFromXMLSerialize<List<GuestRequest>>("GuestRequest");
         }
 
         public List<HostingUnit> GetHostingUnits()
         {
-            throw new NotImplementedException();
+            return DSXML.LoadFromXMLSerialize<List<HostingUnit>>("HostingUnit");
         }
 
         public List<Host> GetHosts()
         {
-            throw new NotImplementedException();
+            return DSXML.LoadFromXMLSerialize<List<Host>>("Host");
         }
 
         public List<Order> GetOrders()
         {
-            throw new NotImplementedException();
+            return DSXML.LoadFromXMLSerialize<List<Order>>("Order");
         }
 
         public void RemoveHostingUnit(int key)
         {
-            throw new NotImplementedException();
+            var hostingUnit = DSXML.HostingUnits.Elements("HostingUnit")
+                .FirstOrDefault(k => key == int.Parse(k.Element("HostingUnitKey").Value));
+
+            if (null == hostingUnit)
+                throw new KeyNotFoundException("יחידת אירוח לא קיימת");
+            else
+                hostingUnit.Remove();
         }
 
         public void UpdateGuestRequest(GuestRequest guestRequest)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void UpdateHost(Host host)
