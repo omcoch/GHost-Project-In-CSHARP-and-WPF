@@ -11,8 +11,7 @@ namespace DS
 {
     public static class DSXML
     {
-        private static string filePath = @"./XML";
-        //private static string filePath = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName, "DataSource", "XML");
+        private static string filePath = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName, "DS", "XML");
         private static XElement orderRoot = null;
         private static XElement guestRequestRoot = null;
         private static XElement hostRoot = null;
@@ -60,13 +59,15 @@ namespace DS
             if (!File.Exists(configPath))
             {
                 CreateFile("Config", configPath);
+                configRoot = LoadData(configPath);
                 // הכנסת ערכי ברירת מחדל למספרים רצים
                 configRoot.Add(new XElement("guestRequestSerialKey", 10000000));
                 configRoot.Add(new XElement("orderSerialKey", 10000000));
                 configRoot.Add(new XElement("hostingUnitSerialKey", 10000000));
                 SaveConfigs();
             }
-            configRoot = LoadData(configPath);
+            else
+                configRoot = LoadData(configPath);
 
         }
         private static void CreateFile(string typename, string path)

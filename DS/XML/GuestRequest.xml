@@ -1,1 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GuestRequests>
+  <GuestRequest>
+    <Adults>0</Adults>
+    <Area>דרום</Area>
+    <Children>3</Children>
+    <ChildrensAttractions>לא_מעוניין</ChildrensAttractions>
+    <EntryDate>2020-01-28T00:00:00+02:00</EntryDate>
+    <FamilyName>כוכבי</FamilyName>
+    <Garden>אפשרי</Garden>
+    <guestRequestKey>10000000</guestRequestKey>
+    <Jacuzzi>הכרחי</Jacuzzi>
+    <MailAddress>noname@secret.com</MailAddress>
+    <Pool>אפשרי</Pool>
+    <PrivateName>עומרי</PrivateName>
+    <RegistrationDate>2020-01-28T00:00:00+02:00</RegistrationDate>
+    <ReleaseDate>2020-01-30T00:00:00</ReleaseDate>
+    <Status>פתוחה</Status>
+    <SubArea>מצפה רמון</SubArea>
+    <Type>צימר</Type>
+    <MaxPrice>20</MaxPrice>
+  </GuestRequest>
+  <GuestRequest>
+    <Adults>2</Adults>
+    <Area>מרכז</Area>
+    <Children>0</Children>
+    <ChildrensAttractions>אפשרי</ChildrensAttractions>
+    <EntryDate>2020-01-29T00:00:00</EntryDate>
+    <FamilyName>אלקבץ</FamilyName>
+    <Garden>אפשרי</Garden>
+    <guestRequestKey>10000001</guestRequestKey>
+    <Jacuzzi>אפשרי</Jacuzzi>
+    <MailAddress>ron@el.co.il</MailAddress>
+    <Pool>הכרחי</Pool>
+    <PrivateName>רון</PrivateName>
+    <RegistrationDate>2020-01-28T00:00:00+02:00</RegistrationDate>
+    <ReleaseDate>2020-01-31T00:00:00</ReleaseDate>
+    <Status>פתוחה</Status>
+    <SubArea />
+    <Type>קמפינג</Type>
+    <MaxPrice>1500</MaxPrice>
+  </GuestRequest>
+</GuestRequests>

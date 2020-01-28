@@ -28,7 +28,6 @@ namespace PLWPF
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            KeyTextBox.Text = "312279188";
             KeyTextBox.Focus();
         }
 
