@@ -10,7 +10,9 @@ namespace DAL
     class Dal_list_imp : IDAL
     {
         
-        protected Dal_list_imp() { }
+        protected Dal_list_imp() {
+            Configuration.BanksXmlFinish = true;
+        }
         protected static Dal_list_imp instance = null;
         public static Dal_list_imp GetInstance()
         {

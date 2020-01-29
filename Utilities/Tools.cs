@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Utilities
 {
@@ -20,7 +21,7 @@ namespace Utilities
         /// <returns></returns>
         public static bool SendMail(MailMessage message, string siteName, string adminMailAddress)
         {
-            message.From = new MailAddress(siteName);
+            message.From = new MailAddress( adminMailAddress);
             // Smtp
             SmtpClient smtp = new SmtpClient
             {
@@ -37,10 +38,11 @@ namespace Utilities
                 smtp.Send(message);
                 return true;
             }
-            catch
+            catch(Exception err)
             {
-                return false;
+                MessageBox.Show(err.Message, "שגיאה בשליחת המייל");
             }
+            return false;
         }
 
         public static bool ValidateString(string str)

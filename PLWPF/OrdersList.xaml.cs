@@ -33,11 +33,21 @@ namespace PLWPF
             InitializeComponent();
 
             worker = new BackgroundWorker();
-            worker.DoWork += Worker_EmailSend;            
+            worker.DoWork += Worker_EmailSend;
+            worker.RunWorkerCompleted += Worker_EmailSent;
+        }
+
+        private void Worker_EmailSent(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled || e.Error != null)
+                MessageBox.Show("אירעה תקלה בשליחת המייל לכתובת " + e.Result, "שגיאה");
+            else
+                MessageBox.Show("נשלח מייל בהצלחה לכתובת " + e.Result);
         }
 
         private void Worker_EmailSend(object sender, DoWorkEventArgs e)
         {
+            e.Result = ((MailMessage)e.Argument).To;
             bool flag = false;
             while (!flag)
             {
@@ -46,11 +56,12 @@ namespace PLWPF
                     flag=Tools.SendMail((MailMessage)e.Argument, Configuration.SiteName, Configuration.AdminMailAddress.Address);
                 }
                 catch
-                {   
+                {
+                    
                 }
                 System.Threading.Thread.Sleep(2000);
             }
-                
+            
         }
 
 
