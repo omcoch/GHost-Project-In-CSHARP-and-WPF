@@ -17,6 +17,7 @@
         <Button Content="הזמנה" HorizontalAlignment="Left" Margin="300,210,0,0" VerticalAlignment="Top" Width="200" Height="50" Background="#FF3179F7" Foreground="White" FontSize="16" FontWeight="Bold" FontFamily="HP Simplified Light" Padding="1" Click="Orders_Click"/>
         <Button Content="הוספת יחידת אירוח" HorizontalAlignment="Left" Margin="468,300,0,0" VerticalAlignment="Top" Width="190" Height="50" Background="#FF0643AE" Foreground="White" FontSize="16" FontWeight="Bold" FontFamily="HP Simplified Light" Padding="1" Click="OpenHostingUnitForm"/>
         <Button Content="רשימת יחידות אירוח" HorizontalAlignment="Left" Margin="138,300,0,0" VerticalAlignment="Top" Width="190" Height="50" Background="#FF6856CB" Foreground="White" FontSize="16" FontWeight="Bold" FontFamily="HP Simplified Light" Padding="1" Click="HostingUnitsList_Click"/>
+        <Button Content="עדכון פרטים אישיים" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top" Width="207" Click="OpenUpdate"/>
 
     </Grid>
 </Window>

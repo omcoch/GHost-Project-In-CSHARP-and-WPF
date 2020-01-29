@@ -8,6 +8,7 @@ using Utilities;
 
 namespace BE
 {
+    [XmlRoot("HostingUnits")]
     public class HostingUnit
     {
         public int HostingUnitKey { get; set; }
@@ -20,7 +21,7 @@ namespace BE
         public bool[] DiaryArray
         {
             get { return Diary.Flatten(); }
-            set { Diary = value.Expand(5); } //5 is the number of roes in the matrix
+            set { Diary = value.Expand(12); } //5 is the number of roes in the matrix
         }
         public Regions Area { get; set; }
         public string SubArea { get; set; }

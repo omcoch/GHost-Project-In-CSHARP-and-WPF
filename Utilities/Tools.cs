@@ -11,7 +11,38 @@ namespace Utilities
 {
     public static class Tools
     {
-        
+        /// <summary>
+        /// שליחת מייל
+        /// </summary>
+        /// <param name="message">ההודעה לשליחה</param>
+        /// <param name="siteName">שם האתר (השולח)</param>
+        /// <param name="adminMailAddress">כתובת מייל השולח (בעל האתר בלבד)</param>
+        /// <returns></returns>
+        public static bool SendMail(MailMessage message, string siteName, string adminMailAddress)
+        {
+            message.From = new MailAddress(siteName);
+            // Smtp
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Credentials = new System.Net.NetworkCredential(adminMailAddress, "g-host12"), // todo: להכניס סיסמה אמיתית
+                EnableSsl = true,
+                Port = 587,
+                UseDefaultCredentials = false,
+                DeliveryMethod = SmtpDeliveryMethod.Network
+            };
+
+            try
+            {
+                smtp.Send(message);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static bool ValidateString(string str)
         {
             return !String.IsNullOrEmpty(str) && Regex.IsMatch(str, "^[א-תa-zA-Z ]+$");
@@ -44,12 +75,12 @@ namespace Utilities
             int rows = arr.GetLength(0);
             int columns = arr.GetLength(1);
             T[] arrFlattened = new T[rows * columns];
-            for (int j = 0; j < columns; j++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int i = 0; i < rows; i++)
+                for (int j = 0; j < columns; j++)
                 {
                     var test = arr[i, j];
-                    arrFlattened[i + j * rows] = arr[i, j];
+                    arrFlattened[i * rows + j] = arr[i, j];
                 }
             }
             return arrFlattened;
@@ -59,11 +90,11 @@ namespace Utilities
             int length = arr.GetLength(0);
             int columns = length / rows;
             T[,] arrExpanded = new T[rows, columns];
-            for (int j = 0; j < rows; j++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int i = 0; i < columns; i++)
+                for (int j = 0; j < columns; j++)
                 {
-                    arrExpanded[i, j] = arr[i + j * rows];
+                    arrExpanded[i, j] = arr[i * rows + j];
                 }
             }
             return arrExpanded;

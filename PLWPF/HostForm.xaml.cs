@@ -60,14 +60,22 @@ namespace PLWPF
             if (!Tools.ValidateString(privateNameTextBox.Text) || !Tools.ValidateString(familyNameTextBox.Text)
                 || !Tools.ValidatePhoneNumber(phoneNumberTextBox.Text) || !Tools.ValidateNumber(hostKeyTextBox.Text)
                 || !Tools.ValidateEmailAddress(addressTextBox.Text) || !Tools.ValidateNumber(bankNumberTextBox.Text)
-                || !Tools.ValidateString(bankNameTextBox.Text) || !Tools.ValidateNumber(bankAccountNumberTextBox.Text)
-                || !Tools.ValidateNumber(branchNumberTextBox.Text) || string.IsNullOrEmpty(branchAddressTextBox.Text)
-                || !Tools.ValidateString(branchCityTextBox.Text)
+                || !Tools.ValidateNumber(bankAccountNumberTextBox.Text)
+                || !Tools.ValidateNumber(branchNumberTextBox.Text)
                 )
                 MessageBox.Show("לא כל השדות מולאו כראוי");
             else
                 try
                 {
+                    host.mailAddress = addressTextBox.Text;
+                    host.BankAccountDetails = new BankBranch()
+                    {
+                        BankName = bankNameTextBox.Text,
+                        BankNumber = int.Parse(bankNumberTextBox.Text),
+                        BranchAddress = branchAddressTextBox.Text,
+                        BranchCity = branchCityTextBox.Text,
+                        BranchNumber = int.Parse(branchNumberTextBox.Text)
+                    };
                     bL.AddHost(host);
                     MessageBox.Show("ההרשמה בוצעה בהצלחה");
                     new MainWindow().Show();
@@ -83,9 +91,9 @@ namespace PLWPF
             if (!Tools.ValidateString(privateNameTextBox.Text) || !Tools.ValidateString(familyNameTextBox.Text)
                 || !Tools.ValidatePhoneNumber(phoneNumberTextBox.Text) || !Tools.ValidateNumber(hostKeyTextBox.Text)
                 || !Tools.ValidateEmailAddress(addressTextBox.Text) || !Tools.ValidateNumber(bankNumberTextBox.Text)
-                || !Tools.ValidateString(bankNameTextBox.Text) || !Tools.ValidateNumber(bankAccountNumberTextBox.Text)
-                || !Tools.ValidateNumber(branchNumberTextBox.Text) || string.IsNullOrEmpty(branchAddressTextBox.Text)
-                || !Tools.ValidateString(branchCityTextBox.Text))
+                || !Tools.ValidateNumber(bankAccountNumberTextBox.Text)
+                || !Tools.ValidateNumber(branchNumberTextBox.Text)
+                )
                 MessageBox.Show("לא כל השדות מולאו כראוי");
             else
                 try

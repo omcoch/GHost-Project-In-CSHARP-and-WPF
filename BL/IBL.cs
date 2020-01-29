@@ -20,7 +20,7 @@ namespace BL
         void UpdateHostingUnit(HostingUnit hostingUnit);
 
         int AddOrder(Order order);
-        void UpdateOrder(Order order);
+        void UpdateOrder(Order order, ref System.Net.Mail.MailMessage message);
 
         List<HostingUnit> GetAvailableHostingUnits(DateTime date, int days);
         int TimeDistance(DateTime first, DateTime last = default(DateTime));

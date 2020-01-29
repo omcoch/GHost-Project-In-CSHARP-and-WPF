@@ -12,15 +12,14 @@ namespace BE
         private static int guestRequestSerialKey = 10000000;//מספר מזהה רץ עבור בקשת לקוח
         private static int orderSerialKey = 10000000;//מספר מזהה רץ עבור הזמנה
         private static int hostingUnitSerialKey = 10000000;//מספר מזהה רץ עבור יחדית אירוח
-        public static readonly MailAddress AdminMailAddress = new MailAddress("omcoch@gmail.com");
-        public static string SiteName { get => "G-Host"; }
-
+        private static bool s_banksXmlFinish = false; // מורה על סיום טעינת קובץ הבנקים
+        public static readonly MailAddress AdminMailAddress = new MailAddress("readtora@gmail.com"); // כתובת מייל של בעל האתר
+        public static string SiteName { get => "G-Host"; } // שם האפליקציה
 
         public const int FEE = 10;//עמלה
         public static int GenerateGuestRequestSerialKey { get => guestRequestSerialKey++; }
         public static int GenerateOrderSerialKey { get => orderSerialKey++; }
         public static int GenerateHostingUnitSerialKey { get => hostingUnitSerialKey++; }
-
-        
+        public static bool BanksXmlFinish { get => s_banksXmlFinish; set => s_banksXmlFinish = value; }
     }
 }

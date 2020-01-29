@@ -1,2 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Hosts />
+<Hosts>
+  <Host>
+    <HostKey>123</HostKey>
+    <PrivateName>עומרי</PrivateName>
+    <FamilyName>כוכבי</FamilyName>
+    <PhoneNumber>0987654321</PhoneNumber>
+    <MailAddress>mail@m.m</MailAddress>
+    <BankAccountDetails>
+      <BankName>בנק אגוד לישראל בע"מ</BankName>
+      <BankNumber>13</BankNumber>
+      <BranchAddress>אחוזת בית 6-8 </BranchAddress>
+      <BranchCity>תל אביב -יפו</BranchCity>
+      <BranchNumber>63</BranchNumber>
+    </BankAccountDetails>
+    <BankAccountNumber>123456</BankAccountNumber>
+    <ChargeAmount>0</ChargeAmount>
+    <CollectionClearance>true</CollectionClearance>
+    <NumOfHostingUnits>0</NumOfHostingUnits>
+  </Host>
+</Hosts>

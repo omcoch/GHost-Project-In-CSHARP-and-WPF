@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -17,11 +18,13 @@ namespace DS
         private static XElement hostRoot = null;
         private static XElement hostingUnitRoot = null;
         private static XElement configRoot = null;
-        private static string orderPath = Path.Combine(filePath, "Order.xml");
-        private static string guestRequestPath = Path.Combine(filePath, "GuestRequest.xml");
-        private static string hostPath = Path.Combine(filePath, "Host.xml");
-        private static string hostingUnitPath = Path.Combine(filePath, "HostingUnit.xml");
-        private static string configPath = Path.Combine(filePath, "Config.xml");
+        private static XElement bankBranchRoot = null;
+        public static string orderPath = Path.Combine(filePath, "Order.xml");
+        public static string guestRequestPath = Path.Combine(filePath, "GuestRequest.xml");
+        public static string hostPath = Path.Combine(filePath, "Host.xml");
+        public static string hostingUnitPath = Path.Combine(filePath, "HostingUnit.xml");
+        public static string configPath = Path.Combine(filePath, "Config.xml");
+        public static string bankBranchPath = Path.Combine(filePath, "BankBranch.xml");
 
         static DSXML()
         {
@@ -45,7 +48,7 @@ namespace DS
 
             if (!File.Exists(hostingUnitPath))
             {
-                CreateFile("HostingUnits", hostingUnitPath);
+                SaveToXMLSerialize(new List<BE.HostingUnit>(), hostingUnitPath);
             }
             hostingUnitRoot = LoadData(hostingUnitPath);
 
@@ -79,11 +82,6 @@ namespace DS
         public static void SaveOrders()
         {
             orderRoot.Save(orderPath);
-        }
-
-        public static void SaveHostingUnits()
-        {
-            hostingUnitRoot.Save(hostingUnitPath);
         }
 
         public static void SaveHosts()
@@ -146,6 +144,15 @@ namespace DS
             }
         }
 
+        public static XElement BankBranches
+        {
+            get
+            {
+                bankBranchRoot = LoadData(bankBranchPath);
+                return bankBranchRoot;
+            }
+        }
+
         private static XElement LoadData(string path)
         {
             XElement root;
@@ -163,7 +170,6 @@ namespace DS
 
         public static void SaveToXMLSerialize<T>(T source, string path)
         {
-            path = Path.Combine(filePath, path + ".xml");
             FileStream file = new FileStream(path, FileMode.Create);
             XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
             xmlSerializer.Serialize(file, source);
@@ -172,9 +178,8 @@ namespace DS
 
         public static T LoadFromXMLSerialize<T>(string path)
         {
-            path = Path.Combine(filePath, path + ".xml");
-            FileStream file = new FileStream(path, FileMode.Open);
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            FileStream file = new FileStream(path, FileMode.Open);
             T result = (T)xmlSerializer.Deserialize(file);
             file.Close();
             return result;
@@ -197,6 +202,26 @@ namespace DS
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
                 return (T)xmlSerializer.Deserialize(textReader);
             }
+        }
+
+        public static void DownloadBankXml()
+        {
+            WebClient wc = new WebClient();
+            try
+            {
+                string xmlServerPath = @"http://www.jct.ac.il/~coshri/atm.xml";
+                wc.DownloadFile(xmlServerPath, bankBranchPath);                
+            }
+            catch (Exception)
+            {
+                string xmlServerPath = @"http://www.boi.org.il/he/BankingSupervision/BanksAndBranchLocations/Lists/BoiBankBranchesDocs/atm.xml";
+                wc.DownloadFile(xmlServerPath, bankBranchPath);
+            }
+            finally
+            {
+                wc.Dispose();
+            }
+            BE.Configuration.BanksXmlFinish = true;
         }
     }
 }

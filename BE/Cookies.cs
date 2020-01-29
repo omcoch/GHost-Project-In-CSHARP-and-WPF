@@ -7,11 +7,14 @@ using System.Windows;
 
 namespace BE
 {
+    /// <summary>
+    /// מחלקה לשמירת נתונים במהלך הפעלת האפליקציה
+    /// </summary>
     public class Cookies
     {
         private static Stack<string> prevWindow = new Stack<string>(); // Stack for history navigation
         public static int LoginUserKey { get; set; } // Holds the login-key of the current host
-        public static string PrevWindow
+        public static string PrevWindow // Hold the previous window name
         {
             get {
                 prevWindow.Pop();
@@ -32,6 +35,9 @@ namespace BE
             return  prevWindow.Count <= 1;
         }
 
+        /// <summary>
+        /// Do logout
+        /// </summary>
         public static void LogOut()
         {
             prevWindow.Clear();

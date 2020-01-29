@@ -13,12 +13,12 @@ namespace DAL
         public static XElement ToXML(this Order order)
         {
             return new XElement("Order",
-                new XElement("CreateDate",order.CreateDate),
-                new XElement("GuestRequestKey",order.GuestRequestKey),
-                new XElement("HostingUnitKey",order.HostingUnitKey),
-                new XElement("OrderDate",order.OrderDate),
-                new XElement("OrderKey",order.OrderKey),
-                new XElement("Status",order.Status)
+                new XElement("CreateDate", order.CreateDate),
+                new XElement("GuestRequestKey", order.GuestRequestKey),
+                new XElement("HostingUnitKey", order.HostingUnitKey),
+                new XElement("OrderDate", order.OrderDate),
+                new XElement("OrderKey", order.OrderKey),
+                new XElement("Status", order.Status)
                 );
         }
 
@@ -45,19 +45,27 @@ namespace DAL
                 new XElement("MaxPrice", guestRequest.MaxPrice)
             );
         }
+
+
         public static XElement ToXML(this Host host)
         {
             return new XElement("Host",
-                new XElement("HostKey",host.HostKey),
-                new XElement("PrivateName",host.PrivateName),
-                new XElement("FamilyName",host.FamilyName),
-                new XElement("PhoneNumber",host.PhoneNumber),
-                new XElement("MailAddress",host.MailAddress),
-                new XElement("BankAccountDetails",host.BankAccountDetails),
-                new XElement("BankAccountNumber",host.BankAccountNumber),
-                new XElement("ChargeAmount",host.ChargeAmount),
-                new XElement("CollectionClearance",host.CollectionClearance),
-                new XElement("NumOfHostingUnits",host.NumOfHostingUnits)
+                new XElement("HostKey", host.HostKey),
+                new XElement("PrivateName", host.PrivateName),
+                new XElement("FamilyName", host.FamilyName),
+                new XElement("PhoneNumber", host.PhoneNumber),
+                new XElement("MailAddress", host.MailAddress.Address),
+                new XElement("BankAccountDetails",
+                    new XElement("BankName", host.BankAccountDetails.BankName),
+                    new XElement("BankNumber", host.BankAccountDetails.BankNumber),
+                    new XElement("BranchAddress", host.BankAccountDetails.BranchAddress),
+                    new XElement("BranchCity", host.BankAccountDetails.BranchCity),
+                    new XElement("BranchNumber", host.BankAccountDetails.BranchNumber)
+                ),
+                new XElement("BankAccountNumber", host.BankAccountNumber),
+                new XElement("ChargeAmount", host.ChargeAmount),
+                new XElement("CollectionClearance", host.CollectionClearance),
+                new XElement("NumOfHostingUnits", host.NumOfHostingUnits)
             );
         }
     }

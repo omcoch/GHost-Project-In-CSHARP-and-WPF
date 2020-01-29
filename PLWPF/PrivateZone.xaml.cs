@@ -49,5 +49,11 @@ namespace PLWPF
             new Orders().Show();
             Close();
         }
+
+        private void OpenUpdate(object sender, RoutedEventArgs e)
+        {
+            new HostForm(Cookies.LoginUserKey).Show();
+            Close();
+        }
     }
 }

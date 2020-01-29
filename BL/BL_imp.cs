@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using Utilities;
 
 namespace BL
@@ -25,6 +26,22 @@ namespace BL
         public BL_imp()
         {
             dal = DalFactory.getDal();
+
+            Thread UpdateStatus = new Thread(CloseOrdersBefore);
+            UpdateStatus.Start();
+        }
+
+        /// <summary>
+        /// סוגר הזמנות ישנות שנפתחו לפני יותר מ30 ימים.
+        /// </summary>
+        private void CloseOrdersBefore()
+        {
+            var orders = GetOrdersBefore(30);
+            foreach(var item in orders)
+            {
+                item.Status = OrderStatus.נסגר_מחוסר_הענות_של_הלקוח;
+                dal.UpdateOrder(item);
+            }
         }
 
         public int AddGuestRequest(GuestRequest guestRequest)
@@ -118,7 +135,7 @@ namespace BL
             dal.UpdateHostingUnit(hostingUnit);
         }
 
-        public void UpdateOrder(Order Order)
+        public void UpdateOrder(Order Order,ref MailMessage mailMessage)
         {
             // יחידת האירוח הקשורה להזמנה
             var hostingUnit = (from h in dal.GetHostingUnits()
@@ -150,7 +167,7 @@ namespace BL
                         throw new DateOccupiedException("תאריך הנופש תפוס");
                     if (Order.Status == OrderStatus.נשלח_מייל)
                     {
-                        SendMailToGuest(Order.GuestRequestKey, hostingUnit, guestRequest); //todo: הUI צריך לשנות את OrderDate למתי שהמייל נשלח (או לא נשלח) 
+                        mailMessage=SendMailToGuest(Order.GuestRequestKey, hostingUnit, guestRequest); 
                         Order.OrderDate = DateTime.Now;
                     }
                     // עדכון ההזמנה
@@ -200,7 +217,7 @@ namespace BL
         /// <param name="orderKey">מספר הזמנה</param>
         /// <param name="guestRequest">דרישת לקוח</param>
         /// <returns>מחזיר אמת אם המייל נשלח בהצלחה, אחרת שקר</returns>
-        private bool SendMailToGuest(int orderKey, HostingUnit hostingUnit, GuestRequest guestRequest)
+        private MailMessage SendMailToGuest(int orderKey, HostingUnit hostingUnit, GuestRequest guestRequest)
         {
             MailAddress mailAddress = dal.GetHosts().Where(h => hostingUnit.OwnerKey == h.HostKey).Select(o => o.MailAddress).First();
             MailMessage message = new MailMessage();
@@ -208,7 +225,8 @@ namespace BL
             message.Subject = "נוצרה הזמנה עבור דרישת לקוח מספר " + guestRequest.guestRequestKey;
             message.Body = "שלום, " + guestRequest.PrivateName + "\nנפתחה עבורך הזמנה לאירוח אצל " + hostingUnit.HostingUnitName
                 + ".\nמספר ההזמנה: " + orderKey + "\nאנא צור קשר עם המארח בכתובת " + mailAddress + "\nבברכת חופשה מהנה, \n" + Configuration.SiteName;
-            return SendMail(message);
+            return message;
+            //Tools.SendMail(message, Configuration.SiteName, Configuration.AdminMailAddress.Address);
         }
 
         int CalculateFee(int amountDays)
@@ -328,6 +346,10 @@ namespace BL
 
         public int AddHost(Host host)
         {
+            if (!Configuration.BanksXmlFinish)
+                throw new TypeUnloadedException("בודק את פרטי הבנק. אנא המתן.");
+            if (!ValidateBankDetails(host.BankAccountDetails))
+                throw new ArgumentException("פרטי חשבון בנק אינם תקינים");
             return dal.AddHost(host);
         }
 
@@ -366,28 +388,18 @@ namespace BL
                     from order in dal.GetOrders()
                     where order.HostingUnitKey == hu.HostingUnitKey
                     select order).ToList<Order>();
-        }
+        }     
 
-        public static bool SendMail(MailMessage message)
+        private bool ValidateBankDetails(BankBranch bb)
         {
-            message.From = new MailAddress(Configuration.SiteName);
-            // Smtp
-            SmtpClient smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Credentials = new System.Net.NetworkCredential(Configuration.AdminMailAddress.ToString(), "myGmailPassword"), // todo: להכניס סיסמה אמיתית
-                EnableSsl = true
-            };
-
-            try
-            {
-                smtp.Send(message);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            var v = from item in dal.GetBankBranches()
+                    where item.BankName == bb.BankName
+                    && item.BankNumber == bb.BankNumber
+                    && item.BranchAddress == bb.BranchAddress
+                    && item.BranchCity == bb.BranchCity
+                    && item.BranchNumber == bb.BranchNumber
+                    select item;
+            return v.Any();
         }
     }
 }

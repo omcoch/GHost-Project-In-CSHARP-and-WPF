@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BE;
 using BL;
+using Utilities;
 
 namespace PLWPF
 {
@@ -22,16 +24,16 @@ namespace PLWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        IBL bL = BlFactory.getBl();
+        IBL bL = BlFactory.getBl();        
 
         public MainWindow()
         {
             Cookies.PrevWindow = this.GetType().Name;
-
             InitializeComponent();
-
             Header.HomeButton.Visibility = Visibility.Hidden;
         }
+
+        
 
         private void OpenGuestRequestWindow(object sender, RoutedEventArgs e)
         {
