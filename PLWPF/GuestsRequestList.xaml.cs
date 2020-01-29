@@ -34,7 +34,7 @@ namespace PLWPF
 
             System.Windows.Data.CollectionViewSource guestRequestViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("guestRequestViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
-            guestRequestViewSource.Source = bL.GetGuestRequestsByCondition(x => true);
+            guestRequestViewSource.Source = bL.GetGuestRequestsByCondition(x => x.Status == RequestStatus.פתוחה);
             System.Windows.Data.CollectionViewSource hostingUnitViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("hostingUnitViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             hostingUnitViewSource.Source = bL.GetHostingUnitsByOwner(Cookies.LoginUserKey);

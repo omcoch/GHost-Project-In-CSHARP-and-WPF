@@ -72,9 +72,11 @@ namespace BL
 
         public int AddOrder(Order order)
         {
+            //יומן של יחידת אירוח
             var diaryOfHostingUnit = (from hu in dal.GetHostingUnits()
                                       where hu.HostingUnitKey == order.HostingUnitKey
                                       select hu.Diary).FirstOrDefault();
+            //תאריכי נופש של דרישת לקוח
             var guestRequestDates = dal.GetGuestRequests()
                 .Where(x => x.guestRequestKey == order.GuestRequestKey)
                 .Select(x => new { entryDate = x.EntryDate, releaseDate = x.ReleaseDate }).FirstOrDefault();
@@ -116,7 +118,7 @@ namespace BL
         }
 
         public void UpdateGuestRequest(GuestRequest guestRequest)
-        { // todo: לעשות בדיקה שלא התקבל מופע ריק לגמרי
+        {
             TimeSpan timeSpan = guestRequest.ReleaseDate - guestRequest.EntryDate;
             if (timeSpan.TotalDays < 1)
                 throw new ArgumentOutOfRangeException("על תאריך תחילת הנופש להיות קודם לפחות ביום אחד לתאריך סיום הנופש");
@@ -221,6 +223,7 @@ namespace BL
         {
             MailAddress mailAddress = dal.GetHosts().Where(h => hostingUnit.OwnerKey == h.HostKey).Select(o => o.MailAddress).First();
             MailMessage message = new MailMessage();
+            message.From = mailAddress;
             message.To.Add(guestRequest.MailAddress.Address);
             message.Subject = "נוצרה הזמנה עבור דרישת לקוח מספר " + guestRequest.guestRequestKey;
             message.Body = "שלום, " + guestRequest.PrivateName + "\nנפתחה עבורך הזמנה לאירוח אצל " + hostingUnit.HostingUnitName

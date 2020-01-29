@@ -35,7 +35,7 @@ namespace DAL
                 instance = new Dal_XML_imp();
             return instance;
         }
-        //todo: לבדוק שיש שורש לקובץ XML ושADD מוסיף תחתיו
+
         public int AddGuestRequest(GuestRequest guestRequest)
         {
             guestRequest.guestRequestKey = guestRequestSerialKey++;
@@ -186,15 +186,14 @@ namespace DAL
 
         public void UpdateGuestRequest(GuestRequest guestRequest)
         {
-            var oldGR = (from GR in DSXML.GuestRequests.Elements()
+            var g = (from GR in DSXML.GuestRequests.Elements()
                     where int.Parse(GR.Element("guestRequestKey").Value) == guestRequest.guestRequestKey
                     select GR)
                     .FirstOrDefault();
 
-            if (oldGR != null)
+            if (g != null)
             {
-                oldGR.Remove();
-                DSXML.GuestRequests.Add(guestRequest.ToXML());
+                g.Element("Status").Value = guestRequest.Status.ToString(); // עדכון מתבצע רק לסטטוס, בעת סגירת הזמנות
                 DSXML.SaveGuestRequests();
             }
             else
