@@ -116,7 +116,7 @@ namespace BL
         }
 
         public void UpdateGuestRequest(GuestRequest guestRequest)
-        { // todo: לעשות בדיקה שלא התקבל מופע ריק לגמרי
+        { 
             TimeSpan timeSpan = guestRequest.ReleaseDate - guestRequest.EntryDate;
             if (timeSpan.TotalDays < 1)
                 throw new ArgumentOutOfRangeException("על תאריך תחילת הנופש להיות קודם לפחות ביום אחד לתאריך סיום הנופש");

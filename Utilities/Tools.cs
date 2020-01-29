@@ -26,7 +26,7 @@ namespace Utilities
             SmtpClient smtp = new SmtpClient
             {
                 Host = "smtp.gmail.com",
-                Credentials = new System.Net.NetworkCredential(adminMailAddress, "g-host12"), // todo: להכניס סיסמה אמיתית
+                Credentials = new System.Net.NetworkCredential("readtora@gmail.com", "g-host12"),
                 EnableSsl = true,
                 Port = 587,
                 UseDefaultCredentials = false,
