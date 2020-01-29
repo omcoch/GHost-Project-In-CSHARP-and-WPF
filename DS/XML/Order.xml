@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Orders>
+  <Order>
+    <CreateDate>2020-01-29T16:27:40.1296125+02:00</CreateDate>
+    <GuestRequestKey>10000004</GuestRequestKey>
+    <HostingUnitKey>10000000</HostingUnitKey>
+    <OrderDate>01/01/0001 00:00:00</OrderDate>
+    <OrderKey>10000005</OrderKey>
+    <Status>נסגר_מחוסר_הענות_של_הלקוח</Status>
+  </Order>
+</Orders>

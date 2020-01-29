@@ -219,6 +219,8 @@ namespace DAL
                 tempElement.Element("BankAccountDetails").Element("BranchAddress").Value = host.BankAccountDetails.BranchAddress;
                 tempElement.Element("BankAccountDetails").Element("BranchCity").Value = host.BankAccountDetails.BranchCity;
                 tempElement.Element("BankAccountNumber").Value = host.BankAccountNumber.ToString();
+                tempElement.Element("NumOfHostingUnits").Value = host.NumOfHostingUnits.ToString();
+                tempElement.Element("ChargeAmount").Value = host.ChargeAmount.ToString();
                 tempElement.Element("CollectionClearance").Value = host.CollectionClearance?"true":"false";
 
                 DSXML.SaveHosts();            

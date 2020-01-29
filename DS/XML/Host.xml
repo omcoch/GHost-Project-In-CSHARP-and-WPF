@@ -16,6 +16,6 @@
     <BankAccountNumber>123456</BankAccountNumber>
     <ChargeAmount>0</ChargeAmount>
     <CollectionClearance>true</CollectionClearance>
-    <NumOfHostingUnits>0</NumOfHostingUnits>
+    <NumOfHostingUnits>1</NumOfHostingUnits>
   </Host>
 </Hosts>
