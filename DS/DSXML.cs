@@ -67,7 +67,6 @@ namespace DS
                 configRoot.Add(new XElement("guestRequestSerialKey", 10000000));
                 configRoot.Add(new XElement("orderSerialKey", 10000000));
                 configRoot.Add(new XElement("hostingUnitSerialKey", 10000000));
-                configRoot.Add(new XElement("ErroeMessage", ""));
                 SaveConfigs();
             }
             else
