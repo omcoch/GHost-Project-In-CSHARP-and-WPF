@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Config>
-  <guestRequestSerialKey>10000007</guestRequestSerialKey>
-  <orderSerialKey>10000009</orderSerialKey>
+  <guestRequestSerialKey>10000000</guestRequestSerialKey>
+  <orderSerialKey>10000000</orderSerialKey>
   <hostingUnitSerialKey>10000000</hostingUnitSerialKey>
 </Config>

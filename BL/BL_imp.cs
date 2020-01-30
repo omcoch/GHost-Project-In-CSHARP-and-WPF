@@ -132,7 +132,6 @@ namespace BL
 
         public void UpdateHostingUnit(HostingUnit hostingUnit)
         {
-            HostingUnit originalHostingUnit = dal.GetHostingUnits().FirstOrDefault(item => item.HostingUnitKey == hostingUnit.HostingUnitKey);
             dal.UpdateHostingUnit(hostingUnit);
         }
 

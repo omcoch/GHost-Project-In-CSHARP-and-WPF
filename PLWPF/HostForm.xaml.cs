@@ -57,8 +57,8 @@ namespace PLWPF
 
         private void AddHost(object sender, RoutedEventArgs e)
         {
-            if (!Tools.ValidateString(privateNameTextBox.Text) || !Tools.ValidateString(familyNameTextBox.Text)
-                || !Tools.ValidatePhoneNumber(phoneNumberTextBox.Text) || !Tools.ValidateNumber(hostKeyTextBox.Text)
+            if ( !Tools.ValidateNumber(hostKeyTextBox.Text) || !Tools.ValidateString(familyNameTextBox.Text)
+                || !Tools.ValidatePhoneNumber(phoneNumberTextBox.Text) || !Tools.ValidateString(privateNameTextBox.Text)
                 || !Tools.ValidateEmailAddress(addressTextBox.Text) || !Tools.ValidateNumber(bankNumberTextBox.Text)
                 || !Tools.ValidateNumber(bankAccountNumberTextBox.Text)
                 || !Tools.ValidateNumber(branchNumberTextBox.Text)
