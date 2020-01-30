@@ -49,10 +49,10 @@ namespace DAL
             return guestRequest.guestRequestKey;
         }
 
-        public int AddHost(Host host)
+        public string AddHost(Host host)
         {
             XElement findHost = (from h in DSXML.Hosts.Elements()
-                                  where int.Parse(h.Element("HostKey").Value) == host.HostKey
+                                  where h.Element("HostKey").Value == host.HostKey
                                  select h).FirstOrDefault();
             if (findHost != null)
                 throw new ArgumentException("המארח קיים כבר");
@@ -138,7 +138,7 @@ namespace DAL
             return (from h in DS.DSXML.Hosts.Elements()
                     select new Host()
                     {
-                        HostKey = int.Parse(h.Element("HostKey").Value),
+                        HostKey = h.Element("HostKey").Value,
                         ChargeAmount = int.Parse(h.Element("ChargeAmount").Value),
                         MailAddress = new System.Net.Mail.MailAddress(h.Element("MailAddress").Value),
                         PhoneNumber = h.Element("PhoneNumber").Value,
@@ -203,12 +203,12 @@ namespace DAL
         public void UpdateHost(Host host)
         {
                 XElement tempElement = (from h in DSXML.Hosts.Elements()
-                                        where int.Parse(h.Element("HostKey").Value) == host.HostKey
+                                        where h.Element("HostKey").Value == host.HostKey
                                         select h).FirstOrDefault();
                 if (tempElement == null)
                     throw new ArgumentException("המארח לא קיים") { Source = "DAL" };
 
-                tempElement.Element("HostKey").Value = host.HostKey.ToString();
+                tempElement.Element("HostKey").Value = host.HostKey;
                 tempElement.Element("PrivateName").Value = host.PrivateName;
                 tempElement.Element("FamilyName").Value = host.FamilyName;
                 tempElement.Element("PhoneNumber").Value = host.PhoneNumber;

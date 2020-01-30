@@ -13,7 +13,7 @@ namespace BE
     public class Cookies
     {
         private static Stack<string> prevWindow = new Stack<string>(); // Stack for history navigation
-        public static int LoginUserKey { get; set; } // Holds the login-key of the current host
+        public static string LoginUserKey { get; set; } // Holds the login-key of the current host
         public static string PrevWindow // Hold the previous window name
         {
             get {
@@ -41,7 +41,7 @@ namespace BE
         public static void LogOut()
         {
             prevWindow.Clear();
-            LoginUserKey = 0;
+            LoginUserKey = null;
         }
     }
 }

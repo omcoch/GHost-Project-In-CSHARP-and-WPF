@@ -12,7 +12,7 @@ namespace DAL
         int AddGuestRequest(GuestRequest guestRequest);
         void UpdateGuestRequest(GuestRequest guestRequest);
 
-        int AddHost(Host host);
+        string AddHost(Host host);
         void UpdateHost(Host host);
 
         int AddHostingUnit(HostingUnit hostingUnit);

@@ -183,10 +183,11 @@ namespace PL
                                 try
                                 {
                                     O.Status = OrderStatus.נשלח_מייל;
-                                    bL.UpdateOrder(O);
+                                    MailMessage temp=null;
+                                    bL.UpdateOrder(O, ref temp);
                                     Console.WriteLine(bL.GetOrder(O.OrderKey));
                                     O.Status = OrderStatus.נסגר_בהיענות_של_הלקוח;
-                                    bL.UpdateOrder(O);
+                                    bL.UpdateOrder(O, ref temp);
                                     Console.WriteLine(bL.GetOrder(O.OrderKey));
                                 }
                                 catch (Exception e)

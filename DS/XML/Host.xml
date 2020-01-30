@@ -18,4 +18,22 @@
     <CollectionClearance>true</CollectionClearance>
     <NumOfHostingUnits>1</NumOfHostingUnits>
   </Host>
+  <Host>
+    <HostKey>312279177</HostKey>
+    <PrivateName>עומרי</PrivateName>
+    <FamilyName>כוכבי</FamilyName>
+    <PhoneNumber>0987654321</PhoneNumber>
+    <MailAddress>omcoch@gmail.com</MailAddress>
+    <BankAccountDetails>
+      <BankName>בנק אגוד לישראל בע"מ</BankName>
+      <BankNumber>13</BankNumber>
+      <BranchAddress>אחוזת בית 6-8 </BranchAddress>
+      <BranchCity>תל אביב -יפו</BranchCity>
+      <BranchNumber>63</BranchNumber>
+    </BankAccountDetails>
+    <BankAccountNumber>123456</BankAccountNumber>
+    <ChargeAmount>0</ChargeAmount>
+    <CollectionClearance>true</CollectionClearance>
+    <NumOfHostingUnits>1</NumOfHostingUnits>
+  </Host>
 </Hosts>

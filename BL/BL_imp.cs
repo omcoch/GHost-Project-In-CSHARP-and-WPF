@@ -351,7 +351,7 @@ namespace BL
             return dal.GetHostingUnits().Where(k => k.HostingUnitKey == key).FirstOrDefault();
         }
 
-        public List<HostingUnit> GetHostingUnitsByOwner(int key)
+        public List<HostingUnit> GetHostingUnitsByOwner(string key)
         {
             var v= dal.GetHostingUnits().Where(k => k.OwnerKey == key);
             if(v.Any())
@@ -364,7 +364,7 @@ namespace BL
             return dal.GetOrders().Where(k => k.OrderKey == key).FirstOrDefault();
         }
 
-        public int AddHost(Host host)
+        public string AddHost(Host host)
         {
             if (!Configuration.BanksXmlFinish)
                 throw new TypeUnloadedException("בודק את פרטי הבנק. אנא המתן.");
@@ -392,7 +392,7 @@ namespace BL
             dal.UpdateHost(host);
         }
 
-        public Host GetHost(int key)
+        public Host GetHost(string key)
         {
             return dal.GetHosts().Where(h => h.HostKey == key).FirstOrDefault();
         }
@@ -402,7 +402,7 @@ namespace BL
             return dal.GetOrders().FindAll(predicate);
         }
 
-        public List<Order> GetOrdersByHostKey(int key)
+        public List<Order> GetOrdersByHostKey(string key)
         {
             return (from hu in GetHostingUnitsByOwner(key)
                     from order in dal.GetOrders()

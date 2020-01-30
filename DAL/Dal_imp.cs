@@ -135,7 +135,7 @@ namespace DAL
                 throw new ArgumentException("הזמנה לא קיימת") { Source = "DAL" };
         }
 
-        public int AddHost(Host host)
+        public string AddHost(Host host)
         {
             host = Cloning.Clone(host);
             var v = DataSource.Hosts.Where(h => host.HostKey == h.HostKey);

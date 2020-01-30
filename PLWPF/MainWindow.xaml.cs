@@ -43,7 +43,7 @@ namespace PLWPF
 
         private void OpenHostWindow(object sender, RoutedEventArgs e)
         {
-            if (Cookies.LoginUserKey == 0)
+            if (Cookies.LoginUserKey == null)
                 new HostLogin() { Owner = this }.ShowDialog();
             else//במקרה שהוא כבר מחובר
             {

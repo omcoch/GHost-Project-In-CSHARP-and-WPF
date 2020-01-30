@@ -46,7 +46,7 @@ namespace PLWPF
                 return;
             }
 
-            Host host = bL.GetHost(int.Parse(KeyTextBox.Text));
+            Host host = bL.GetHost(KeyTextBox.Text);
             if ( host== null)
             {
                 MessageBox.Show("תעודת זהות לא קיימת במאגר.");

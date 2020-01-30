@@ -54,7 +54,7 @@ namespace PLWPF
                 GuestRequestKey = gr.guestRequestKey,
                 CreateDate = DateTime.Now,
                 HostingUnitKey=hu.HostingUnitKey,
-                Status= OrderStatus.טרם_טופל
+                Status= OrderStatus.טרם_טופל,
             };
             try
             {

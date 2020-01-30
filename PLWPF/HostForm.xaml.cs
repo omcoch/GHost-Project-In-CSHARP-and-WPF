@@ -44,7 +44,7 @@ namespace PLWPF
         /// קונסטרקטור לעדכון מארח
         /// </summary>
         /// <param name="hostKey">מזהה מארח</param>
-        public HostForm(int hostKey)
+        public HostForm(string hostKey)
         {
             Cookies.PrevWindow = this.GetType().Name;
             InitializeComponent();

@@ -12,7 +12,7 @@ namespace DS
             new HostingUnit()
             {
                 HostingUnitKey = Configuration.GenerateHostingUnitSerialKey,
-                OwnerKey = 312279188,
+                OwnerKey = "312279188",
                 HostingUnitName = "מלון בראשית",
                 Area = Regions.דרום,
                 SubArea = "מצפה רמון",
@@ -35,7 +35,7 @@ namespace DS
         {
             new Host()
                 {
-                    HostKey = 312279188,
+                    HostKey = "312279188",
                     PrivateName = "איציק",
                     FamilyName = "שמואלי",
                     PhoneNumber = "054222222",

@@ -26,7 +26,7 @@ namespace PLWPF
             InitializeComponent();
             if (Cookies.NoHistory())
                 GoBackButton.Visibility = Visibility.Hidden;
-            if (Cookies.LoginUserKey==0)
+            if (Cookies.LoginUserKey==null)
                 LogOutButton.Visibility = Visibility.Hidden;
         }
 

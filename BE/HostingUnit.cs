@@ -12,7 +12,7 @@ namespace BE
     public class HostingUnit
     {
         public int HostingUnitKey { get; set; }
-        public int OwnerKey { get; set; }
+        public string OwnerKey { get; set; }
         public string HostingUnitName { get; set; }
         [XmlIgnore]
         public bool[,] Diary { get; set; }

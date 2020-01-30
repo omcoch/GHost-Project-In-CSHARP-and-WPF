@@ -12,7 +12,7 @@ namespace BL
         int AddGuestRequest(GuestRequest guestRequest);
         void UpdateGuestRequest(GuestRequest guestRequest);
 
-        int AddHost(Host host);
+        string AddHost(Host host);
         void UpdateHost(Host host);
 
         int AddHostingUnit(HostingUnit hostingUnit);
@@ -44,10 +44,10 @@ namespace BL
         IEnumerable<IGrouping<Regions, HostingUnit>> GetHostingUnitsGroupByArea();
 
         HostingUnit GetHostingUnit(int key);
-        List<HostingUnit> GetHostingUnitsByOwner(int key);
+        List<HostingUnit> GetHostingUnitsByOwner(string key);
         List<Order> GetOrdersByCondition(Predicate<Order> predicate);
-        List<Order> GetOrdersByHostKey(int key);
+        List<Order> GetOrdersByHostKey(string key);
         Order GetOrder(int key);
-        Host GetHost(int key);
+        Host GetHost(string key);
     }
 }
