@@ -1,19 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Orders>
   <Order>
-    <CreateDate>2020-01-29T14:01:25.8574806+02:00</CreateDate>
-    <GuestRequestKey>10000001</GuestRequestKey>
+    <CreateDate>2020-01-29T16:27:40.1296125+02:00</CreateDate>
+    <GuestRequestKey>10000004</GuestRequestKey>
     <HostingUnitKey>10000000</HostingUnitKey>
-    <OrderDate>29/01/2020 14:35:48</OrderDate>
-    <OrderKey>10000000</OrderKey>
-    <Status>נשלח_מייל</Status>
-  </Order>
-  <Order>
-    <CreateDate>2020-01-29T14:04:08.5275758+02:00</CreateDate>
-    <GuestRequestKey>10000001</GuestRequestKey>
-    <HostingUnitKey>10000000</HostingUnitKey>
-    <OrderDate>29/01/2020 14:13:38</OrderDate>
-    <OrderKey>10000001</OrderKey>
-    <Status>נשלח_מייל</Status>
+    <OrderDate>01/01/0001 00:00:00</OrderDate>
+    <OrderKey>10000005</OrderKey>
+    <Status>נסגר_מחוסר_הענות_של_הלקוח</Status>
   </Order>
 </Orders>

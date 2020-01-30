@@ -44,7 +44,7 @@ namespace BE
                 "\nיש בריכה? " + (Pool ? "כן" : "לא") +
                 "\nיש ג'קוזי? " + (Jacuzzi ? "כן" : "לא") +
                 "\nיש גינה? " + (Garden ? "כן" : "לא") +
-                "\nיש אטרקציות לילדים? " + ChildrensAttractions;
+                "\nיש אטרקציות לילדים? " + (ChildrensAttractions ? "כן" : "לא");
             return str;
         }
     }

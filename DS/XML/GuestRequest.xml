@@ -2,42 +2,62 @@
 <GuestRequests>
   <GuestRequest>
     <Adults>2</Adults>
-    <Area>דרום</Area>
-    <Children>0</Children>
-    <ChildrensAttractions>לא_מעוניין</ChildrensAttractions>
+    <Area>ירושלים</Area>
+    <Children>10</Children>
+    <ChildrensAttractions>אפשרי</ChildrensAttractions>
     <EntryDate>2020-01-29T00:00:00+02:00</EntryDate>
     <FamilyName>כוכבי</FamilyName>
     <Garden>אפשרי</Garden>
-    <guestRequestKey>10000000</guestRequestKey>
+    <guestRequestKey>10000004</guestRequestKey>
     <Jacuzzi>אפשרי</Jacuzzi>
-    <MailAddress>some@mail.com</MailAddress>
+    <MailAddress>omcoch@gmail.com</MailAddress>
     <Pool>אפשרי</Pool>
     <PrivateName>עומרי</PrivateName>
     <RegistrationDate>2020-01-29T00:00:00+02:00</RegistrationDate>
-    <ReleaseDate>2020-01-31T00:00:00</ReleaseDate>
-    <Status>פתוחה</Status>
-    <SubArea>מצפה רמון</SubArea>
-    <Type>קמפינג</Type>
-    <MaxPrice>1000</MaxPrice>
+    <ReleaseDate>2020-02-04T00:00:00</ReleaseDate>
+    <Status>נסגרה_דרך_האתר</Status>
+    <SubArea />
+    <Type>מלון</Type>
+    <MaxPrice>30</MaxPrice>
   </GuestRequest>
   <GuestRequest>
     <Adults>2</Adults>
     <Area>מרכז</Area>
-    <Children>2</Children>
+    <Children>0</Children>
     <ChildrensAttractions>אפשרי</ChildrensAttractions>
-    <EntryDate>2020-02-20T00:00:00</EntryDate>
+    <EntryDate>2020-01-29T00:00:00+02:00</EntryDate>
     <FamilyName>אלקבץ</FamilyName>
-    <Garden>לא_מעוניין</Garden>
-    <guestRequestKey>10000001</guestRequestKey>
-    <Jacuzzi>הכרחי</Jacuzzi>
-    <MailAddress>ronelkabetz@gmail.com</MailAddress>
+    <Garden>אפשרי</Garden>
+    <guestRequestKey>10000005</guestRequestKey>
+    <Jacuzzi>אפשרי</Jacuzzi>
+    <MailAddress>jnd@dfg.dfg</MailAddress>
     <Pool>אפשרי</Pool>
     <PrivateName>רון</PrivateName>
     <RegistrationDate>2020-01-29T00:00:00+02:00</RegistrationDate>
-    <ReleaseDate>2020-02-29T00:00:00</ReleaseDate>
+    <ReleaseDate>2020-02-07T00:00:00</ReleaseDate>
+    <Status>פתוחה</Status>
+    <SubArea />
+    <Type>קמפינג</Type>
+    <MaxPrice>800</MaxPrice>
+  </GuestRequest>
+  <GuestRequest>
+    <Adults>4</Adults>
+    <Area>מרכז</Area>
+    <Children>3</Children>
+    <ChildrensAttractions>אפשרי</ChildrensAttractions>
+    <EntryDate>2020-02-19T00:00:00</EntryDate>
+    <FamilyName>כהן</FamilyName>
+    <Garden>אפשרי</Garden>
+    <guestRequestKey>10000006</guestRequestKey>
+    <Jacuzzi>אפשרי</Jacuzzi>
+    <MailAddress>haim@mail.com</MailAddress>
+    <Pool>אפשרי</Pool>
+    <PrivateName>חיים</PrivateName>
+    <RegistrationDate>2020-01-29T00:00:00+02:00</RegistrationDate>
+    <ReleaseDate>2020-02-26T00:00:00</ReleaseDate>
     <Status>פתוחה</Status>
     <SubArea />
     <Type>צימר</Type>
-    <MaxPrice>15000</MaxPrice>
+    <MaxPrice>2000</MaxPrice>
   </GuestRequest>
 </GuestRequests>

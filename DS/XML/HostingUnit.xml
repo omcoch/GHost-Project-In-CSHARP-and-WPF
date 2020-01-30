@@ -2,8 +2,8 @@
 <ArrayOfHostingUnit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <HostingUnit>
     <HostingUnitKey>10000000</HostingUnitKey>
-    <OwnerKey>123</OwnerKey>
-    <HostingUnitName>דגכ</HostingUnitName>
+    <OwnerKey>313347759</OwnerKey>
+    <HostingUnitName>נוף הגליל</HostingUnitName>
     <Diary>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -17,10 +17,10 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
-      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
       <boolean>false</boolean>
@@ -378,15 +378,15 @@
       <boolean>false</boolean>
       <boolean>false</boolean>
     </Diary>
-    <Area>מרכז</Area>
-    <SubArea>גכה</SubArea>
-    <Type>מלון</Type>
-    <Adults>4</Adults>
-    <Children>0</Children>
+    <Area>צפון</Area>
+    <SubArea>גליל עליון</SubArea>
+    <Type>אכסניה</Type>
+    <Adults>20</Adults>
+    <Children>2</Children>
     <Pool>false</Pool>
-    <Jacuzzi>false</Jacuzzi>
+    <Jacuzzi>true</Jacuzzi>
     <Garden>false</Garden>
     <ChildrensAttractions>false</ChildrensAttractions>
-    <Price>40</Price>
+    <Price>1000</Price>
   </HostingUnit>
 </ArrayOfHostingUnit>

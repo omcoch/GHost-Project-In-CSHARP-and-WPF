@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         xmlns:core="clr-namespace:System;assembly=mscorlib"
         Title="{Binding Path=SiteName, StringFormat=' מנהל האתר- {0}'}"
-        Width="800">
+        Width="800" VerticalAlignment="Stretch">
     <Window.DataContext>
         <BE:Configuration/>
     </Window.DataContext>

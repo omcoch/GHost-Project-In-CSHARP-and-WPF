@@ -24,8 +24,8 @@ namespace BE
             return "מספר הזמנה:"+
                 "\nמזהה לקוח: " + HostingUnitKey+" מזהה יחידת אירוח: "+ GuestRequestKey+
                 "\nסטטוס: " + Status
-                + "\nתאריך יצירה: " + CreateDate
-                + "\nתאריך שליחת מייל: " + OrderDate;
+                + "\nתאריך יצירה: " +  CreateDate.ToShortDateString()
+                + "\nתאריך שליחת מייל: " + OrderDate.ToShortDateString();
         }
     }
 }

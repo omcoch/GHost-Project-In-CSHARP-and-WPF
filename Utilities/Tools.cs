@@ -19,19 +19,14 @@ namespace Utilities
         /// <param name="siteName">שם האתר (השולח)</param>
         /// <param name="adminMailAddress">כתובת מייל השולח (בעל האתר בלבד)</param>
         /// <returns></returns>
-        public static bool SendMail(MailMessage message, string siteName, string adminMailAddress)
+        public static bool SendMail(MailMessage message, string siteName, string from)
         {
-            message.From = new MailAddress( adminMailAddress);
             // Smtp
-            SmtpClient smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Credentials = new System.Net.NetworkCredential("readtora@gmail.com", "g-host12"),
-                EnableSsl = true,
-                Port = 587,
-                UseDefaultCredentials = false,
-                DeliveryMethod = SmtpDeliveryMethod.Network
-            };
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Credentials = new System.Net.NetworkCredential(from, "g-host12");
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
             try
             {
