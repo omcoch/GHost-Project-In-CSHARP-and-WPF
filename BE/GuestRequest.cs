@@ -11,12 +11,7 @@ namespace BE
 {
     public class GuestRequest
     {
-        public int guestRequestKey
-        {
-            get;
-            set;
-        } // מספר הבקשה לאירוח - מזהה ייחודי
-
+        public int guestRequestKey { get; set; } // מספר הבקשה לאירוח - מזהה ייחודי
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
         public MailAddress MailAddress { get; set; }

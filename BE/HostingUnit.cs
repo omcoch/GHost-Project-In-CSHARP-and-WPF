@@ -16,12 +16,11 @@ namespace BE
         public string HostingUnitName { get; set; }
         [XmlIgnore]
         public bool[,] Diary { get; set; }
-        //optional. tell the XmlSerializer to name the Array Element as'Board' instead of 'BoaredDto'
         [XmlArray("Diary")]
         public bool[] DiaryArray
         {
             get { return Diary.Flatten(); }
-            set { Diary = value.Expand(12); } //5 is the number of roes in the matrix
+            set { Diary = value.Expand(12); } 
         }
         public Regions Area { get; set; }
         public string SubArea { get; set; }

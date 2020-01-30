@@ -29,8 +29,7 @@ namespace DAL
             guestRequest.guestRequestKey = Configuration.GenerateGuestRequestSerialKey;
             DataSource.GuestRequests.Add(guestRequest);
             return guestRequest.guestRequestKey;
-        
-}
+        }
 
 
         public int AddHostingUnit(HostingUnit hostingUnit)

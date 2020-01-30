@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace BE
 {
     [Serializable]
-    public class DateOccupiedException : Exception
+    public class DateOccupiedException : Exception//שגיאת תאריך תפוס
     {
         public DateOccupiedException()
         {

@@ -26,6 +26,11 @@ namespace BL
         int TimeDistance(DateTime first, DateTime last = default(DateTime));
 
         List<Order> GetOrdersBefore(int days);
+        /// <summary>
+        /// מחזירה רשימה של דרישות לקוח לפי תנאי מסויים
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         List<GuestRequest> GetGuestRequestsByCondition(Predicate<GuestRequest> predicate);
         int GetAmountOrders(GuestRequest guestRequest);
         int GetAmountOrders(HostingUnit hostingUnit);

@@ -49,7 +49,6 @@ namespace BL
             if (TimeDistance(guestRequest.EntryDate, guestRequest.ReleaseDate) < 1)
                 throw new ArgumentOutOfRangeException("על תאריך תחילת הנופש להיות קודם לפחות ביום אחד לתאריך סיום הנופש");
             return dal.AddGuestRequest(guestRequest);
-
         }
 
 
@@ -58,13 +57,13 @@ namespace BL
             Host owner = dal.GetHosts().FirstOrDefault(h => hostingUnit.OwnerKey == h.HostKey);
             try
             {
-                owner.NumOfHostingUnits++;
+                owner.NumOfHostingUnits++;//מגדילים את מספר היחידות שבבעלות המארח באחד
                 dal.UpdateHost(owner);
                 return dal.AddHostingUnit(hostingUnit);
             }
             catch (ArgumentException e)
             {
-                owner.NumOfHostingUnits--;
+                owner.NumOfHostingUnits--;//במקרה שלא הצליח להוסיף את יחידת האירוח נוריד את מספר יחידות האירוח שבבעלות המארח
                 dal.UpdateHost(owner);
                 throw e;
             }
@@ -158,9 +157,9 @@ namespace BL
                 throw new ArgumentException("ההזמנה לא קיימת במקור הנתונים");
 
             OrderStatus orderStatus = os.First();
-            if (orderStatus == OrderStatus.נסגר_בהיענות_של_הלקוח || orderStatus == OrderStatus.נסגר_מחוסר_הענות_של_הלקוח)
+            if (orderStatus == OrderStatus.נסגר_בהיענות_של_הלקוח || orderStatus == OrderStatus.נסגר_מחוסר_הענות_של_הלקוח
+                ||orderStatus==OrderStatus.נסגר_בעקבות_סגירת_עסקה_עם_מארח_אחר)
                 throw new ExecutionOrderException("הבקשה כבר סגורה");
-
 
             if (owner.CollectionClearance)
                 try
@@ -184,12 +183,14 @@ namespace BL
 
                         // מילוי המטריצה בתאריכים המבוקשים
                         FillDiary(hostingUnit, guestRequest.EntryDate, guestRequest.ReleaseDate);
+
                         // עדכון יחידת האירוח בבסיס הנתונים
                         dal.UpdateHostingUnit(hostingUnit);
 
                         // עדכון סטטוס דרישת לקוח
                         guestRequest.Status = RequestStatus.נסגרה_דרך_האתר;
                         dal.UpdateGuestRequest(guestRequest);
+
                         // עדכון העמלה אצל המארח
                         dal.UpdateHost(owner);
 
@@ -202,7 +203,6 @@ namespace BL
                             order.Status = OrderStatus.נסגר_בעקבות_סגירת_עסקה_עם_מארח_אחר;
                             dal.UpdateOrder(order);
                         }
-
                     }
                 }
                 catch (Exception e)
@@ -214,11 +214,11 @@ namespace BL
         }
 
         /// <summary>
-        /// שולח מייל ללקוח המעדכן אותו בדבר הזמנה שנוצרה עבורו
+        /// יצירת הודעת מייל ללקוח בגין הזמנה שנוצרה עבורו
         /// </summary>
         /// <param name="orderKey">מספר הזמנה</param>
         /// <param name="guestRequest">דרישת לקוח</param>
-        /// <returns>מחזיר אמת אם המייל נשלח בהצלחה, אחרת שקר</returns>
+        /// <returns>מחזיר את הודעת המייל</returns>
         private MailMessage SendMailToGuest(int orderKey, HostingUnit hostingUnit, GuestRequest guestRequest)
         {
             MailAddress mailAddress = dal.GetHosts().Where(h => hostingUnit.OwnerKey == h.HostKey).Select(o => o.MailAddress).First();
@@ -229,14 +229,22 @@ namespace BL
             message.Body = "שלום, " + guestRequest.PrivateName + "\nנפתחה עבורך הזמנה לאירוח אצל " + hostingUnit.HostingUnitName
                 + ".\nמספר ההזמנה: " + orderKey + "\nאנא צור קשר עם המארח בכתובת " + mailAddress + "\nבברכת חופשה מהנה, \n" + Configuration.SiteName;
             return message;
-            //Tools.SendMail(message, Configuration.SiteName, Configuration.AdminMailAddress.Address);
         }
-
+        /// <summary>
+        /// מחשב את העמלה
+        /// </summary>
+        /// <param name="amountDays">מספר ימי הנופש</param>
+        /// <returns>סכום העמלה</returns>
         int CalculateFee(int amountDays)
         {
             return amountDays * Configuration.FEE;
         }
-
+        /// <summary>
+        /// ממלא את היומן
+        /// </summary>
+        /// <param name="hostingUnit">יחידת האירוח שעבורה אנו רוצים למלא את היומן</param>
+        /// <param name="entry">תאריך תחילת הנופש</param>
+        /// <param name="release">תאריך סיום הנופש</param>
         void FillDiary(HostingUnit hostingUnit, DateTime entry, DateTime release)
         {
             while (entry <= release)
@@ -245,7 +253,12 @@ namespace BL
                 entry = entry.AddDays(1);
             }
         }
-
+        /// <summary>
+        /// פונקציה המחזירה את יחידות האירוח הפנויות בתאריך מסויים
+        /// </summary>
+        /// <param name="date">תאריך תחילת הנופש</param>
+        /// <param name="days">מספר ימי הנופש</param>
+        /// <returns>רשימת יחידות האירוח הפנויות בתאריך הנתון</returns>
         public List<HostingUnit> GetAvailableHostingUnits(DateTime date, int days)
         {
             var v = (from unit in dal.GetHostingUnits()
@@ -270,7 +283,11 @@ namespace BL
                     return TimeDistance(order.CreateDate) >= days || TimeDistance(order.OrderDate) >= days;
                 });
         }
-
+        /// <summary>
+        /// מחזירה רשימה של דרישות לקוח לפי תנאי מסויים
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public List<GuestRequest> GetGuestRequestsByCondition(Predicate<GuestRequest> predicate)
         {
             return dal.GetGuestRequests().FindAll(predicate);
@@ -392,7 +409,11 @@ namespace BL
                     where order.HostingUnitKey == hu.HostingUnitKey
                     select order).ToList<Order>();
         }     
-
+        /// <summary>
+        /// פונקציה שבודקת אם פרטי הבנק תקינים(קיימים במאגר)
+        /// </summary>
+        /// <param name="bb">פרטי בנק</param>
+        /// <returns></returns>
         private bool ValidateBankDetails(BankBranch bb)
         {
             var v = from item in dal.GetBankBranches()
