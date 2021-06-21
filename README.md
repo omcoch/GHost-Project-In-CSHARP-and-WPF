@@ -1,4 +1,4 @@
-# GHost- Project In C# and WPF
+# GHost - Project In C# and WPF
 System for coordinating vacations between clients and hosts.
 
 Management program for hotels, where customers can see what rooms are available at a specific time and order that room. 
